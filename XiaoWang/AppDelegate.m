@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FGRegisterVC.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self naviSet];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
     return YES;
+}
+
+- (void)naviSet{
+    FGRegisterVC *vc = [FGRegisterVC new];
+    
+    FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+    
+    self.window.rootViewController = navi;
+    
+    
+    
 }
 
 
