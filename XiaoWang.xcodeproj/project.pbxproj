@@ -77,7 +77,6 @@
 		5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA9021DCE1370025213D /* FGRegisterVC.m */; };
 		5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA9621DD10CA0025213D /* HYPersonSetVC.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
-		519C87B821DA249100085EB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B721DA249100085EB5 /* ViewController.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
 		519C87C021DA249E00085EB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BE21DA249E00085EB5 /* LaunchScreen.storyboard */; };
@@ -228,8 +227,6 @@
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		519C87B621DA249100085EB5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		519C87B721DA249100085EB5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		519C87BA21DA249100085EB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		519C87BC21DA249E00085EB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		519C87BF21DA249E00085EB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -680,8 +677,6 @@
 				5135CA7B21DA62FB0025213D /* Login */,
 				519C87B321DA249100085EB5 /* AppDelegate.h */,
 				519C87B421DA249100085EB5 /* AppDelegate.m */,
-				519C87B621DA249100085EB5 /* ViewController.h */,
-				519C87B721DA249100085EB5 /* ViewController.m */,
 				5135CA7221DA57E60025213D /* FGTabBarVC.h */,
 				5135CA7321DA57E70025213D /* FGTabBarVC.m */,
 				519C87B921DA249100085EB5 /* Main.storyboard */,
@@ -785,6 +780,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-XiaoWang/Pods-XiaoWang-resources.sh",
+				"${PODS_ROOT}/BRPickerView/BRPickerView/AddressPickerView/BRPickerView.bundle",
 				"${PODS_ROOT}/EasyNavigation/EasyNavigation/EasyNavButton.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PYPhotoBrowser/PYPhotoBrowser/PYPhotosView.bundle",
@@ -795,6 +791,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EasyNavButton.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYPhotosView.bundle",
@@ -842,7 +839,6 @@
 				5135CA6621DA57CA0025213D /* FGCellStyleView.m in Sources */,
 				5135CA6C21DA57CA0025213D /* FGScrollView.m in Sources */,
 				5135CA5721DA57CA0025213D /* FCShareBtnsView.m in Sources */,
-				519C87B821DA249100085EB5 /* ViewController.m in Sources */,
 				5135CA6321DA57CA0025213D /* FGAlertView.m in Sources */,
 				5135CA4121DA57CA0025213D /* FGBaseNavigationController.m in Sources */,
 				5135C9C721DA57B60025213D /* PopAnimationTool.m in Sources */,

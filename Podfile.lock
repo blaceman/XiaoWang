@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - AliyunOSSiOS (2.10.7)
+  - BRPickerView (2.2.1)
   - DACircularProgress (2.3.1)
   - EasyNavigation (1.0.5)
   - FLAnimatedImage (1.0.12)
@@ -212,6 +213,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AliyunOSSiOS
+  - BRPickerView
   - EasyNavigation
   - JKCategories
   - JPush
@@ -238,6 +240,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - AliyunOSSiOS
+    - BRPickerView
     - DACircularProgress
     - EasyNavigation
     - FLAnimatedImage
@@ -264,6 +267,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
+  BRPickerView: 0590a8c5de9bd98c6b4e4f117a3dff6de287d5b2
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EasyNavigation: 3414769a995d032e5dd9441f2bdd4eda7dd10089
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -287,6 +291,6 @@ SPEC CHECKSUMS:
   XXNibBridge: addb780e6db076eb2c61716aa60b176a6799b80f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: fa21a04a5d86bd9fd5260f88a6385b7a77c7f2ea
+PODFILE CHECKSUM: f7b00866b161a74594483c329cfd99e77f555504
 
 COCOAPODS: 1.5.3

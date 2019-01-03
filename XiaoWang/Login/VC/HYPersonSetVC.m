@@ -14,6 +14,7 @@
 #import "FGPickerView.h"
 #import "FGAliyunOSSManager.h"
 #import <NSAttributedString+YYText.h>
+#import <BRPickerView.h>
 
 @interface HYPersonSetVC ()
 @property (nonatomic,strong)UIButton *avaterButton;
@@ -106,18 +107,14 @@
         model.leftTitleColor = UIColorFromHex(0x333333);
         model.contentColor = UIColorFromHex(0x666666);
         model.leftImgPathMargin = AdaptedWidth(23);
-//        model.placeholder = @"未设置";
-        model.rightImgPath = @"icon_more";
-        if ([titleArr[i] isEqualToString:@"昵称"]) {
-            model.content = @"321123fsda速度";
+        model.placeholder = @"未设置";
+        if (![titleArr[i] isEqualToString:@"昵称"]) {
+            model.rightImgPath = @"icon_more";
 
-            
-        }else if ([titleArr[i] isEqualToString:@"手机"]){
-            model.content = @"1312224";
-            
-        }else if ([titleArr[i] isEqualToString:@"性别"]){
-            model.content = @"男";
-            
+        }
+        if ([titleArr[i] isEqualToString:@"生日"]) {
+            model.placeholder = @"请选择出生年月（选填）";
+
         }
         
         
@@ -189,13 +186,20 @@
 }
 
 -(void)itemAction:(FGCellStyleView *)view{
-//    YSInputTipView *showView = [YSInputTipView new];
-//    @weakify(showView)
-//    [[showView.comBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
-//        @strongify(showView)
-//        view.model.content = showView.contentField.text;
-//    }];
-//    [showView showInView:self.tabBarController.view];
+    if ([view.model.leftTitle isEqualToString:@"地区"]) {
+        [BRAddressPickerView showAddressPickerWithDefaultSelected:@[@"广东省", @"广州市", @"海珠区"] resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
+            view.model.content = [NSString stringWithFormat:@"%@%@%@",province.name,city.name,area.name];
+        }];
+    }else if ([view.model.leftTitle isEqualToString:@"生日"]){
+        [BRDatePickerView showDatePickerWithTitle:@"生日选择" dateType:BRDatePickerModeDate defaultSelValue:nil resultBlock:^(NSString *selectValue) {
+            view.model.content = selectValue;
+        }];
+    }else if ([view.model.leftTitle isEqualToString:@"性别"]){
+        [BRStringPickerView showStringPickerWithTitle:@"性别选择" dataSource:@[@"男",@"女"] defaultSelValue:@"男" resultBlock:^(id selectValue) {
+            view.model.content = selectValue;
+        }];
+        
+    }
     
 }
 

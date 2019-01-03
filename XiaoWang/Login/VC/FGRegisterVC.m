@@ -177,21 +177,7 @@
     
   
     WeakSelf
-//    [FGHttpManager postWithPath:@"security/register" parameters:dic success:^(id responseObject) {
-//        StrongSelf
-//        [self showTextHUDWithMessage:@"注册成功"];
-//        FGUserModel *model = [FGUserModel modelWithJSON:responseObject];
-//        [FGCacheManager sharedInstance].userModel = model;
-//        [FGCacheManager sharedInstance].token = model.username;
-//        
-//        DDBindStudentVC *vc = [DDBindStudentVC new];
-//        vc.bindType = DDBindStudentTypeLogin;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } failure:^(NSString *error) {
-//        StrongSelf
-//        [self showWarningHUDWithMessage:error completion:nil];
-//    }];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

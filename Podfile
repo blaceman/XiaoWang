@@ -25,6 +25,7 @@ target 'XiaoWang' do
     pod 'UMengUShare/Social/WeChat', '< 6.4.7'
     pod 'UMengUShare/Social/QQ', '< 6.4.7'
     pod 'UMengUShare/Social/Sina', '< 6.4.7'
+    pod 'BRPickerView'
     
 end
 
