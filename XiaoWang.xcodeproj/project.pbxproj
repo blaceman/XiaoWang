@@ -76,6 +76,10 @@
 		5135CA9321DCE1370025213D /* DDBindStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA8F21DCE1360025213D /* DDBindStudentVC.m */; };
 		5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA9021DCE1370025213D /* FGRegisterVC.m */; };
 		5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA9621DD10CA0025213D /* HYPersonSetVC.m */; };
+		514A315C21DF287F00987D4B /* XWLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A315B21DF287F00987D4B /* XWLabelVC.m */; };
+		514A315F21DF2D7500987D4B /* XWLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A315E21DF2D7500987D4B /* XWLabelView.m */; };
+		514A316321DF369100987D4B /* FGHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A316221DF369100987D4B /* FGHttpManager.m */; };
+		514A316621DF36B700987D4B /* FGResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A316521DF36B700987D4B /* FGResponseModel.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -224,6 +228,14 @@
 		5135CA9021DCE1370025213D /* FGRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGRegisterVC.m; sourceTree = "<group>"; };
 		5135CA9521DD10C90025213D /* HYPersonSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPersonSetVC.h; sourceTree = "<group>"; };
 		5135CA9621DD10CA0025213D /* HYPersonSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPersonSetVC.m; sourceTree = "<group>"; };
+		514A315A21DF287F00987D4B /* XWLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWLabelVC.h; sourceTree = "<group>"; };
+		514A315B21DF287F00987D4B /* XWLabelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWLabelVC.m; sourceTree = "<group>"; };
+		514A315D21DF2D7500987D4B /* XWLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWLabelView.h; sourceTree = "<group>"; };
+		514A315E21DF2D7500987D4B /* XWLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWLabelView.m; sourceTree = "<group>"; };
+		514A316121DF369100987D4B /* FGHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGHttpManager.h; sourceTree = "<group>"; };
+		514A316221DF369100987D4B /* FGHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGHttpManager.m; sourceTree = "<group>"; };
+		514A316421DF36B600987D4B /* FGResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGResponseModel.h; sourceTree = "<group>"; };
+		514A316521DF36B700987D4B /* FGResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGResponseModel.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -579,6 +591,8 @@
 		5135CA7E21DA63420025213D /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				514A315A21DF287F00987D4B /* XWLabelVC.h */,
+				514A315B21DF287F00987D4B /* XWLabelVC.m */,
 				5135CA8A21DCE1350025213D /* DDBindStudentVC.h */,
 				5135CA8F21DCE1360025213D /* DDBindStudentVC.m */,
 				5135CA8B21DCE1350025213D /* FGForgetPasswordVC.h */,
@@ -596,6 +610,8 @@
 		5135CA7F21DA634A0025213D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				514A315D21DF2D7500987D4B /* XWLabelView.h */,
+				514A315E21DF2D7500987D4B /* XWLabelView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -649,6 +665,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		514A316021DF369100987D4B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				514A316121DF369100987D4B /* FGHttpManager.h */,
+				514A316221DF369100987D4B /* FGHttpManager.m */,
+				514A316421DF36B600987D4B /* FGResponseModel.h */,
+				514A316521DF36B700987D4B /* FGResponseModel.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		519C87A721DA249100085EB5 = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +699,7 @@
 		519C87B221DA249100085EB5 /* XiaoWang */ = {
 			isa = PBXGroup;
 			children = (
+				514A316021DF369100987D4B /* Network */,
 				5135CA7C21DA63210025213D /* Mine */,
 				5135CA7D21DA63320025213D /* Message */,
 				5135CA7B21DA62FB0025213D /* Login */,
@@ -853,9 +881,11 @@
 				5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */,
 				5135CA4721DA57CA0025213D /* FGBaseViewController.m in Sources */,
 				5135C9C521DA57B60025213D /* PGIndexBannerSubiew.m in Sources */,
+				514A316621DF36B700987D4B /* FGResponseModel.m in Sources */,
 				5135C9C221DA57B60025213D /* FGBaseWebViewController.m in Sources */,
 				5135CA5F21DA57CA0025213D /* UIView+FGNew.m in Sources */,
 				5135CA4421DA57CA0025213D /* FGBaseTableViewCell.m in Sources */,
+				514A315F21DF2D7500987D4B /* XWLabelView.m in Sources */,
 				5135C9C821DA57B60025213D /* PopView.m in Sources */,
 				519C87B521DA249100085EB5 /* AppDelegate.m in Sources */,
 				5135CA4F21DA57CA0025213D /* FGImagePickerVC.m in Sources */,
@@ -870,6 +900,8 @@
 				5135CA4821DA57CA0025213D /* FGPageViewController.m in Sources */,
 				5135CA5B21DA57CA0025213D /* MBProgressHUD+LMJ.m in Sources */,
 				5135CA5821DA57CA0025213D /* FGShareManager.m in Sources */,
+				514A315C21DF287F00987D4B /* XWLabelVC.m in Sources */,
+				514A316321DF369100987D4B /* FGHttpManager.m in Sources */,
 				5135CA7421DA57E70025213D /* FGTabBarVC.m in Sources */,
 				5135CA4521DA57CA0025213D /* FGBaseTouchView.m in Sources */,
 				5135CA9221DCE1370025213D /* FGForgetPasswordVC.m in Sources */,

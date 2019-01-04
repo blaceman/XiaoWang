@@ -15,6 +15,7 @@
 #import "FGAliyunOSSManager.h"
 #import <NSAttributedString+YYText.h>
 #import <BRPickerView.h>
+#import "XWLabelVC.h"
 
 @interface HYPersonSetVC ()
 @property (nonatomic,strong)UIButton *avaterButton;
@@ -154,8 +155,8 @@
     }];
     
     [bottomView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        [FGCacheManager sharedInstance].token = nil;
-        [self.navigationController popViewControllerAnimated:YES];
+        XWLabelVC *vc = [XWLabelVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     
@@ -186,11 +187,13 @@
 }
 
 -(void)itemAction:(FGCellStyleView *)view{
+    [self.view endEditing:YES];
     if ([view.model.leftTitle isEqualToString:@"地区"]) {
         [BRAddressPickerView showAddressPickerWithDefaultSelected:@[@"广东省", @"广州市", @"海珠区"] resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
             view.model.content = [NSString stringWithFormat:@"%@%@%@",province.name,city.name,area.name];
         }];
     }else if ([view.model.leftTitle isEqualToString:@"生日"]){
+        
         [BRDatePickerView showDatePickerWithTitle:@"生日选择" dateType:BRDatePickerModeDate defaultSelValue:nil resultBlock:^(NSString *selectValue) {
             view.model.content = selectValue;
         }];
