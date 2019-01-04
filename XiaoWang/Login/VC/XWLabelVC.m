@@ -8,6 +8,8 @@
 
 #import "XWLabelVC.h"
 #import "XWLabelView.h"
+#import "XWPairVC.h"
+
 
 @interface XWLabelVC ()
 
@@ -19,8 +21,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"个性标签"];
+    WeakSelf
     [self.navigationView addRightButtonWithTitle:@"跳过" clickCallBack:^(UIView *view) {
-        
+        StrongSelf
+        XWPairVC *vc = [XWPairVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     NSArray *titleArr = @[@"职业",@"职业",@"职业",@"职业"];

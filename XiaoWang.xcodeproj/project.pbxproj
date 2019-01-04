@@ -80,6 +80,13 @@
 		514A315F21DF2D7500987D4B /* XWLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A315E21DF2D7500987D4B /* XWLabelView.m */; };
 		514A316321DF369100987D4B /* FGHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A316221DF369100987D4B /* FGHttpManager.m */; };
 		514A316621DF36B700987D4B /* FGResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A316521DF36B700987D4B /* FGResponseModel.m */; };
+		514A317321DFAA7900987D4B /* XWPairVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317221DFAA7900987D4B /* XWPairVC.m */; };
+		514A317621DFAE4700987D4B /* XWPairTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317521DFAE4700987D4B /* XWPairTipView.m */; };
+		514A317921DFB32600987D4B /* WXLoadingTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317821DFB32600987D4B /* WXLoadingTipView.m */; };
+		514A317C21DFB6F400987D4B /* XWPairHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317B21DFB6F400987D4B /* XWPairHeaderView.m */; };
+		514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317E21DFBA6400987D4B /* XWPairPassVC.m */; };
+		514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318121DFBC8300987D4B /* XWPairBodyView.m */; };
+		514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318421DFC38C00987D4B /* XWPairPassView.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -236,6 +243,20 @@
 		514A316221DF369100987D4B /* FGHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGHttpManager.m; sourceTree = "<group>"; };
 		514A316421DF36B600987D4B /* FGResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGResponseModel.h; sourceTree = "<group>"; };
 		514A316521DF36B700987D4B /* FGResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGResponseModel.m; sourceTree = "<group>"; };
+		514A317121DFAA7900987D4B /* XWPairVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairVC.h; sourceTree = "<group>"; };
+		514A317221DFAA7900987D4B /* XWPairVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairVC.m; sourceTree = "<group>"; };
+		514A317421DFAE4700987D4B /* XWPairTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairTipView.h; sourceTree = "<group>"; };
+		514A317521DFAE4700987D4B /* XWPairTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairTipView.m; sourceTree = "<group>"; };
+		514A317721DFB32600987D4B /* WXLoadingTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXLoadingTipView.h; sourceTree = "<group>"; };
+		514A317821DFB32600987D4B /* WXLoadingTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXLoadingTipView.m; sourceTree = "<group>"; };
+		514A317A21DFB6F400987D4B /* XWPairHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairHeaderView.h; sourceTree = "<group>"; };
+		514A317B21DFB6F400987D4B /* XWPairHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairHeaderView.m; sourceTree = "<group>"; };
+		514A317D21DFBA6400987D4B /* XWPairPassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairPassVC.h; sourceTree = "<group>"; };
+		514A317E21DFBA6400987D4B /* XWPairPassVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairPassVC.m; sourceTree = "<group>"; };
+		514A318021DFBC8300987D4B /* XWPairBodyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairBodyView.h; sourceTree = "<group>"; };
+		514A318121DFBC8300987D4B /* XWPairBodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairBodyView.m; sourceTree = "<group>"; };
+		514A318321DFC38C00987D4B /* XWPairPassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairPassView.h; sourceTree = "<group>"; };
+		514A318421DFC38C00987D4B /* XWPairPassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairPassView.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -603,6 +624,10 @@
 				5135CA9021DCE1370025213D /* FGRegisterVC.m */,
 				5135CA9521DD10C90025213D /* HYPersonSetVC.h */,
 				5135CA9621DD10CA0025213D /* HYPersonSetVC.m */,
+				514A317121DFAA7900987D4B /* XWPairVC.h */,
+				514A317221DFAA7900987D4B /* XWPairVC.m */,
+				514A317D21DFBA6400987D4B /* XWPairPassVC.h */,
+				514A317E21DFBA6400987D4B /* XWPairPassVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -612,6 +637,16 @@
 			children = (
 				514A315D21DF2D7500987D4B /* XWLabelView.h */,
 				514A315E21DF2D7500987D4B /* XWLabelView.m */,
+				514A317421DFAE4700987D4B /* XWPairTipView.h */,
+				514A317521DFAE4700987D4B /* XWPairTipView.m */,
+				514A317721DFB32600987D4B /* WXLoadingTipView.h */,
+				514A317821DFB32600987D4B /* WXLoadingTipView.m */,
+				514A317A21DFB6F400987D4B /* XWPairHeaderView.h */,
+				514A317B21DFB6F400987D4B /* XWPairHeaderView.m */,
+				514A318021DFBC8300987D4B /* XWPairBodyView.h */,
+				514A318121DFBC8300987D4B /* XWPairBodyView.m */,
+				514A318321DFC38C00987D4B /* XWPairPassView.h */,
+				514A318421DFC38C00987D4B /* XWPairPassView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -858,6 +893,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */,
 				5135CA4C21DA57CA0025213D /* FGAliyunOSSManager.m in Sources */,
 				5135CA5D21DA57CA0025213D /* UIColor+shadow.m in Sources */,
 				5135CA6F21DA57CA0025213D /* FGTimePicker.m in Sources */,
@@ -870,17 +906,20 @@
 				5135CA6321DA57CA0025213D /* FGAlertView.m in Sources */,
 				5135CA4121DA57CA0025213D /* FGBaseNavigationController.m in Sources */,
 				5135C9C721DA57B60025213D /* PopAnimationTool.m in Sources */,
+				514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */,
 				5135CA9121DCE1370025213D /* FGLoginVC.m in Sources */,
 				5135CA4A21DA57CA0025213D /* FGAdvertiseVedioView.m in Sources */,
 				5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */,
 				5135CA7A21DA57FC0025213D /* FGCacheManager.m in Sources */,
 				5135CA6921DA57CA0025213D /* FGPickerView.m in Sources */,
 				5135CA4621DA57CA0025213D /* FGBaseView.m in Sources */,
+				514A317921DFB32600987D4B /* WXLoadingTipView.m in Sources */,
 				5135CA4E21DA57CA0025213D /* FGImagePickerCCell.m in Sources */,
 				519C87C321DA249E00085EB5 /* main.m in Sources */,
 				5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */,
 				5135CA4721DA57CA0025213D /* FGBaseViewController.m in Sources */,
 				5135C9C521DA57B60025213D /* PGIndexBannerSubiew.m in Sources */,
+				514A317C21DFB6F400987D4B /* XWPairHeaderView.m in Sources */,
 				514A316621DF36B700987D4B /* FGResponseModel.m in Sources */,
 				5135C9C221DA57B60025213D /* FGBaseWebViewController.m in Sources */,
 				5135CA5F21DA57CA0025213D /* UIView+FGNew.m in Sources */,
@@ -895,13 +934,16 @@
 				5135C9C021DA57B60025213D /* FGBaseLayoutView.m in Sources */,
 				5135CA6721DA57CA0025213D /* FGGroupBtnsView.m in Sources */,
 				5135CA6E21DA57CA0025213D /* FGTagsView.m in Sources */,
+				514A317321DFAA7900987D4B /* XWPairVC.m in Sources */,
 				5135CA6421DA57CA0025213D /* FGAreaPicker.m in Sources */,
 				5135CA6521DA57CA0025213D /* FGBillStyleView.m in Sources */,
+				514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */,
 				5135CA4821DA57CA0025213D /* FGPageViewController.m in Sources */,
 				5135CA5B21DA57CA0025213D /* MBProgressHUD+LMJ.m in Sources */,
 				5135CA5821DA57CA0025213D /* FGShareManager.m in Sources */,
 				514A315C21DF287F00987D4B /* XWLabelVC.m in Sources */,
 				514A316321DF369100987D4B /* FGHttpManager.m in Sources */,
+				514A317621DFAE4700987D4B /* XWPairTipView.m in Sources */,
 				5135CA7421DA57E70025213D /* FGTabBarVC.m in Sources */,
 				5135CA4521DA57CA0025213D /* FGBaseTouchView.m in Sources */,
 				5135CA9221DCE1370025213D /* FGForgetPasswordVC.m in Sources */,
