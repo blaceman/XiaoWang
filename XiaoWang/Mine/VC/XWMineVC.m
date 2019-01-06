@@ -9,6 +9,9 @@
 #import "XWMineVC.h"
 #import "XWPairHeaderView.h"
 #import "FGCellStyleView.h"
+#import "XWLabelVC.h"
+#import "XWPasswordVC.h"
+#import "XWAlbumVC.h"
 
 
 @interface XWMineVC ()
@@ -82,7 +85,16 @@
 }
 
 -(void)cellAction:(FGCellStyleView *)cell{
-    
+    if ([cell.model.leftTitle isEqualToString:@"个性标签"]) {
+        XWLabelVC *vc = [XWLabelVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (([cell.model.leftTitle isEqualToString:@"通关口令"])){
+        XWPasswordVC *vc = [XWPasswordVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([cell.model.leftTitle isEqualToString:@"我的相册"]){
+        XWAlbumVC *vc = [XWAlbumVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

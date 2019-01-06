@@ -88,6 +88,13 @@
 		514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318121DFBC8300987D4B /* XWPairBodyView.m */; };
 		514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318421DFC38C00987D4B /* XWPairPassView.m */; };
 		5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA3F21E087B500ADA586 /* XWMineVC.m */; };
+		5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */; };
+		5174BA4621E1D57E00ADA586 /* HYHomeTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4421E1D57E00ADA586 /* HYHomeTCell.m */; };
+		5174BA4921E1D60000ADA586 /* HYCellBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4721E1D5FF00ADA586 /* HYCellBottomView.m */; };
+		5174BA4C21E1D65700ADA586 /* HYCellTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4B21E1D65600ADA586 /* HYCellTopView.m */; };
+		5174BA4F21E1D6EB00ADA586 /* HYCellCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4E21E1D6EB00ADA586 /* HYCellCommentView.m */; };
+		5174BA5221E1D76E00ADA586 /* HYHomeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */; };
+		5174BA5521E1E79500ADA586 /* XWAlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5421E1E79500ADA586 /* XWAlbumVC.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -260,6 +267,20 @@
 		514A318421DFC38C00987D4B /* XWPairPassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairPassView.m; sourceTree = "<group>"; };
 		5174BA3E21E087B500ADA586 /* XWMineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMineVC.h; sourceTree = "<group>"; };
 		5174BA3F21E087B500ADA586 /* XWMineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWMineVC.m; sourceTree = "<group>"; };
+		5174BA4121E1CBDA00ADA586 /* XWPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPasswordVC.h; sourceTree = "<group>"; };
+		5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPasswordVC.m; sourceTree = "<group>"; };
+		5174BA4421E1D57E00ADA586 /* HYHomeTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYHomeTCell.m; sourceTree = "<group>"; };
+		5174BA4521E1D57E00ADA586 /* HYHomeTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYHomeTCell.h; sourceTree = "<group>"; };
+		5174BA4721E1D5FF00ADA586 /* HYCellBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCellBottomView.m; sourceTree = "<group>"; };
+		5174BA4821E1D5FF00ADA586 /* HYCellBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCellBottomView.h; sourceTree = "<group>"; };
+		5174BA4A21E1D65600ADA586 /* HYCellTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCellTopView.h; sourceTree = "<group>"; };
+		5174BA4B21E1D65600ADA586 /* HYCellTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCellTopView.m; sourceTree = "<group>"; };
+		5174BA4D21E1D6EB00ADA586 /* HYCellCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCellCommentView.h; sourceTree = "<group>"; };
+		5174BA4E21E1D6EB00ADA586 /* HYCellCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCellCommentView.m; sourceTree = "<group>"; };
+		5174BA5021E1D76D00ADA586 /* HYHomeShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYHomeShowView.h; sourceTree = "<group>"; };
+		5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYHomeShowView.m; sourceTree = "<group>"; };
+		5174BA5321E1E79500ADA586 /* XWAlbumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWAlbumVC.h; sourceTree = "<group>"; };
+		5174BA5421E1E79500ADA586 /* XWAlbumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWAlbumVC.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -687,6 +708,10 @@
 			children = (
 				5174BA3E21E087B500ADA586 /* XWMineVC.h */,
 				5174BA3F21E087B500ADA586 /* XWMineVC.m */,
+				5174BA4121E1CBDA00ADA586 /* XWPasswordVC.h */,
+				5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */,
+				5174BA5321E1E79500ADA586 /* XWAlbumVC.h */,
+				5174BA5421E1E79500ADA586 /* XWAlbumVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -694,6 +719,16 @@
 		5135CA8521DA637C0025213D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5174BA4521E1D57E00ADA586 /* HYHomeTCell.h */,
+				5174BA4421E1D57E00ADA586 /* HYHomeTCell.m */,
+				5174BA4821E1D5FF00ADA586 /* HYCellBottomView.h */,
+				5174BA4721E1D5FF00ADA586 /* HYCellBottomView.m */,
+				5174BA4A21E1D65600ADA586 /* HYCellTopView.h */,
+				5174BA4B21E1D65600ADA586 /* HYCellTopView.m */,
+				5174BA4D21E1D6EB00ADA586 /* HYCellCommentView.h */,
+				5174BA4E21E1D6EB00ADA586 /* HYCellCommentView.m */,
+				5174BA5021E1D76D00ADA586 /* HYHomeShowView.h */,
+				5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -912,6 +947,7 @@
 				5135CA4121DA57CA0025213D /* FGBaseNavigationController.m in Sources */,
 				5135C9C721DA57B60025213D /* PopAnimationTool.m in Sources */,
 				514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */,
+				5174BA5221E1D76E00ADA586 /* HYHomeShowView.m in Sources */,
 				5135CA9121DCE1370025213D /* FGLoginVC.m in Sources */,
 				5135CA4A21DA57CA0025213D /* FGAdvertiseVedioView.m in Sources */,
 				5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */,
@@ -921,15 +957,18 @@
 				514A317921DFB32600987D4B /* WXLoadingTipView.m in Sources */,
 				5135CA4E21DA57CA0025213D /* FGImagePickerCCell.m in Sources */,
 				519C87C321DA249E00085EB5 /* main.m in Sources */,
+				5174BA4621E1D57E00ADA586 /* HYHomeTCell.m in Sources */,
 				5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */,
 				5135CA4721DA57CA0025213D /* FGBaseViewController.m in Sources */,
 				5135C9C521DA57B60025213D /* PGIndexBannerSubiew.m in Sources */,
 				514A317C21DFB6F400987D4B /* XWPairHeaderView.m in Sources */,
 				514A316621DF36B700987D4B /* FGResponseModel.m in Sources */,
 				5135C9C221DA57B60025213D /* FGBaseWebViewController.m in Sources */,
+				5174BA4921E1D60000ADA586 /* HYCellBottomView.m in Sources */,
 				5135CA5F21DA57CA0025213D /* UIView+FGNew.m in Sources */,
 				5135CA4421DA57CA0025213D /* FGBaseTableViewCell.m in Sources */,
 				514A315F21DF2D7500987D4B /* XWLabelView.m in Sources */,
+				5174BA5521E1E79500ADA586 /* XWAlbumVC.m in Sources */,
 				5135C9C821DA57B60025213D /* PopView.m in Sources */,
 				519C87B521DA249100085EB5 /* AppDelegate.m in Sources */,
 				5135CA4F21DA57CA0025213D /* FGImagePickerVC.m in Sources */,
@@ -937,6 +976,7 @@
 				5135CA6B21DA57CA0025213D /* FGRefreshHeader.m in Sources */,
 				5135CA5121DA57CA0025213D /* FGPaymentManager.m in Sources */,
 				5135C9C021DA57B60025213D /* FGBaseLayoutView.m in Sources */,
+				5174BA4C21E1D65700ADA586 /* HYCellTopView.m in Sources */,
 				5135CA6721DA57CA0025213D /* FGGroupBtnsView.m in Sources */,
 				5135CA6E21DA57CA0025213D /* FGTagsView.m in Sources */,
 				514A317321DFAA7900987D4B /* XWPairVC.m in Sources */,
@@ -970,6 +1010,8 @@
 				5135CA4D21DA57CA0025213D /* FGAppStoreVersionManager.m in Sources */,
 				5135CA5621DA57CA0025213D /* FGUmengAnalyticsHelper.m in Sources */,
 				5135CA5C21DA57CA0025213D /* NSString+FGDate.m in Sources */,
+				5174BA4F21E1D6EB00ADA586 /* HYCellCommentView.m in Sources */,
+				5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */,
 				5135CA6D21DA57CA0025213D /* FGSheetPopControl.m in Sources */,
 				5135CA4021DA57CA0025213D /* FGBaseCollectionViewCell.m in Sources */,
 				5135CA5921DA57CA0025213D /* FGSharePopView.m in Sources */,
