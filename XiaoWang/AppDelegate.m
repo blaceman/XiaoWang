@@ -33,7 +33,16 @@
     
     self.window.rootViewController = navi;
     
-    
+    // Do any additional setup after loading the view.
+    //统一调整 导航栏 设置
+    EasyNavigationOptions *options = [EasyNavigationOptions shareInstance];
+    options.titleColor = UIColorFromHex(0x333333);
+    options.titleFont = AdaptedFontSize(23);
+    options.navigationBackButtonImage = [UIImage imageNamed:@"icon_return"];
+    options.navBackGroundColor = UIColorFromHex(0xffffff);
+    options.navLineColor = UIColorFromHex(kColorLine);
+    options.buttonTitleFont = AdaptedFontSize(16);
+    options.buttonTitleColor = UIColorFromHex(0xFF8A00);
     
 }
 

@@ -87,6 +87,7 @@
 		514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317E21DFBA6400987D4B /* XWPairPassVC.m */; };
 		514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318121DFBC8300987D4B /* XWPairBodyView.m */; };
 		514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318421DFC38C00987D4B /* XWPairPassView.m */; };
+		5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA3F21E087B500ADA586 /* XWMineVC.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -257,6 +258,8 @@
 		514A318121DFBC8300987D4B /* XWPairBodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairBodyView.m; sourceTree = "<group>"; };
 		514A318321DFC38C00987D4B /* XWPairPassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairPassView.h; sourceTree = "<group>"; };
 		514A318421DFC38C00987D4B /* XWPairPassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairPassView.m; sourceTree = "<group>"; };
+		5174BA3E21E087B500ADA586 /* XWMineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMineVC.h; sourceTree = "<group>"; };
+		5174BA3F21E087B500ADA586 /* XWMineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWMineVC.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -682,6 +685,8 @@
 		5135CA8421DA63770025213D /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				5174BA3E21E087B500ADA586 /* XWMineVC.h */,
+				5174BA3F21E087B500ADA586 /* XWMineVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 				5135CA6A21DA57CA0025213D /* FGPlaceholderTextView.m in Sources */,
 				5135CA6821DA57CA0025213D /* FGMoneyTextField.m in Sources */,
 				5135CA5A21DA57CA0025213D /* FGTools.m in Sources */,
+				5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */,
 				5135CA7121DA57CA0025213D /* YIEmptyView.m in Sources */,
 				5135CA4D21DA57CA0025213D /* FGAppStoreVersionManager.m in Sources */,
 				5135CA5621DA57CA0025213D /* FGUmengAnalyticsHelper.m in Sources */,

@@ -10,6 +10,8 @@
 #import "XWPairHeaderView.h"
 #import "XWPairBodyView.h"
 #import "XWPairPassView.h"
+#import "XWMineVC.h"
+#import "XWMineVC.h"
 
 
 @interface XWPairPassVC ()
@@ -39,8 +41,11 @@
     WeakSelf
     [[bodyView.commitBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
         StrongSelf
-        XWPairPassView *tipView = [XWPairPassView new];
-        [tipView showInView:self.navigationController.view];
+//        XWPairPassView *tipView = [XWPairPassView new];
+//        [tipView showInView:self.navigationController.view];
+        
+        XWMineVC *vc = [XWMineVC new];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }];
     

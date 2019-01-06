@@ -92,5 +92,16 @@
     
     
 }
+-(void)configWithModel:(id)model{
+    if ([model isEqualToString:@"1"]) {
+        self.addressBtn.hidden = YES;
+        [self.numLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.bottom.offset(AdaptedHeight(-22));
+            make.top.equalTo(self.nameLabel.mas_bottom).offset(AdaptedHeight(12));
+
+        }];
+    }
+}
 
 @end
