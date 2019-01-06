@@ -1,51 +1,46 @@
 //
-//  XWHelpVC.m
+//  XWHelpCenterVC.m
 //  XiaoWang
 //
-//  Created by blaceman on 2019/1/6.
+//  Created by blaceman on 2019/1/7.
 //  Copyright © 2019年 new4545. All rights reserved.
 //
 
-#import "XWHelpVC.h"
-#import "FGCellStyleView.h"
 #import "XWHelpCenterVC.h"
-#import "XWFeedbackVC.h"
+#import "FGCellStyleView.h"
 
-
-
-@interface XWHelpVC ()
+@interface XWHelpCenterVC ()
 
 @end
 
-@implementation XWHelpVC
+@implementation XWHelpCenterVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"帮助反馈"];
+    [self.navigationView setTitle:@"帮助中心"];
     [self setItemView];
 }
-
 
 -(void)setItemView{
     
     
-    //    [self.bgScrollView.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-    //        make.height.equalTo(self.bgScrollView.mas_height).priorityMedium();
-    //    }];
+    [self.bgScrollView.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.bgScrollView.mas_height).priorityMedium();
+    }];
     self.bgScrollView.alwaysBounceVertical = YES;
-    NSArray *titleArr = @[@"帮助中心",@"意见反馈"];
+    NSArray *titleArr = @[@"1.系统出现异常问题导致失败怎么办？",@"2.APP网络很卡怎么办？",@"4.怎么联系客服？如何充值？",@"icon_takedown@3x.png"];
     
     UIView *bufferCell;
     for (int i = 0; i < titleArr.count; i++) {
         FGTextFeidViewModel *model = [FGTextFeidViewModel new];
         model.leftImgPathMargin = AdaptedWidth(36);
         model.isNotEnable = NO;
-//        model.leftImgPath = imgArr[i];
-        model.rightImgPath = @"icon_more";
+        //        model.leftImgPath = imgArr[i];
+        model.rightImgPath = @"icon_takedown";
         model.leftTitle = titleArr[i];
         model.leftTitleColor = UIColorFromHex(0x333333);
-
+        
         
         FGCellStyleView *cell = [[FGCellStyleView alloc] initWithModel:model];
         [cell addBottomLine];
@@ -67,7 +62,7 @@
             }
             make.height.mas_equalTo(AdaptedHeight(57));
             if (i == titleArr.count - 1) {
-                make.bottom.equalTo(self.bgScrollView.contentView).offset(-AdaptedWidth(14));
+                //                make.bottom.equalTo(self.bgScrollView.contentView).offset(-AdaptedWidth(14));
             }
         }];
         
@@ -75,23 +70,15 @@
     }
     
 }
--(void)cellAction:(FGCellStyleView *)cell{
-    if ([cell.model.leftTitle isEqualToString:@"帮助中心"]) {
-        XWHelpCenterVC *vc = [XWHelpCenterVC new];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }else if ([cell.model.leftTitle isEqualToString:@"意见反馈"]){
-        XWFeedbackVC *vc = [XWFeedbackVC new];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(void)cellAction:(FGCellStyleView *)cell{
+    
+}
 /*
 #pragma mark - Navigation
 

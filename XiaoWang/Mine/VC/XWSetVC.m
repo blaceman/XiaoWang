@@ -91,7 +91,7 @@
         make.left.offset(AdaptedWidth(44));
         make.right.offset(AdaptedWidth(-44));
         make.bottom.offset(AdaptedWidth(-47));
-
+        make.height.mas_equalTo(AdaptedHeight(40));
 
     }];
 }
