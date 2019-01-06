@@ -95,6 +95,8 @@
 		5174BA4F21E1D6EB00ADA586 /* HYCellCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4E21E1D6EB00ADA586 /* HYCellCommentView.m */; };
 		5174BA5221E1D76E00ADA586 /* HYHomeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */; };
 		5174BA5521E1E79500ADA586 /* XWAlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5421E1E79500ADA586 /* XWAlbumVC.m */; };
+		5174BA5821E1F0CC00ADA586 /* XWHelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5721E1F0CC00ADA586 /* XWHelpVC.m */; };
+		5174BA5B21E1F28900ADA586 /* XWSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5A21E1F28900ADA586 /* XWSetVC.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -281,6 +283,10 @@
 		5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYHomeShowView.m; sourceTree = "<group>"; };
 		5174BA5321E1E79500ADA586 /* XWAlbumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWAlbumVC.h; sourceTree = "<group>"; };
 		5174BA5421E1E79500ADA586 /* XWAlbumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWAlbumVC.m; sourceTree = "<group>"; };
+		5174BA5621E1F0CC00ADA586 /* XWHelpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWHelpVC.h; sourceTree = "<group>"; };
+		5174BA5721E1F0CC00ADA586 /* XWHelpVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWHelpVC.m; sourceTree = "<group>"; };
+		5174BA5921E1F28900ADA586 /* XWSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSetVC.h; sourceTree = "<group>"; };
+		5174BA5A21E1F28900ADA586 /* XWSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWSetVC.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -712,6 +718,10 @@
 				5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */,
 				5174BA5321E1E79500ADA586 /* XWAlbumVC.h */,
 				5174BA5421E1E79500ADA586 /* XWAlbumVC.m */,
+				5174BA5621E1F0CC00ADA586 /* XWHelpVC.h */,
+				5174BA5721E1F0CC00ADA586 /* XWHelpVC.m */,
+				5174BA5921E1F28900ADA586 /* XWSetVC.h */,
+				5174BA5A21E1F28900ADA586 /* XWSetVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1001,6 +1011,7 @@
 				5135C9C321DA57B60025213D /* FGEmptyView.m in Sources */,
 				5135CA9321DCE1370025213D /* DDBindStudentVC.m in Sources */,
 				5135CA7021DA57CA0025213D /* JWPayDetailView.m in Sources */,
+				5174BA5B21E1F28900ADA586 /* XWSetVC.m in Sources */,
 				5135CA5E21DA57CA0025213D /* UIView+EdgeLine.m in Sources */,
 				5135CA6A21DA57CA0025213D /* FGPlaceholderTextView.m in Sources */,
 				5135CA6821DA57CA0025213D /* FGMoneyTextField.m in Sources */,
@@ -1010,6 +1021,7 @@
 				5135CA4D21DA57CA0025213D /* FGAppStoreVersionManager.m in Sources */,
 				5135CA5621DA57CA0025213D /* FGUmengAnalyticsHelper.m in Sources */,
 				5135CA5C21DA57CA0025213D /* NSString+FGDate.m in Sources */,
+				5174BA5821E1F0CC00ADA586 /* XWHelpVC.m in Sources */,
 				5174BA4F21E1D6EB00ADA586 /* HYCellCommentView.m in Sources */,
 				5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */,
 				5135CA6D21DA57CA0025213D /* FGSheetPopControl.m in Sources */,

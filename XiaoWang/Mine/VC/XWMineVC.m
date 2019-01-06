@@ -12,6 +12,8 @@
 #import "XWLabelVC.h"
 #import "XWPasswordVC.h"
 #import "XWAlbumVC.h"
+#import "XWHelpVC.h"
+#import "XWSetVC.h"
 
 
 @interface XWMineVC ()
@@ -94,7 +96,15 @@
     }else if([cell.model.leftTitle isEqualToString:@"我的相册"]){
         XWAlbumVC *vc = [XWAlbumVC new];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if ([cell.model.leftTitle isEqualToString:@"帮助反馈"]){
+        XWHelpVC *vc = [XWHelpVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([cell.model.leftTitle isEqualToString:@"设置"]){
+        XWSetVC *vc = [XWSetVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
