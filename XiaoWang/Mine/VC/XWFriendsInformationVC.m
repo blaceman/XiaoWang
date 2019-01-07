@@ -1,40 +1,46 @@
 //
-//  XWAlbumVC.m
+//  XWFriendsInformationVC.m
 //  XiaoWang
 //
-//  Created by blaceman on 2019/1/6.
+//  Created by blaceman on 2019/1/7.
 //  Copyright © 2019年 new4545. All rights reserved.
 //
 
-#import "XWAlbumVC.h"
+#import "XWFriendsInformationVC.h"
 #import "HYHomeTCell.h"
-#import "HYDynamicViewController.h"
+#import "XWPairHeaderView.h"
 
-@interface XWAlbumVC ()
+@interface XWFriendsInformationVC ()
 
 @end
 
-@implementation XWAlbumVC
+@implementation XWFriendsInformationVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"我的相册"];
-    WeakSelf
-    [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_release") clickCallBack:^(UIView *view) {
-        StrongSelf
-        HYDynamicViewController *vc = [HYDynamicViewController new];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }];
-    
+    [self.navigationView setTitle:@"好友信息"];
     [self setupEstimatedRowHeight:100 cellClasses:@[[HYHomeTCell class]]];
+    [self headerViewSet];
     [self beginRefresh];
+    
 }
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
-    success(@[@"发哈实例和",@"发斯蒂芬",@"发多少",@"发答案是"]);
+    success(@[@"",@"",@"",@""]);
 }
-
+-(void)headerViewSet{
+    XWPairHeaderView *headView = [XWPairHeaderView new];
+    [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(kScreenWidth);
+    }];
+    [headView setNeedsLayout];
+    [headView layoutIfNeeded];
+    
+    self.myTableView.tableHeaderView = headView;
+    [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.offset(0);
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

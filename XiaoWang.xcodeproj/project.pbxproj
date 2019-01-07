@@ -103,6 +103,11 @@
 		5174BA6721E32BD100ADA586 /* XWVersionInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6621E32BD100ADA586 /* XWVersionInformationVC.m */; };
 		5174BA6A21E38B0300ADA586 /* XWNotDisturbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */; };
 		5174BA6D21E38BD600ADA586 /* XWNewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6C21E38BD600ADA586 /* XWNewsVC.m */; };
+		5174BA7021E3914800ADA586 /* XWNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6F21E3914800ADA586 /* XWNewsCell.m */; };
+		5174BA7321E3970E00ADA586 /* WXNewsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA7221E3970E00ADA586 /* WXNewsListVC.m */; };
+		5174BA7621E39A1800ADA586 /* XWFriendsInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA7521E39A1800ADA586 /* XWFriendsInformationVC.m */; };
+		5174BA7921E39C2400ADA586 /* XWFriendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA7821E39C2400ADA586 /* XWFriendVC.m */; };
+		5174BA7C21E3A33300ADA586 /* HYDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA7B21E3A33300ADA586 /* HYDynamicViewController.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -305,6 +310,16 @@
 		5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWNotDisturbVC.m; sourceTree = "<group>"; };
 		5174BA6B21E38BD600ADA586 /* XWNewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWNewsVC.h; sourceTree = "<group>"; };
 		5174BA6C21E38BD600ADA586 /* XWNewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWNewsVC.m; sourceTree = "<group>"; };
+		5174BA6E21E3914800ADA586 /* XWNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWNewsCell.h; sourceTree = "<group>"; };
+		5174BA6F21E3914800ADA586 /* XWNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWNewsCell.m; sourceTree = "<group>"; };
+		5174BA7121E3970E00ADA586 /* WXNewsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXNewsListVC.h; sourceTree = "<group>"; };
+		5174BA7221E3970E00ADA586 /* WXNewsListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXNewsListVC.m; sourceTree = "<group>"; };
+		5174BA7421E39A1800ADA586 /* XWFriendsInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFriendsInformationVC.h; sourceTree = "<group>"; };
+		5174BA7521E39A1800ADA586 /* XWFriendsInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFriendsInformationVC.m; sourceTree = "<group>"; };
+		5174BA7721E39C2400ADA586 /* XWFriendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFriendVC.h; sourceTree = "<group>"; };
+		5174BA7821E39C2400ADA586 /* XWFriendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFriendVC.m; sourceTree = "<group>"; };
+		5174BA7A21E3A33200ADA586 /* HYDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYDynamicViewController.h; sourceTree = "<group>"; };
+		5174BA7B21E3A33300ADA586 /* HYDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYDynamicViewController.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -752,6 +767,14 @@
 				5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */,
 				5174BA6B21E38BD600ADA586 /* XWNewsVC.h */,
 				5174BA6C21E38BD600ADA586 /* XWNewsVC.m */,
+				5174BA7121E3970E00ADA586 /* WXNewsListVC.h */,
+				5174BA7221E3970E00ADA586 /* WXNewsListVC.m */,
+				5174BA7421E39A1800ADA586 /* XWFriendsInformationVC.h */,
+				5174BA7521E39A1800ADA586 /* XWFriendsInformationVC.m */,
+				5174BA7721E39C2400ADA586 /* XWFriendVC.h */,
+				5174BA7821E39C2400ADA586 /* XWFriendVC.m */,
+				5174BA7A21E3A33200ADA586 /* HYDynamicViewController.h */,
+				5174BA7B21E3A33300ADA586 /* HYDynamicViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -769,6 +792,8 @@
 				5174BA4E21E1D6EB00ADA586 /* HYCellCommentView.m */,
 				5174BA5021E1D76D00ADA586 /* HYHomeShowView.h */,
 				5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */,
+				5174BA6E21E3914800ADA586 /* XWNewsCell.h */,
+				5174BA6F21E3914800ADA586 /* XWNewsCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -974,6 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */,
+				5174BA7021E3914800ADA586 /* XWNewsCell.m in Sources */,
 				5135CA4C21DA57CA0025213D /* FGAliyunOSSManager.m in Sources */,
 				5135CA5D21DA57CA0025213D /* UIColor+shadow.m in Sources */,
 				5135CA6F21DA57CA0025213D /* FGTimePicker.m in Sources */,
@@ -1000,6 +1026,7 @@
 				519C87C321DA249E00085EB5 /* main.m in Sources */,
 				5174BA4621E1D57E00ADA586 /* HYHomeTCell.m in Sources */,
 				5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */,
+				5174BA7321E3970E00ADA586 /* WXNewsListVC.m in Sources */,
 				5135CA4721DA57CA0025213D /* FGBaseViewController.m in Sources */,
 				5135C9C521DA57B60025213D /* PGIndexBannerSubiew.m in Sources */,
 				514A317C21DFB6F400987D4B /* XWPairHeaderView.m in Sources */,
@@ -1010,6 +1037,8 @@
 				5135CA4421DA57CA0025213D /* FGBaseTableViewCell.m in Sources */,
 				514A315F21DF2D7500987D4B /* XWLabelView.m in Sources */,
 				5174BA5521E1E79500ADA586 /* XWAlbumVC.m in Sources */,
+				5174BA7921E39C2400ADA586 /* XWFriendVC.m in Sources */,
+				5174BA7621E39A1800ADA586 /* XWFriendsInformationVC.m in Sources */,
 				5135C9C821DA57B60025213D /* PopView.m in Sources */,
 				519C87B521DA249100085EB5 /* AppDelegate.m in Sources */,
 				5174BA6121E26AB900ADA586 /* XWFeedbackVC.m in Sources */,
@@ -1022,6 +1051,7 @@
 				5174BA4C21E1D65700ADA586 /* HYCellTopView.m in Sources */,
 				5135CA6721DA57CA0025213D /* FGGroupBtnsView.m in Sources */,
 				5135CA6E21DA57CA0025213D /* FGTagsView.m in Sources */,
+				5174BA7C21E3A33300ADA586 /* HYDynamicViewController.m in Sources */,
 				514A317321DFAA7900987D4B /* XWPairVC.m in Sources */,
 				5174BA6721E32BD100ADA586 /* XWVersionInformationVC.m in Sources */,
 				5135CA6421DA57CA0025213D /* FGAreaPicker.m in Sources */,

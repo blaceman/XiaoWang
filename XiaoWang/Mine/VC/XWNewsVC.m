@@ -8,6 +8,10 @@
 
 #import "XWNewsVC.h"
 #import "FGCellStyleView.h"
+#import "WXNewsListVC.h"
+#import "XWFriendVC.h"
+#import "XWAlbumVC.h"
+
 
 @interface XWNewsVC ()
 
@@ -38,7 +42,7 @@
         model.leftImgPathMargin = AdaptedWidth(36);
         model.isNotEnable = NO;
         model.leftImgPath = imgArr[i];
-        model.rightImgPath = @"icon_select";
+        model.rightImgPath = @"icon_more";
         model.leftTitle = titleArr[i];
         model.leftTitleColor = UIColorFromHex(0x333333);
         
@@ -78,9 +82,22 @@
 }
 
 -(void)cellAction:(FGCellStyleView *)cell{
-    if ([cell.model.leftTitle isEqualToString:@"版本信息"]) {
+    if ([cell.model.leftTitle isEqualToString:@"我的消息"]) {
+        WXNewsListVC *vc = [WXNewsListVC new];
+        [self.navigationController pushViewController:vc animated:YES];
         
+    }else if ([cell.model.leftTitle isEqualToString:@"好友列表"]){
+        [self.navigationController pushViewController:[XWFriendVC new] animated:YES];
+    }else if ([cell.model.leftTitle isEqualToString:@"速配过的人"]){
+        WXNewsListVC *vc = [WXNewsListVC new];
+        vc.type = 2;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([cell.model.leftTitle isEqualToString:@"动态"]){
+        XWAlbumVC *vc = [XWAlbumVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
+    
 }
 
 /*
