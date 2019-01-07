@@ -1,57 +1,47 @@
 //
-//  XWSetVC.m
+//  XWNewsVC.m
 //  XiaoWang
 //
-//  Created by blaceman on 2019/1/6.
+//  Created by blaceman on 2019/1/7.
 //  Copyright © 2019年 new4545. All rights reserved.
 //
 
-#import "XWSetVC.h"
-#import "FGCellStyleView.h"
-#import "XWAboutVC.h"
-#import "XWNotDisturbVC.h"
 #import "XWNewsVC.h"
+#import "FGCellStyleView.h"
 
-
-
-@interface XWSetVC ()
+@interface XWNewsVC ()
 
 @end
 
-@implementation XWSetVC
+@implementation XWNewsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"设置"];
+    [self.navigationView setTitle:@"消息"];
     [self setItemView];
-    [self loginOutBtnSet];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setItemView{
     
     
-        [self.bgScrollView.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(self.bgScrollView.mas_height).priorityMedium();
-        }];
+    [self.bgScrollView.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.bgScrollView.mas_height).priorityMedium();
+    }];
     self.bgScrollView.alwaysBounceVertical = YES;
-    NSArray *titleArr = @[@"分享",@"免打扰",@"黑名单",@"清除缓存",@"关于小网"];
+    NSArray *titleArr = @[@"我的消息",@"动态",@"好友列表",@"速配过的人"];
+    NSArray *imgArr = @[@"icon_mynews",@"icon_dynamic",@"icon_group",@"icon_addpeople"];
     
     UIView *bufferCell;
     for (int i = 0; i < titleArr.count; i++) {
         FGTextFeidViewModel *model = [FGTextFeidViewModel new];
         model.leftImgPathMargin = AdaptedWidth(36);
         model.isNotEnable = NO;
-        //        model.leftImgPath = imgArr[i];
-        model.rightImgPath = @"icon_more";
+        model.leftImgPath = imgArr[i];
+        model.rightImgPath = @"icon_select";
         model.leftTitle = titleArr[i];
         model.leftTitleColor = UIColorFromHex(0x333333);
-
+        
         
         FGCellStyleView *cell = [[FGCellStyleView alloc] initWithModel:model];
         [cell addBottomLine];
@@ -73,7 +63,7 @@
             }
             make.height.mas_equalTo(AdaptedHeight(57));
             if (i == titleArr.count - 1) {
-//                make.bottom.equalTo(self.bgScrollView.contentView).offset(-AdaptedWidth(14));
+                //                make.bottom.equalTo(self.bgScrollView.contentView).offset(-AdaptedWidth(14));
             }
         }];
         
@@ -81,34 +71,18 @@
     }
     
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 -(void)cellAction:(FGCellStyleView *)cell{
-    if ([cell.model.leftTitle isEqualToString:@"关于小网"]) {
-        [self.navigationController pushViewController:[XWAboutVC new] animated:YES];
-    }else if ([cell.model.leftTitle isEqualToString:@"免打扰"]) {
-        [self.navigationController pushViewController:[XWNotDisturbVC new] animated:YES];
-    }else if ([cell.model.leftTitle isEqualToString:@"黑名单"]) {
-        [self.navigationController pushViewController:[XWNewsVC new] animated:YES];
+    if ([cell.model.leftTitle isEqualToString:@"版本信息"]) {
         
     }
-    
-
 }
 
-
--(void)loginOutBtnSet{
-    UIButton *loginOutBtn = [UIButton fg_title:@"退出登录" fontSize:16 titleColorHex:0x000000];
-    loginOutBtn.backgroundColor = UIColorFromHex(0xFFE616);
-    [self.bgScrollView.contentView addSubview:loginOutBtn];
-    [loginOutBtn fg_cornerRadius:AdaptedHeight(20) borderWidth:0 borderColor:0];
-    
-    [loginOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(AdaptedWidth(44));
-        make.right.offset(AdaptedWidth(-44));
-        make.bottom.offset(AdaptedWidth(-47));
-        make.height.mas_equalTo(AdaptedHeight(40));
-
-    }];
-}
 /*
 #pragma mark - Navigation
 

@@ -99,6 +99,10 @@
 		5174BA5B21E1F28900ADA586 /* XWSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5A21E1F28900ADA586 /* XWSetVC.m */; };
 		5174BA5E21E2692A00ADA586 /* XWHelpCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA5D21E2692900ADA586 /* XWHelpCenterVC.m */; };
 		5174BA6121E26AB900ADA586 /* XWFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6021E26AB900ADA586 /* XWFeedbackVC.m */; };
+		5174BA6421E32A9800ADA586 /* XWAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6321E32A9800ADA586 /* XWAboutVC.m */; };
+		5174BA6721E32BD100ADA586 /* XWVersionInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6621E32BD100ADA586 /* XWVersionInformationVC.m */; };
+		5174BA6A21E38B0300ADA586 /* XWNotDisturbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */; };
+		5174BA6D21E38BD600ADA586 /* XWNewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA6C21E38BD600ADA586 /* XWNewsVC.m */; };
 		519C87B521DA249100085EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87B421DA249100085EB5 /* AppDelegate.m */; };
 		519C87BB21DA249100085EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87B921DA249100085EB5 /* Main.storyboard */; };
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
@@ -293,6 +297,14 @@
 		5174BA5D21E2692900ADA586 /* XWHelpCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWHelpCenterVC.m; sourceTree = "<group>"; };
 		5174BA5F21E26AB900ADA586 /* XWFeedbackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFeedbackVC.h; sourceTree = "<group>"; };
 		5174BA6021E26AB900ADA586 /* XWFeedbackVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFeedbackVC.m; sourceTree = "<group>"; };
+		5174BA6221E32A9800ADA586 /* XWAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWAboutVC.h; sourceTree = "<group>"; };
+		5174BA6321E32A9800ADA586 /* XWAboutVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWAboutVC.m; sourceTree = "<group>"; };
+		5174BA6521E32BD100ADA586 /* XWVersionInformationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWVersionInformationVC.h; sourceTree = "<group>"; };
+		5174BA6621E32BD100ADA586 /* XWVersionInformationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWVersionInformationVC.m; sourceTree = "<group>"; };
+		5174BA6821E38B0300ADA586 /* XWNotDisturbVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWNotDisturbVC.h; sourceTree = "<group>"; };
+		5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWNotDisturbVC.m; sourceTree = "<group>"; };
+		5174BA6B21E38BD600ADA586 /* XWNewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWNewsVC.h; sourceTree = "<group>"; };
+		5174BA6C21E38BD600ADA586 /* XWNewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWNewsVC.m; sourceTree = "<group>"; };
 		519C87B021DA249100085EB5 /* XiaoWang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XiaoWang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519C87B321DA249100085EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519C87B421DA249100085EB5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -732,6 +744,14 @@
 				5174BA5D21E2692900ADA586 /* XWHelpCenterVC.m */,
 				5174BA5F21E26AB900ADA586 /* XWFeedbackVC.h */,
 				5174BA6021E26AB900ADA586 /* XWFeedbackVC.m */,
+				5174BA6221E32A9800ADA586 /* XWAboutVC.h */,
+				5174BA6321E32A9800ADA586 /* XWAboutVC.m */,
+				5174BA6521E32BD100ADA586 /* XWVersionInformationVC.h */,
+				5174BA6621E32BD100ADA586 /* XWVersionInformationVC.m */,
+				5174BA6821E38B0300ADA586 /* XWNotDisturbVC.h */,
+				5174BA6921E38B0300ADA586 /* XWNotDisturbVC.m */,
+				5174BA6B21E38BD600ADA586 /* XWNewsVC.h */,
+				5174BA6C21E38BD600ADA586 /* XWNewsVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -959,6 +979,7 @@
 				5135CA6F21DA57CA0025213D /* FGTimePicker.m in Sources */,
 				5135C9C921DA57B60025213D /* UIView+DDExtension.m in Sources */,
 				5135CA4321DA57CA0025213D /* FGBaseRefreshTableViewController.m in Sources */,
+				5174BA6D21E38BD600ADA586 /* XWNewsVC.m in Sources */,
 				5135C9C621DA57B60025213D /* NSString+HtmlStyle.m in Sources */,
 				5135CA6621DA57CA0025213D /* FGCellStyleView.m in Sources */,
 				5135CA6C21DA57CA0025213D /* FGScrollView.m in Sources */,
@@ -996,11 +1017,13 @@
 				5135C9BF21DA57B60025213D /* CustomPopOverView.m in Sources */,
 				5135CA6B21DA57CA0025213D /* FGRefreshHeader.m in Sources */,
 				5135CA5121DA57CA0025213D /* FGPaymentManager.m in Sources */,
+				5174BA6421E32A9800ADA586 /* XWAboutVC.m in Sources */,
 				5135C9C021DA57B60025213D /* FGBaseLayoutView.m in Sources */,
 				5174BA4C21E1D65700ADA586 /* HYCellTopView.m in Sources */,
 				5135CA6721DA57CA0025213D /* FGGroupBtnsView.m in Sources */,
 				5135CA6E21DA57CA0025213D /* FGTagsView.m in Sources */,
 				514A317321DFAA7900987D4B /* XWPairVC.m in Sources */,
+				5174BA6721E32BD100ADA586 /* XWVersionInformationVC.m in Sources */,
 				5135CA6421DA57CA0025213D /* FGAreaPicker.m in Sources */,
 				5135CA6521DA57CA0025213D /* FGBillStyleView.m in Sources */,
 				514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */,
@@ -1017,6 +1040,7 @@
 				5135CA4221DA57CA0025213D /* FGBaseRefreshCollectionViewController.m in Sources */,
 				5135CA6021DA57CA0025213D /* UIViewController+FGToast.m in Sources */,
 				5135C9C121DA57B60025213D /* FGBaseWebView.m in Sources */,
+				5174BA6A21E38B0300ADA586 /* XWNotDisturbVC.m in Sources */,
 				5135C9C421DA57B60025213D /* NewPagedFlowView.m in Sources */,
 				5135CA6121DA57CA0025213D /* UIViewController+Swizzle.m in Sources */,
 				5135C9C321DA57B60025213D /* FGEmptyView.m in Sources */,
