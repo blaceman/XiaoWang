@@ -12,6 +12,7 @@
 #import "HYCellBottomView.h"
 #import "HYCellCommentView.h"
 #import <JKCategories/UIView+JKFind.h>
+#import "XWAlbumModel.h"
 
 @interface HYHomeTCell ()
 
@@ -96,14 +97,14 @@
     //假数据
 
 //    [self.topView configWithModel:@""];
-    [self.bottomView configWithModel:@""];
+    [self.bottomView configWithModel:model];
     
     [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.commentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     //展示 图片
     HYHomeShowView *view = [HYHomeShowView new];
-    [view configWithModel:@""];
+    [view configWithModel:model];
     [self.containerView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(AdaptedWidth(0));
@@ -113,7 +114,7 @@
     }];
     
 //    //一级页面的评论
-    HYCellCommentView *comment = [[HYCellCommentView alloc] initWithModel:@""];
+    HYCellCommentView *comment = [[HYCellCommentView alloc] initWithModel:model];
     comment.backgroundColor = UIColorFromHex(kColorBG);
     [self.emptyView addSubview:comment];
     [comment mas_makeConstraints:^(MASConstraintMaker *make) {

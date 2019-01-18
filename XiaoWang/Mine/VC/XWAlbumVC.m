@@ -9,6 +9,7 @@
 #import "XWAlbumVC.h"
 #import "HYHomeTCell.h"
 #import "HYDynamicViewController.h"
+#import "XWAlbumModel.h"
 
 @interface XWAlbumVC ()
 
@@ -32,7 +33,15 @@
     [self beginRefresh];
 }
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
-    success(@[@"发哈实例和",@"发斯蒂芬",@"发多少",@"发答案是"]);
+//    dynamic动态相册，mine我的相册
+    [FGHttpManager getWithPath:@"api/photo/lists" parameters:@{@"type":@"mine",@"page":@(offset),@"pageSize":@10} success:^(id responseObject) {
+        NSArray<XWAlbumModel *> *albumArr = [NSArray modelArrayWithClass:[XWAlbumModel class] json:[responseObject valueForKey:@"data"]];
+        success(albumArr);
+        
+    } failure:^(NSString *error) {
+        
+    }];
+//    success(@[@"发哈实例和",@"发斯蒂芬",@"发多少",@"发答案是"]);
 }
 
 

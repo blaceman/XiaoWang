@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSArray *images;  ///< 上传的图片数组
 @property (nonatomic, assign) BOOL isRequestLock;  ///< 锁住导航栏右侧按钮,防止网络请求时重复点击
 
+@property (nonatomic, strong) NSString *photos;  ///< <#Description#>
 @end
 
 @implementation HYDynamicViewController
@@ -34,6 +35,7 @@
         StrongSelf
         [self publishMethod];
     }];
+    self.photos = @"";
     
 //    [self setPublishView];
     [self publishTextViewSet];
@@ -61,93 +63,58 @@
     
     self.isRequestLock = YES;
     
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSMutableArray *urls = [NSMutableArray array];
-//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-//        __block BOOL uplodImage = YES;
-//
-//        for (UIImage *image in self.images) {
-//            if (uplodImage) {
-//                NSData *imageData = UIImageJPEGRepresentation(image, 1);
-//                [[FGAliyunOSSManager sharedInstance] uploadImageAsyncWithBucket:nil mimeType:@"jpg" data:imageData progress:^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
-//                } success:^(NSString *absoluteUrlString) {
-//                    //取得图片在阿里云的路径
-//
-//                    NSMutableDictionary *dict = [NSMutableDictionary new];
-//                    dict[@"uri"] = absoluteUrlString;
-//                    dict[@"type"] = @0;
-//
-//                    [urls addObject:dict];
-//                    dispatch_semaphore_signal(semaphore);
-//
-//                } failure:^(NSString *msg) {
-//                    uplodImage = NO;
-//                    dispatch_semaphore_signal(semaphore);
-//                    [self hideLoadingHUD];
-//
-//                }];
-//            }
-//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//        }
-//        if (uplodImage == NO) {
-//            [self showTextHUDWithMessage:@"图片上传失败啦"];
-//            self.isRequestLock = NO;
-//            return;
-//        }
-//
-//        [self postArticle:urls];
-//    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        __block BOOL uplodImage = YES;
+
+        for (UIImage *image in self.images) {
+            if (uplodImage) {
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                [[FGAliyunOSSManager sharedInstance] uploadImageAsyncWithBucket:nil mimeType:@"jpg" data:imageData progress:^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
+                } success:^(NSString *absoluteUrlString) {
+                    //取得图片在阿里云的路径
+                    if ([self.photos isEqualToString:@""]) {
+                        self.photos = absoluteUrlString;
+                    }else{
+                        self.photos = [NSString stringWithFormat:@"%@,%@",self.photos,absoluteUrlString];
+                    }
+                    
+                    dispatch_semaphore_signal(semaphore);
+
+                } failure:^(NSString *msg) {
+                    uplodImage = NO;
+                    dispatch_semaphore_signal(semaphore);
+                    [self hideLoadingHUD];
+
+                }];
+            }
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+        if (uplodImage == NO) {
+            [self showTextHUDWithMessage:@"图片上传失败啦"];
+            self.isRequestLock = NO;
+            return;
+        }
+        [[RACScheduler mainThreadScheduler] schedule:^{
+            [self postAlbum];
+        }];
+       
+       
+    });
 }
 
 #pragma mark -- pravateMethod
-//- (void)postArticle:(NSArray *)images{
-//
-//    NSMutableDictionary *param = [HYUtil blogParameter];
-//    param[@"userId"] = kUserId;
-//    param[@"content"] = self.publishTextView.text;
-//    param[@"medias"] = images;
-//
-//    WeakSelf
-//    [[HYNetworkManager sharedInstance].blog postBlogsWithParameter:param success:^(id result) {
-//        self.isRequestLock = NO;
-//        [self showCompletionHUDWithMessage:@"发布成功" completion:^{
-//            StrongSelf
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }];
-//
-//    } failure:^(NSString *msg) {
-//        self.isRequestLock = NO;
-//        [self showWarningHUDWithMessage:msg completion:nil];
-//    }];
-//}
+-(void)postAlbum{
+    [FGHttpManager postWithPath:@"api/photo/add" parameters:@{@"photos":self.photos,@"content":self.publishTextView.text} success:^(id responseObject) {
+        [self showCompletionHUDWithMessage:@"发布完成" completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } failure:^(NSString *error) {
+        
+    }];
+}
 
-//-(void)setPublishView{
-//    UIImageView *avaterImg = [UIImageView fg_imageString:@"ic_default_avatar"];
-//    self.avaterImg = avaterImg;
-//    [self.avaterImg sd_setImageWithURL:[NSURL URLWithString:[FGCacheManager sharedInstance].userModel.avatarFull] placeholderImage:UIImageWithName(@"ic_default_avatar")];
-//    [self.avaterImg fg_cornerRadius:AdaptedWidth(54)/2 borderWidth:0 borderColor:0];
-//    [self.bgScrollView.contentView addSubview:avaterImg];
-//    [avaterImg mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.offset(AdaptedWidth(13));
-//        make.top.equalTo(self.navigationView.mas_bottom).offset(AdaptedHeight(17));
-//        make.width.height.mas_equalTo(AdaptedWidth(54));
-//    }];
-//
-//    UILabel *publishLabel = [UILabel fg_text:@"发布人:" fontSize:15 colorHex:0x949494];
-//    [self.bgScrollView.contentView addSubview:publishLabel];
-//    [publishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(avaterImg).offset(2);
-//        make.left.equalTo(avaterImg.mas_right).offset(AdaptedWidth(13));
-//    }];
-//
-//    UILabel *publishNameLabel = [UILabel fg_text:[FGCacheManager sharedInstance].userModel.nickName fontSize:17 colorHex:0x000000];
-//    [self.bgScrollView.contentView addSubview:publishNameLabel];
-//    [publishNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(publishLabel);
-//        make.bottom.equalTo(avaterImg.mas_bottom).offset(-2);
-//    }];
-//
-//}
+
 
 -(void)publishTextViewSet{
     self.publishTextView = [[UITextView alloc]init];
@@ -194,7 +161,7 @@
     [self addChildViewController:imagePickerVC];
     [self.bgScrollView.contentView addSubview:imagePickerVC.view];
     
-    imagePickerVC.maxCountTF = 4;
+    imagePickerVC.maxCountTF = 9;
     
     
     [imagePickerVC.view mas_makeConstraints:^(MASConstraintMaker *make) {

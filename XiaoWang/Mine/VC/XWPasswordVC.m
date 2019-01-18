@@ -58,7 +58,7 @@
     questionTextView.textColor = UIColorFromHex(0x333333);
     questionTextView.text = @"";
     if (IsEmpty(questionTextView.text)) {
-        [questionTextView jk_addPlaceHolder:@"请输入问题"];
+//        [questionTextView jk_addPlaceHolder:@"请输入问题"];
     }
     
     [self.bgScrollView.contentView addSubview:questionTextView];
@@ -86,7 +86,7 @@
     [self.bgScrollView.contentView addSubview:questionField];
     questionField.textColor = UIColorFromHex(0x333333);
     questionField.font = AdaptedFontSize(16);
-    [questionField jk_addPlaceHolder:@"  请输入正确答案"];
+//    [questionField jk_addPlaceHolder:@"请输入正确答案"];
     [questionField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(tip1Label.mas_bottom).offset(AdaptedHeight(0));
         make.left.offset(AdaptedWidth(14));
@@ -135,10 +135,16 @@
         if (wordModel.question) {
             self.questionView.text = wordModel.question;
             [self.questionView jk_addPlaceHolder:nil];
+        }else{
+            [self.questionView jk_addPlaceHolder:@"请输入问题"];
+            
         }
         if (wordModel.answer) {
             self.answerView.text = wordModel.answer;
             [self.answerView jk_addPlaceHolder:nil];
+        }else{
+            [self.questionView jk_addPlaceHolder:@"请输入正确答案"];
+            
         }
 
     } failure:^(NSString *error) {
@@ -154,10 +160,16 @@
         if (wordModel.question) {
             self.questionView.text = wordModel.question;
             [self.questionView jk_addPlaceHolder:nil];
+        }else{
+            [self.questionView jk_addPlaceHolder:@"请输入问题"];
+
         }
         if (wordModel.answer) {
             self.answerView.text = wordModel.answer;
             [self.answerView jk_addPlaceHolder:nil];
+        }else{
+            [self.questionView jk_addPlaceHolder:@"请输入正确答案"];
+
         }
     } failure:^(NSString *error) {
         [self showTextHUDWithMessage:error];

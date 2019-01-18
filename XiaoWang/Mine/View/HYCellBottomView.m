@@ -7,6 +7,7 @@
 //
 
 #import "HYCellBottomView.h"
+#import "XWAlbumModel.h"
 
 @interface HYCellBottomView ()
 
@@ -108,6 +109,15 @@
 
 - (void)configWithModel:(id)model
 {
+    if ([model isKindOfClass:[XWAlbumModel class]]) {
+        XWAlbumModel *albumModel = model;
+        [self.lookBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
+        
+        [self.zanBtn setTitle:[NSString stringWithFormat:@"  %@",albumModel.comment] forState:UIControlStateNormal];
+        
+        [self.ruoBtn setTitle:[NSString stringWithFormat:@"  %@",albumModel.enjoy] forState:UIControlStateNormal];
+        return;
+    }
 //    [self.shareBtn setTitle:[NSString stringWithFormat:@"  %@",@"100"] forState:UIControlStateNormal];
     [self.lookBtn setTitle:[NSString stringWithFormat:@"  %@",@"09:52     删除"] forState:UIControlStateNormal];
 //    self.ruoBtn.backgroundColor = UIColorFromRandom;

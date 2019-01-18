@@ -8,6 +8,7 @@
 
 #import "HYHomeShowView.h"
 #import <PYPhotosView.h>
+#import "XWAlbumModel.h"
 
 @interface HYHomeShowView ()
 
@@ -66,6 +67,21 @@
 
 - (void)configWithModel:(id)model
 {
+    if ([model isKindOfClass:[XWAlbumModel class]]) {
+        XWAlbumModel *albumModel = model;
+        self.contentLabel.text = albumModel.content;
+        self.photosView.thumbnailUrls = albumModel.images;
+        self.photosView.originalUrls = albumModel.images;
+        
+        CGSize size = [self.photosView sizeWithPhotoCount:albumModel.images.count photosState:PYPhotosViewStateDidCompose];
+        [self.photosView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(size);
+        }];
+        
+        return;
+    }
+    
+    
     self.contentLabel.text = @"dkgjklajdgkljdasklgfdk";
     
     // 1. 创建图片链接数组
