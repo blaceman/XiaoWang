@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSNumber *commented_uid;  ///< <#Description#>
 @property (nonatomic, strong) NSString *commented_nick;  ///< <#Description#>
 
+@property (nonatomic, strong) NSString *photo_id;  ///< <#Description#>
 
 
 

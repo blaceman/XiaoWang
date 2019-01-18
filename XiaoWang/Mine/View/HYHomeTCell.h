@@ -9,13 +9,15 @@
 #import "FGBaseTableViewCell.h"
 #import "HYCellBottomView.h"
 #import "HYCellTopView.h"
+#import "XWCommentListsModel.h"
 
+@class HYCellCommentView;
 @interface HYHomeTCell : FGBaseTableViewCell
 
 @property (nonatomic, strong) HYCellBottomView *bottomView;  ///< <#Description#>
 
 //@property (nonatomic, strong) HYCellTopView *topView;  ///< <#Description#>
-
+@property (nonatomic,copy) void (^tagLabelBlock)(id model);
 
 @property (nonatomic, strong)UIButton *liveButton;//直播状态按钮
 

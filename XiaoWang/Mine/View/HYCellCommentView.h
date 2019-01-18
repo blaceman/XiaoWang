@@ -9,12 +9,15 @@
 #import "FGBaseView.h"
 #import <YYLabel.h>
 #import <NSAttributedString+YYText.h>
-
+#import "XWCommentListsModel.h"
 /**
  评论view
  */
 @interface HYCellCommentView : FGBaseView
+@property (nonatomic,copy) void (^tagLabelBlock)(id model);
+
 
 - (instancetype)initWithModel:(id)model;
+
 
 @end
