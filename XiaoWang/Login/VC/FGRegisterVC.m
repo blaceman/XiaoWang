@@ -16,6 +16,9 @@
 
 #import "HYPersonSetVC.h"
 
+#import "FGUserModel.h"
+
+
 @interface FGRegisterVC ()
 
 @property (nonatomic, strong) FGCellStyleView *mobileView; ///< 手机号
@@ -31,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"注册"];
+    [self.navigationView setTitle:@"登录"];
     
 }
 
@@ -154,10 +157,8 @@
  */
 - (void)netxStepAction
 {
-    HYPersonSetVC *vc = [HYPersonSetVC new];
-//    vc.bindType = DDBindStudentTypeLogin;
-    [self.navigationController pushViewController:vc animated:YES];
-    return;
+
+//    return;
     [self.view endEditing:YES];
     NSString *mobile = self.mobileView.model.content;
     NSString *code = self.codeView.model.content;
@@ -172,11 +173,21 @@
         [self showWarningHUDWithMessage:@"输入验证码有误" completion:nil];
         return;
     }
-    
-    
-    
   
     WeakSelf
+    [FGHttpManager postWithPath:@"api/account/login" parameters:@{@"mobile":mobile,@"code":code} success:^(id responseObject) {
+        StrongSelf
+        FGUserModel *loginModel = [FGUserModel modelWithJSON:responseObject];
+        [FGCacheManager sharedInstance].token = loginModel.token;
+        [FGCacheManager sharedInstance].userModel = loginModel;
+        
+        //跳转
+        HYPersonSetVC *vc = [HYPersonSetVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSString *error) {
+        StrongSelf
+        [self showWarningHUDWithMessage:error completion:nil];
+    }];
 
 }
 
@@ -200,14 +211,14 @@
     //根据手机号查找用户名
     NSDictionary *dict = @{@"mobile": self.mobileView.model.content};
 
-//    [FGHttpManager getWithPath:@"msm/register/mobileCode" parameters:dict success:^(id responseObject) {
-//        StrongSelf
-//        [self showTextHUDWithMessage:@"发送成功，请留意手机短信"];
-//        [self.getCodeBtn jk_startTime:59 title:@"获取验证码" waitTittle:@"重新获取"];
-//    } failure:^(NSString *error) {
-//        StrongSelf
-//        [self showWarningHUDWithMessage:error completion:nil];
-//    }];
+    [FGHttpManager postWithPath:@"api/account/send_code" parameters:dict success:^(id responseObject) {
+        StrongSelf
+        [self showTextHUDWithMessage:@"发送成功，请留意手机短信"];
+        [self.getCodeBtn jk_startTime:59 title:@"获取验证码" waitTittle:@"重新获取"];
+    } failure:^(NSString *error) {
+        StrongSelf
+        [self showWarningHUDWithMessage:error completion:nil];
+    }];
     
     
 

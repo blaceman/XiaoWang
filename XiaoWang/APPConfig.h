@@ -43,7 +43,7 @@ static int const kColorTheme = 0xFFB000;
 
 #ifdef Develop
 
-#define BaseApi @"http://dingdingxuefu.figo.cn/api"
+#define BaseApi @"http://59.110.153.91:3333/server/index.php?g=Web&c=Mock&o=simple&projectID=24&uri="
 //友盟分享
 #define kUmengAppkey   @"59759f63aed1797c95000b0d"
 

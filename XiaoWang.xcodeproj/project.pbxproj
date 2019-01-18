@@ -71,7 +71,6 @@
 		5135CA7121DA57CA0025213D /* YIEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA3F21DA57CA0025213D /* YIEmptyView.m */; };
 		5135CA7421DA57E70025213D /* FGTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA7321DA57E70025213D /* FGTabBarVC.m */; };
 		5135CA7A21DA57FC0025213D /* FGCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA7921DA57FC0025213D /* FGCacheManager.m */; };
-		5135CA9121DCE1370025213D /* FGLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA8921DCE1340025213D /* FGLoginVC.m */; };
 		5135CA9221DCE1370025213D /* FGForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA8C21DCE1350025213D /* FGForgetPasswordVC.m */; };
 		5135CA9321DCE1370025213D /* DDBindStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA8F21DCE1360025213D /* DDBindStudentVC.m */; };
 		5135CA9421DCE1370025213D /* FGRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CA9021DCE1370025213D /* FGRegisterVC.m */; };
@@ -87,6 +86,8 @@
 		514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A317E21DFBA6400987D4B /* XWPairPassVC.m */; };
 		514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318121DFBC8300987D4B /* XWPairBodyView.m */; };
 		514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318421DFC38C00987D4B /* XWPairPassView.m */; };
+		5156083E21F17CA700C3CD9A /* FGUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156083D21F17CA700C3CD9A /* FGUserModel.m */; };
+		5156084121F17CF200C3CD9A /* FGBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156083F21F17CF100C3CD9A /* FGBaseModel.m */; };
 		5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA3F21E087B500ADA586 /* XWMineVC.m */; };
 		5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */; };
 		5174BA4621E1D57E00ADA586 /* HYHomeTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4421E1D57E00ADA586 /* HYHomeTCell.m */; };
@@ -246,11 +247,9 @@
 		5135CA7721DA57F90025213D /* APPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPConfig.h; sourceTree = "<group>"; };
 		5135CA7821DA57FB0025213D /* APPConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPConst.h; sourceTree = "<group>"; };
 		5135CA7921DA57FC0025213D /* FGCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGCacheManager.m; sourceTree = "<group>"; };
-		5135CA8921DCE1340025213D /* FGLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGLoginVC.m; sourceTree = "<group>"; };
 		5135CA8A21DCE1350025213D /* DDBindStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDBindStudentVC.h; sourceTree = "<group>"; };
 		5135CA8B21DCE1350025213D /* FGForgetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGForgetPasswordVC.h; sourceTree = "<group>"; };
 		5135CA8C21DCE1350025213D /* FGForgetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGForgetPasswordVC.m; sourceTree = "<group>"; };
-		5135CA8D21DCE1350025213D /* FGLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGLoginVC.h; sourceTree = "<group>"; };
 		5135CA8E21DCE1360025213D /* FGRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGRegisterVC.h; sourceTree = "<group>"; };
 		5135CA8F21DCE1360025213D /* DDBindStudentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDBindStudentVC.m; sourceTree = "<group>"; };
 		5135CA9021DCE1370025213D /* FGRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGRegisterVC.m; sourceTree = "<group>"; };
@@ -278,6 +277,10 @@
 		514A318121DFBC8300987D4B /* XWPairBodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairBodyView.m; sourceTree = "<group>"; };
 		514A318321DFC38C00987D4B /* XWPairPassView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPairPassView.h; sourceTree = "<group>"; };
 		514A318421DFC38C00987D4B /* XWPairPassView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPairPassView.m; sourceTree = "<group>"; };
+		5156083C21F17CA700C3CD9A /* FGUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FGUserModel.h; sourceTree = "<group>"; };
+		5156083D21F17CA700C3CD9A /* FGUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FGUserModel.m; sourceTree = "<group>"; };
+		5156083F21F17CF100C3CD9A /* FGBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGBaseModel.m; sourceTree = "<group>"; };
+		5156084021F17CF100C3CD9A /* FGBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGBaseModel.h; sourceTree = "<group>"; };
 		5174BA3E21E087B500ADA586 /* XWMineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMineVC.h; sourceTree = "<group>"; };
 		5174BA3F21E087B500ADA586 /* XWMineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWMineVC.m; sourceTree = "<group>"; };
 		5174BA4121E1CBDA00ADA586 /* XWPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPasswordVC.h; sourceTree = "<group>"; };
@@ -681,8 +684,6 @@
 				5135CA8F21DCE1360025213D /* DDBindStudentVC.m */,
 				5135CA8B21DCE1350025213D /* FGForgetPasswordVC.h */,
 				5135CA8C21DCE1350025213D /* FGForgetPasswordVC.m */,
-				5135CA8D21DCE1350025213D /* FGLoginVC.h */,
-				5135CA8921DCE1340025213D /* FGLoginVC.m */,
 				5135CA8E21DCE1360025213D /* FGRegisterVC.h */,
 				5135CA9021DCE1370025213D /* FGRegisterVC.m */,
 				5135CA9521DD10C90025213D /* HYPersonSetVC.h */,
@@ -717,6 +718,8 @@
 		5135CA8021DA63540025213D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5156083C21F17CA700C3CD9A /* FGUserModel.h */,
+				5156083D21F17CA700C3CD9A /* FGUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -853,6 +856,8 @@
 				5135CA7521DA57F70025213D /* FGCacheManager.h */,
 				5135CA7921DA57FC0025213D /* FGCacheManager.m */,
 				5135CA7621DA57F80025213D /* PrefixHeader.pch */,
+				5156084021F17CF100C3CD9A /* FGBaseModel.h */,
+				5156083F21F17CF100C3CD9A /* FGBaseModel.m */,
 				519C87BC21DA249E00085EB5 /* Assets.xcassets */,
 				519C87BE21DA249E00085EB5 /* LaunchScreen.storyboard */,
 				519C87C121DA249E00085EB5 /* Info.plist */,
@@ -999,6 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */,
+				5156084121F17CF200C3CD9A /* FGBaseModel.m in Sources */,
 				5174BA7021E3914800ADA586 /* XWNewsCell.m in Sources */,
 				5135CA4C21DA57CA0025213D /* FGAliyunOSSManager.m in Sources */,
 				5135CA5D21DA57CA0025213D /* UIColor+shadow.m in Sources */,
@@ -1015,7 +1021,6 @@
 				5135C9C721DA57B60025213D /* PopAnimationTool.m in Sources */,
 				514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */,
 				5174BA5221E1D76E00ADA586 /* HYHomeShowView.m in Sources */,
-				5135CA9121DCE1370025213D /* FGLoginVC.m in Sources */,
 				5135CA4A21DA57CA0025213D /* FGAdvertiseVedioView.m in Sources */,
 				5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */,
 				5135CA7A21DA57FC0025213D /* FGCacheManager.m in Sources */,
@@ -1050,6 +1055,7 @@
 				5135C9C021DA57B60025213D /* FGBaseLayoutView.m in Sources */,
 				5174BA4C21E1D65700ADA586 /* HYCellTopView.m in Sources */,
 				5135CA6721DA57CA0025213D /* FGGroupBtnsView.m in Sources */,
+				5156083E21F17CA700C3CD9A /* FGUserModel.m in Sources */,
 				5135CA6E21DA57CA0025213D /* FGTagsView.m in Sources */,
 				5174BA7C21E3A33300ADA586 /* HYDynamicViewController.m in Sources */,
 				514A317321DFAA7900987D4B /* XWPairVC.m in Sources */,

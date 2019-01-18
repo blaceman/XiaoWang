@@ -37,6 +37,8 @@
 #import "FGEmptyView.h"
 #import "TZImagePickerController.h"
 #import <JKCategories/JKCategories.h>
+#import "FGHttpManager.h"
+#import "FGBaseModel.h"
 #endif
 
 #endif /* PrefixHeader_pch */

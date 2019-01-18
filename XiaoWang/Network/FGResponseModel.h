@@ -15,6 +15,9 @@
 @interface FGResponseModel : NSObject<YYModel>
 
 @property (nonatomic, assign) NSInteger result;  ///< <#Description#>
+@property (nonatomic, assign) NSInteger status;  ///< <#Description#>
+
+
 @property (nonatomic, copy) NSString *msg;  ///< <#Description#>
 @property (nonatomic, strong) NSNumber *code;  ///< <#Description#>
 @property (nonatomic, assign) id data;  ///< <#Description#>

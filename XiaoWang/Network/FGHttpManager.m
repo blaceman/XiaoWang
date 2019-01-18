@@ -162,7 +162,7 @@
         //请求成功返回数据 根据responseSerializer 返回不同的数据格式
         NSLog(@"responseObject-->%@",responseObject);
         FGResponseModel *obj = [FGResponseModel modelWithJSON:responseObject];
-        if (obj.result > 0) {
+        if (obj.status == 0) {
             success(obj.data);
         }else{
             failure(obj.msg);

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "FGRegisterVC.h"
+#import "XWPairVC.h"
+
 
 @interface AppDelegate ()
 
@@ -27,12 +29,6 @@
 }
 
 - (void)naviSet{
-    FGRegisterVC *vc = [FGRegisterVC new];
-    
-    FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
-    
-    self.window.rootViewController = navi;
-    
     // Do any additional setup after loading the view.
     //统一调整 导航栏 设置
     EasyNavigationOptions *options = [EasyNavigationOptions shareInstance];
@@ -43,6 +39,22 @@
     options.navLineColor = UIColorFromHex(kColorLine);
     options.buttonTitleFont = AdaptedFontSize(16);
     options.buttonTitleColor = UIColorFromHex(0xFF8A00);
+    
+    
+    if ([FGCacheManager sharedInstance].token) {
+        XWPairVC *vc = [XWPairVC new];
+        
+        FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = navi;
+        return;
+    }
+    FGRegisterVC *vc = [FGRegisterVC new];
+    
+    FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+    
+    self.window.rootViewController = navi;
+    
+   
     
 }
 

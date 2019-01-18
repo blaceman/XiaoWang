@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <YYCache.h>
+#import "FGUserModel.h"
 
 
 #define kUserId [FGCacheManager sharedInstance].userModel.ID
@@ -24,6 +25,8 @@
 //登录token
 @property (nonatomic, copy) NSString *token;  ///<
 
+//fguserModel
+@property (nonatomic, copy) FGUserModel *userModel;  ///<
 
 
 @end
