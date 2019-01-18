@@ -7,9 +7,13 @@
 //
 
 #import "XWPasswordVC.h"
+#import "XWGetWordModel.h"
 
 @interface XWPasswordVC ()
+@property (nonatomic, strong) UITextView *questionView;  ///< <#Description#>
+@property (nonatomic, strong) UITextView *answerView;  ///< <#Description#>
 
+@property (nonatomic, strong) XWGetWordModel *wordModel;  ///< <#Description#>
 @end
 
 @implementation XWPasswordVC
@@ -18,8 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"通关口令"];
+    WeakSelf
+    [self.navigationView addRightButtonWithTitle:@"修改" clickCallBack:^(UIView *view) {
+        StrongSelf
+        [self postData];
+    }];
     
-    
+    [self getData];
 }
 
 -(void)setupViews{
@@ -41,16 +50,26 @@
         make.height.mas_equalTo(AdaptedHeight(199));
     }];
     
-    UILabel *questionLabel = [UILabel fg_text:@"明明是个近视眼，也是个出名的馋小子，在他面前放一堆书，放一个苹果，他会先看什么?" fontSize:16 colorHex:0x333333];
-    [self.bgScrollView.contentView addSubview:questionLabel];
-    [questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+   
+    
+    UITextView *questionTextView = [UITextView new];
+    self.questionView = questionTextView;
+    questionTextView.font = AdaptedFontSize(16);
+    questionTextView.textColor = UIColorFromHex(0x333333);
+    questionTextView.text = @"";
+    if (IsEmpty(questionTextView.text)) {
+        [questionTextView jk_addPlaceHolder:@"请输入问题"];
+    }
+    
+    [self.bgScrollView.contentView addSubview:questionTextView];
+    [questionTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backLabelView).offset(AdaptedHeight(26));
         make.left.offset(AdaptedWidth(14));
         make.right.offset(AdaptedWidth(-31));
-
+        make.bottom.equalTo(backLabelView);
+        
     }];
-    questionLabel.numberOfLines = 0;
-    
+
     
     UILabel *tip1Label = [UILabel fg_text:@"  我的答案" fontSize:13 colorHex:0x3A75FD];
     tip1Label.backgroundColor = UIColorFromHex(kColorBG);
@@ -62,6 +81,7 @@
     }];
 
     UITextView *questionField = [UITextView new];
+    self.answerView = questionField;
     questionField.backgroundColor = UIColorFromHex(0xffffff);
     [self.bgScrollView.contentView addSubview:questionField];
     questionField.textColor = UIColorFromHex(0x333333);
@@ -69,8 +89,18 @@
     [questionField jk_addPlaceHolder:@"  请输入正确答案"];
     [questionField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(tip1Label.mas_bottom).offset(AdaptedHeight(0));
-        make.left.right.offset(0);
+        make.left.offset(AdaptedWidth(14));
+        make.right.offset(AdaptedWidth(-31));
         make.height.mas_equalTo(AdaptedHeight(111));
+    }];
+    
+    UIView *answserView = [UIView new];
+    answserView.backgroundColor = UIColorFromHex(0xffffff);
+    [self.bgScrollView.contentView addSubview:answserView];
+    [self.bgScrollView.contentView sendSubviewToBack:answserView];
+    [answserView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.top.bottom.equalTo(questionField);
     }];
     
     UILabel *tip2Label = [UILabel fg_text:@"温馨提示" fontSize:13 colorHex:0x333333];
@@ -98,6 +128,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)getData{
+    [FGHttpManager getWithPath:@"api/profile/get_word" parameters:@{} success:^(id responseObject) {
+        XWGetWordModel *wordModel = [XWGetWordModel modelWithJSON:responseObject];
+        self.wordModel = wordModel;
+        if (wordModel.question) {
+            self.questionView.text = wordModel.question;
+            [self.questionView jk_addPlaceHolder:nil];
+        }
+        if (wordModel.answer) {
+            self.answerView.text = wordModel.answer;
+            [self.answerView jk_addPlaceHolder:nil];
+        }
+
+    } failure:^(NSString *error) {
+        
+    }];
+}
+-(void)postData{
+    [self showLoadingHUDWithMessage:@""];
+    [FGHttpManager postWithPath:@"api/profile/set_word" parameters:@{@"question":self.questionView.text,@"answer":self.answerView.text} success:^(id responseObject) {
+        [self hideLoadingHUD];
+        [self showTextHUDWithMessage:@"修改成功"];
+        XWGetWordModel *wordModel = [XWGetWordModel modelWithJSON:responseObject];
+        if (wordModel.question) {
+            self.questionView.text = wordModel.question;
+            [self.questionView jk_addPlaceHolder:nil];
+        }
+        if (wordModel.answer) {
+            self.answerView.text = wordModel.answer;
+            [self.answerView jk_addPlaceHolder:nil];
+        }
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error];
+    }];
+}
 /*
 #pragma mark - Navigation
 

@@ -14,5 +14,11 @@
 {
     return @{@"ID":@"id"};
 }
+//+ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass
+//{
+//    return @{
+//            
+//             };
+//}
 
 @end

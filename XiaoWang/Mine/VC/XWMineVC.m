@@ -14,7 +14,7 @@
 #import "XWAlbumVC.h"
 #import "XWHelpVC.h"
 #import "XWSetVC.h"
-
+#import "HYPersonSetVC.h"
 
 @interface XWMineVC ()
 @property (nonatomic, strong) XWPairHeaderView *headerView;  ///< <#Description#>
@@ -27,8 +27,13 @@
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"我的"];
     XWPairHeaderView *pairView = [XWPairHeaderView new];
+    WeakSelf
+    [[pairView.avaterBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
+        StrongSelf
+        [self.navigationController pushViewController:[HYPersonSetVC new] animated:YES];
+    }];
     self.headerView = pairView;
-    [pairView configWithModel:@"1"];
+    [pairView configWithModel:[FGCacheManager sharedInstance].userModel];
     [self.bgScrollView.contentView addSubview:pairView];
     [pairView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.offset(0);
@@ -107,6 +112,10 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.headerView configWithModel:[FGCacheManager sharedInstance].userModel];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

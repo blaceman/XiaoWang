@@ -25,7 +25,7 @@
 @property (nonatomic,strong)NSArray<UIImage *> *photos; //图片数据源
 @property (nonatomic, assign) BOOL isChangeAvatar;  ///< <#Description#>
 
-
+@property (nonatomic,strong)NSString *avatar;
 @end
 
 @implementation HYPersonSetVC
@@ -54,6 +54,7 @@
     [avaterBackground addBottomLine];
     
     self.avaterButton = [UIButton fg_imageString:@"icon_head1" imageStringSelected:@"icon_head1"];
+    [self.avaterButton setImageWithURL:[NSURL URLWithString:[FGCacheManager sharedInstance].userModel.avatar] forState:UIControlStateNormal placeholder:UIImageWithName(@"icon_head1")];
     self.avaterButton.userInteractionEnabled = NO;
     [self.bgScrollView.contentView addSubview:self.avaterButton];
     [self.avaterButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -115,11 +116,18 @@
         }
         if ([titleArr[i] isEqualToString:@"生日"]) {
             model.placeholder = @"请选择出生年月（选填）";
-
+            model.content = [FGCacheManager sharedInstance].userModel.birthday;
+        }else if ([titleArr[i] isEqualToString:@"地区"]){
+            model.content = [FGCacheManager sharedInstance].userModel.city_id.stringValue;
+        }else if ([titleArr[i] isEqualToString:@"昵称"]){
+            model.content = [FGCacheManager sharedInstance].userModel.nickname;
+        }else if ([titleArr[i] isEqualToString:@"性别"]){
+            model.content = [FGCacheManager sharedInstance].userModel.gender.integerValue == 20 ? @"男" : @"女";
         }
         
         
         FGCellStyleView *cell = [[FGCellStyleView alloc] initWithModel:model];
+        cell.tag = i + 1;
         [cell addBottomLineWithEdge:UIEdgeInsetsMake(0, AdaptedWidth(16), 0, 0)];
         [self.bgScrollView.contentView addSubview:cell];
         [cell addTarget:self action:@selector(itemAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -155,8 +163,8 @@
     }];
     
     [bottomView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        XWLabelVC *vc = [XWLabelVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self updateAvaterInfo];
+        
     }];
     
     
@@ -263,8 +271,8 @@
             onMainThreadAsync(^{
                 StrongSelf
                 [self hideLoadingHUD];
-                dic[@"avatar"] = absoluteUrlString;
-//                [self updateUserInfoWithDic:dic];
+                self.avatar = [NSString stringWithFormat:@"%@/%@",OSS_DIMAO,absoluteUrlString];
+                [self updateUserInfo];
             });
             
         } failure:^(NSString *msg) {
@@ -277,10 +285,47 @@
         }];
     }else{
 //        [self updateUserInfoWithDic:[NSMutableDictionary new]];
+        [self updateUserInfo];
     }
 }
 
 
+-(void)updateUserInfo{
+//    @[@"昵称",@"性别",@"生日",@"地区"]
+    
+    NSString *nickname = ((FGCellStyleView *)[self.bgScrollView.contentView viewWithTag:1]).model.content;
+    NSString *gender = ((FGCellStyleView *)[self.bgScrollView.contentView viewWithTag:2]).model.content;
+    NSString *birthday = ((FGCellStyleView *)[self.bgScrollView.contentView viewWithTag:3]).model.content;
+    NSString *city_id = ((FGCellStyleView *)[self.bgScrollView.contentView viewWithTag:4]).model.content;
+    NSString *avatar = self.avatar;
+    
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    if (nickname) {
+        dic[@"nickname"] = nickname;
+    }
+    if (gender){
+        dic[@"gender"] = [gender isEqualToString:@"男"] ? @20 : @30;
+    }
+    if (birthday){
+        dic[@"birthday"] = birthday;
+    }
+    if (city_id){
+        dic[@"city_id"] = @20;
+    }
+    if (avatar){
+        dic[@"avatar"] = avatar;
+    }
+    
+    [FGHttpManager putWithPath:@"api/profile/set_profile" parameters:dic success:^(id responseObject) {
+        FGUserModel *loginModel = [FGUserModel modelWithJSON:responseObject];
+        [FGCacheManager sharedInstance].userModel = loginModel;
+        XWLabelVC *vc = [XWLabelVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error];
+    }];
+}
 /*
 #pragma mark - Navigation
 

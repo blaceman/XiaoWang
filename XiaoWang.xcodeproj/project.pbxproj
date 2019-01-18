@@ -88,6 +88,9 @@
 		514A318521DFC38C00987D4B /* XWPairPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 514A318421DFC38C00987D4B /* XWPairPassView.m */; };
 		5156083E21F17CA700C3CD9A /* FGUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156083D21F17CA700C3CD9A /* FGUserModel.m */; };
 		5156084121F17CF200C3CD9A /* FGBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156083F21F17CF100C3CD9A /* FGBaseModel.m */; };
+		5156084421F1A84800C3CD9A /* XWLableListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156084321F1A84800C3CD9A /* XWLableListModel.m */; };
+		5156084721F1AF8D00C3CD9A /* XWLabelsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156084621F1AF8D00C3CD9A /* XWLabelsModel.m */; };
+		5156084A21F1DAD900C3CD9A /* XWGetWordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156084921F1DAD900C3CD9A /* XWGetWordModel.m */; };
 		5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA3F21E087B500ADA586 /* XWMineVC.m */; };
 		5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4221E1CBDA00ADA586 /* XWPasswordVC.m */; };
 		5174BA4621E1D57E00ADA586 /* HYHomeTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5174BA4421E1D57E00ADA586 /* HYHomeTCell.m */; };
@@ -281,6 +284,12 @@
 		5156083D21F17CA700C3CD9A /* FGUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FGUserModel.m; sourceTree = "<group>"; };
 		5156083F21F17CF100C3CD9A /* FGBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGBaseModel.m; sourceTree = "<group>"; };
 		5156084021F17CF100C3CD9A /* FGBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGBaseModel.h; sourceTree = "<group>"; };
+		5156084221F1A84800C3CD9A /* XWLableListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWLableListModel.h; sourceTree = "<group>"; };
+		5156084321F1A84800C3CD9A /* XWLableListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWLableListModel.m; sourceTree = "<group>"; };
+		5156084521F1AF8D00C3CD9A /* XWLabelsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWLabelsModel.h; sourceTree = "<group>"; };
+		5156084621F1AF8D00C3CD9A /* XWLabelsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWLabelsModel.m; sourceTree = "<group>"; };
+		5156084821F1DAD900C3CD9A /* XWGetWordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWGetWordModel.h; sourceTree = "<group>"; };
+		5156084921F1DAD900C3CD9A /* XWGetWordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWGetWordModel.m; sourceTree = "<group>"; };
 		5174BA3E21E087B500ADA586 /* XWMineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMineVC.h; sourceTree = "<group>"; };
 		5174BA3F21E087B500ADA586 /* XWMineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWMineVC.m; sourceTree = "<group>"; };
 		5174BA4121E1CBDA00ADA586 /* XWPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPasswordVC.h; sourceTree = "<group>"; };
@@ -720,6 +729,12 @@
 			children = (
 				5156083C21F17CA700C3CD9A /* FGUserModel.h */,
 				5156083D21F17CA700C3CD9A /* FGUserModel.m */,
+				5156084221F1A84800C3CD9A /* XWLableListModel.h */,
+				5156084321F1A84800C3CD9A /* XWLableListModel.m */,
+				5156084521F1AF8D00C3CD9A /* XWLabelsModel.h */,
+				5156084621F1AF8D00C3CD9A /* XWLabelsModel.m */,
+				5156084821F1DAD900C3CD9A /* XWGetWordModel.h */,
+				5156084921F1DAD900C3CD9A /* XWGetWordModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1020,6 +1035,7 @@
 				5135CA4121DA57CA0025213D /* FGBaseNavigationController.m in Sources */,
 				5135C9C721DA57B60025213D /* PopAnimationTool.m in Sources */,
 				514A317F21DFBA6400987D4B /* XWPairPassVC.m in Sources */,
+				5156084421F1A84800C3CD9A /* XWLableListModel.m in Sources */,
 				5174BA5221E1D76E00ADA586 /* HYHomeShowView.m in Sources */,
 				5135CA4A21DA57CA0025213D /* FGAdvertiseVedioView.m in Sources */,
 				5135CA9721DD10CA0025213D /* HYPersonSetVC.m in Sources */,
@@ -1088,9 +1104,11 @@
 				5135CA6821DA57CA0025213D /* FGMoneyTextField.m in Sources */,
 				5135CA5A21DA57CA0025213D /* FGTools.m in Sources */,
 				5174BA5E21E2692A00ADA586 /* XWHelpCenterVC.m in Sources */,
+				5156084A21F1DAD900C3CD9A /* XWGetWordModel.m in Sources */,
 				5174BA4021E087B500ADA586 /* XWMineVC.m in Sources */,
 				5135CA7121DA57CA0025213D /* YIEmptyView.m in Sources */,
 				5135CA4D21DA57CA0025213D /* FGAppStoreVersionManager.m in Sources */,
+				5156084721F1AF8D00C3CD9A /* XWLabelsModel.m in Sources */,
 				5135CA5621DA57CA0025213D /* FGUmengAnalyticsHelper.m in Sources */,
 				5135CA5C21DA57CA0025213D /* NSString+FGDate.m in Sources */,
 				5174BA5821E1F0CC00ADA586 /* XWHelpVC.m in Sources */,

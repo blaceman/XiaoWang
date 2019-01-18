@@ -9,5 +9,11 @@
 #import "FGBaseView.h"
 
 @interface XWLabelView : FGBaseView
--(instancetype)initWithDataSource:(NSArray *)dataSource;
+@property (nonatomic,strong)NSMutableArray *dataSource;
+@property (nonatomic, copy) void (^btnBlock) (UIButton *btn);  ///< <#Description#>
+
+-(void)setupView;
+
+-(instancetype)initWithDataSource:(NSArray *)dataSource title:(NSString *)title;
+
 @end

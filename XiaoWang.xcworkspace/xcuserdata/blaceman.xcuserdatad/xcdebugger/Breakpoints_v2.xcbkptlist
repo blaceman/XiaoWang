@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XiaoWang/Login/VC/FGRegisterVC.m"
-            timestampString = "569475637.460431"
+            filePath = "XiaoWang/Login/VC/HYPersonSetVC.m"
+            timestampString = "569499755.6884691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-netxStepAction"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "-updateUserInfo"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XiaoWang/Login/VC/HYPersonSetVC.m"
+            timestampString = "569499755.688568"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-updateUserInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

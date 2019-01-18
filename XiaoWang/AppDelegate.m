@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FGRegisterVC.h"
-#import "XWPairVC.h"
+#import "XWMineVC.h"
 
 
 @interface AppDelegate ()
@@ -38,11 +38,11 @@
     options.navBackGroundColor = UIColorFromHex(0xffffff);
     options.navLineColor = UIColorFromHex(kColorLine);
     options.buttonTitleFont = AdaptedFontSize(16);
-    options.buttonTitleColor = UIColorFromHex(0xFF8A00);
+    options.buttonTitleColor = UIColorFromHex(0x3A75FD);
     
     
     if ([FGCacheManager sharedInstance].token) {
-        XWPairVC *vc = [XWPairVC new];
+        XWMineVC *vc = [XWMineVC new];
         
         FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
         self.window.rootViewController = navi;

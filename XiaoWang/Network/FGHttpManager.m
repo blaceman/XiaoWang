@@ -51,10 +51,12 @@
         
     });
     
-//    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-//    if (token.length > 0) {
-//        [manager.requestSerializer setValue:token forHTTPHeaderField:@"authorization"];
-//    }
+    NSString *token = [FGCacheManager sharedInstance].token;
+    if (token.length > 0) {
+        [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    }else{
+        [manager.requestSerializer setValue:nil forHTTPHeaderField:@"token"];
+    }
     return manager;
 }
 
@@ -130,12 +132,10 @@
         //请求成功返回数据 根据responseSerializer 返回不同的数据格式
 //        NSLog(@"responseObject-->%@",responseObject);
         FGResponseModel *obj = [FGResponseModel modelWithJSON:responseObject];
-        if (obj.result > 0) {
+        if (obj.status == 0) {
             success(obj.data);
         }else{
-            //未登陆 或者 cookie 过期 时
-            if (obj.result == -2) {
-            }
+            
             failure(obj.msg);
         }
         
@@ -176,6 +176,34 @@
         
         [self handleStatusCode:task];
     }];
+}
+
++ (void)putWithPath:(NSString *)path
+          parameters:(NSDictionary *)parameters
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(NSString *error))failure
+{
+    //AFN管理者调用get请求方法
+    
+    [[self manager] PUT:[BaseApi stringByAppendingPathComponent:path] parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //请求成功返回数据 根据responseSerializer 返回不同的数据格式
+        NSLog(@"responseObject-->%@",responseObject);
+        FGResponseModel *obj = [FGResponseModel modelWithJSON:responseObject];
+        if (obj.status == 0) {
+            success(obj.data);
+        }else{
+            failure(obj.msg);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //请求失败
+        NSLog(@"error-->%@",error);
+        if (failure) {
+            failure(error.description);
+        }
+        
+        [self handleStatusCode:task];
+    }];
+    
 }
 
 + (void)handleStatusCode:(NSURLSessionDataTask *)task

@@ -9,10 +9,11 @@
 #import "XWLabelVC.h"
 #import "XWLabelView.h"
 #import "XWPairVC.h"
-
+#import "XWLableListModel.h"
+#import "XWLabelsModel.h"
 
 @interface XWLabelVC ()
-
+@property (nonatomic,strong)NSArray<XWLableListModel*> *labelArr;
 @end
 
 @implementation XWLabelVC
@@ -28,11 +29,40 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
-    NSArray *titleArr = @[@"职业",@"职业",@"职业",@"职业"];
+    [self getLabelData];
     
+    
+   
+    
+   
+}
+
+-(void)getLabelData{
+    WeakSelf
+    [self showLoadingHUDWithMessage:@""];
+    [FGHttpManager getWithPath:@"api/label/lists" parameters:@{} success:^(id responseObject) {
+        [self hideLoadingHUD];
+        StrongSelf
+        NSArray<XWLableListModel*> *labelArr = [NSArray modelArrayWithClass:[XWLableListModel class] json:responseObject];
+        self.labelArr = labelArr;
+        [self LabelUISet];
+        
+    } failure:^(NSString *error) {
+        
+    }];
+}
+
+-(void)LabelUISet{    
     UIView *bufferView;
-    for (int i = 0; i< titleArr.count; i++) {
-        XWLabelView *labelView = [[XWLabelView alloc]initWithDataSource:@[@"医生",@"医生",@"医生",@"医生",@"医生",@"医生"]];
+    for (int i = 0; i< self.labelArr.count; i++) {
+       
+        XWLabelView *labelView = [[XWLabelView alloc]initWithDataSource:@[@"",@"",@"",@"",@"",@""] title:((XWLableListModel *)self.labelArr[i]).name];
+        [self dataSetWithNum:i labelView:labelView];
+        WeakSelf
+        labelView.btnBlock = ^(UIButton *btn) {
+            StrongSelf
+            
+        };
         [self.bgScrollView.contentView addSubview:labelView];
         [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
             if (i == 0) {
@@ -40,17 +70,26 @@
             }else{
                 make.top.equalTo(bufferView.mas_bottom);
             }
-            if (i == titleArr.count - 1) {
+            if (i == self.labelArr.count - 1) {
                 make.bottom.offset(0);
             }
             make.left.right.offset(0);
         }];
         bufferView = labelView;
     }
-    
-   
 }
 
+-(void)dataSetWithNum:(NSInteger )num labelView:(XWLabelView *)labelView{
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/label/label/%@",self.labelArr[num].ID] parameters:@{} success:^(id responseObject) {
+        XWLabelsModel *labels = [XWLabelsModel modelWithJSON:responseObject];
+        labelView.dataSource = [NSMutableArray arrayWithArray:[labels.labels.rac_sequence map:^id _Nullable(XWLableListModel  *_Nullable value) {
+            return value.name;
+        }].array];
+        [labelView setupView];
+    } failure:^(NSString *error) {
+        
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

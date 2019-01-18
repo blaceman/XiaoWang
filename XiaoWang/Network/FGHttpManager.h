@@ -26,4 +26,9 @@
              success:(void (^)(id responseObject))success
              failure:(void (^)(NSString *error))failure;
 
++ (void)putWithPath:(NSString *)path
+         parameters:(NSDictionary *)parameters
+            success:(void (^)(id responseObject))success
+            failure:(void (^)(NSString *error))failure;
+
 @end
