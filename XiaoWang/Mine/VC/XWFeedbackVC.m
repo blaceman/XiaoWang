@@ -9,7 +9,7 @@
 #import "XWFeedbackVC.h"
 
 @interface XWFeedbackVC ()
-
+@property (nonatomic,strong)UITextView *feedbackField;
 @end
 
 @implementation XWFeedbackVC
@@ -20,11 +20,13 @@
     [self.navigationView setTitle:@"意见反馈"];
     
     UITextView *feedbackField = [UITextView new];
+    self.feedbackField = feedbackField;
+    feedbackField.textContainer.lineFragmentPadding = AdaptedWidth(16);
     feedbackField.backgroundColor = UIColorFromHex(0xffffff);
     [self.bgScrollView.contentView addSubview:feedbackField];
     feedbackField.textColor = UIColorFromHex(0x333333);
     feedbackField.font = AdaptedFontSize(16);
-    [feedbackField jk_addPlaceHolder:@"请输入你的意见~"];
+    [feedbackField jk_addPlaceHolder:@"  请输入你的意见~"];
     [feedbackField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.offset(0);
         make.height.mas_equalTo(AdaptedHeight(402));
@@ -40,8 +42,11 @@
         make.right.offset(AdaptedWidth(-45));
         make.top.equalTo(feedbackField.mas_bottom).offset(AdaptedHeight(35));
         make.height.mas_equalTo(AdaptedHeight(40));
+        make.bottom.offset(0);
 
     }];
+    [commitBtn addTarget:self action:@selector(postData) forControlEvents:(UIControlEventTouchUpInside)];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +54,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)postData{
+    [FGHttpManager postWithPath:@"api/feedback/feedback" parameters:@{@"content":self.feedbackField.text} success:^(id responseObject) {
+        [self showCompletionHUDWithMessage:@"反馈成功" completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
 /*
 #pragma mark - Navigation
 

@@ -77,8 +77,23 @@
 }
 
 -(void)cellAction:(FGCellStyleView *)cell{
-    if ([cell.model.leftTitle isEqualToString:@"版本信息"]) {
+//    @[@"静音",@"震动"]
+    if ([cell.model.leftTitle isEqualToString:@"静音"]) {
+        if (cell.model.rightImgPath) {
+            cell.model.rightImgPath = nil;
+        }else{
+            cell.model.rightImgPath = @"icon_select";
+
+        }
        
+    }else if ([cell.model.leftTitle isEqualToString:@"震动"]) {
+        if (cell.model.rightImgPath) {
+            cell.model.rightImgPath = nil;
+        }else{
+            cell.model.rightImgPath = @"icon_select";
+            
+        }
+        
     }
 }
 

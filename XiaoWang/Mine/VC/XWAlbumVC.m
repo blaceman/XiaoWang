@@ -76,6 +76,9 @@
     };
     
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.textView resignFirstResponder];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

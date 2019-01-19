@@ -11,6 +11,7 @@
 #import "XWAboutVC.h"
 #import "XWNotDisturbVC.h"
 #import "XWNewsVC.h"
+#import "SDImageCache.h"
 
 
 
@@ -51,7 +52,12 @@
         model.rightImgPath = @"icon_more";
         model.leftTitle = titleArr[i];
         model.leftTitleColor = UIColorFromHex(0x333333);
-
+        if ([titleArr[i] isEqualToString:@"清除缓存"]) {
+            model.contentFont = (16.0);
+            model.contentColor = UIColorFromHex(0x999999);
+            model.alignment = NSTextAlignmentRight;
+            model.content = [NSString stringWithFormat:@"%.2fM", [self  getCacheSize]];
+        }
         
         FGCellStyleView *cell = [[FGCellStyleView alloc] initWithModel:model];
         [cell addBottomLine];
@@ -89,6 +95,24 @@
     }else if ([cell.model.leftTitle isEqualToString:@"黑名单"]) {
         [self.navigationController pushViewController:[XWNewsVC new] animated:YES];
         
+    }else if([cell.model.leftTitle isEqualToString:@"清除缓存"]){
+        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [[SDImageCache sharedImageCache] clearMemory];
+                [[NSFileManager defaultManager] removeItemAtPath:[NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES)lastObject]error:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self showCompletionHUDWithMessage:@"清除缓存成功" completion:^{
+                        cell.model.content = [NSString stringWithFormat:@"%.2fM", [self  getCacheSize]];
+                    }];
+                    
+                  
+                });
+            });
+        }];
+                   
+    
+        
+    
     }
     
 
@@ -109,6 +133,18 @@
 
     }];
 }
+
+- (double)getCacheSize {
+    SDImageCache *imageCache = [SDImageCache  sharedImageCache];
+    NSUInteger fileSize = [imageCache getSize]; // 以字节为单位
+    NSString *myCachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES)lastObject];
+    NSFileManager *fileM = [NSFileManager defaultManager];
+    NSDictionary *fileInfo = [fileM attributesOfItemAtPath:myCachePath error:nil];
+    fileSize += fileInfo.fileSize;
+    return fileSize/1024.0/1024.0;
+}
+
+
 /*
 #pragma mark - Navigation
 
