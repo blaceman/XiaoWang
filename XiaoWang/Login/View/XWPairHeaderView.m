@@ -97,22 +97,27 @@
     self.genderBtn.hidden =NO;
     if ([model isKindOfClass:[FGUserModel class]]) {
         FGUserModel *userModel = model;
-        
         [self.avaterBtn setImageWithURL:[NSURL URLWithString:[FGCacheManager sharedInstance].userModel.avatar] forState:UIControlStateNormal placeholder:UIImageWithName(@"icon_head2")];
         self.nameLabel.text = userModel.nickname;
         self.numLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];
-        self.addressBtn.hidden = YES;
         if (userModel.gender.integerValue == 20) {
             [self.genderBtn setImage:UIImageWithName(@"icon_male") forState:(UIControlStateNormal)];
         }else if (userModel.gender.integerValue == 30){
             [self.genderBtn setImage:UIImageWithName(@"icon_female") forState:(UIControlStateNormal)];
         }
+//        [self.addressBtn setTitle:@"" forState:(UIControlStateNormal)];
+        
+        self.addressBtn.hidden = YES;
         [self.numLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
             make.bottom.offset(AdaptedHeight(-22));
             make.top.equalTo(self.nameLabel.mas_bottom).offset(AdaptedHeight(12));
-
         }];
+        
+        if ([FGCacheManager sharedInstance].userModel.ID.integerValue == userModel.ID.integerValue) {
+            //暂时先都隐藏位置地址
+           
+        }
     }else{
         [self.avaterBtn setImage:UIImageWithName(@"icon_head2") forState:(UIControlStateNormal)];
         self.nameLabel.text = @"未登录";

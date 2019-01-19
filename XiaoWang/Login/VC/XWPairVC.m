@@ -12,6 +12,7 @@
 #import "XWPairPassVC.h"
 #import "XWMineVC.h"
 #import "XWNewsVC.h"
+#import "XWPasswordVC.h"
 
 @interface XWPairVC ()
 
@@ -80,8 +81,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
         
-//        XWPairTipView *tipView = [XWPairTipView new];
-//        [tipView showInView:self.navigationController.view];
+
     }else if (sender.tag == 1){ //筛选条件
         WXLoadingTipView *tipView = [WXLoadingTipView new];
         [tipView showInView:self.navigationController.view];
@@ -89,11 +89,46 @@
         XWNewsVC *vc = [XWNewsVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (sender.tag == 3){//速配通关
-        XWPairPassVC *vc = [XWPairPassVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self matchData];
+//
     }
     
     
+}
+
+#pragma --------------网络请求接口------------
+
+-(void)matchData{
+    
+    [FGHttpManager postWithPath:@"api/match/match" parameters:@{} success:^(id responseObject) {
+        FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
+        
+        XWPairPassVC *vc = [XWPairPassVC new];
+        vc.userModel = userModel;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } failure:^(NSString *error) {
+        WeakSelf
+        [self showCompletionHUDWithMessage:error.description completion:^{
+            if ([error.description isEqualToString:@"匹配失败"]) {
+                
+                StrongSelf
+                XWPairTipView *tipView = [XWPairTipView new];
+                Weakify(tipView)
+
+                [tipView.setBtn jk_addActionHandler:^(NSInteger tag) {
+                    StrongSelf
+                    Strongify(tipView)
+                    [tipView remove];
+                    XWPasswordVC *vc = [XWPasswordVC new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }];
+                [tipView showInView:self.navigationController.view];
+            }
+            
+            
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

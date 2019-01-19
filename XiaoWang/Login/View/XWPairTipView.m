@@ -14,7 +14,6 @@
 @property (nonatomic,strong)UILabel *tileLabel;
 @property (nonatomic,strong)UILabel *contentLabel;
 
-@property (nonatomic,strong)UIButton *setBtn;
 
 
 @property (nonatomic,strong)UIView *backGroundView;

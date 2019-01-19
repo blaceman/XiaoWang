@@ -12,7 +12,6 @@
 
 @property (nonatomic,strong)UILabel *contentLabel;
 
-@property (nonatomic,strong)UITextView *answerField;
 
 
 
@@ -37,14 +36,18 @@
     self.countDownImg = [UIImageView fg_imageString:@"icon_count"];
     [self addSubview:self.countDownImg];
     
+    self.countDowmLabel = [UILabel fg_text:@"倒计时 30s" fontSize:16 colorHex:0xffffff];
+    [self addSubview:self.countDowmLabel];
     
     self.answerField = [[UITextView alloc] init];
     self.answerField.backgroundColor = UIColorFromHex(0xFCFCFC);
     [self.answerField addAllLine];
-    self.answerField.textAlignment = NSTextAlignmentCenter;
+//    self.answerField.textAlignment = NSTextAlignmentCenter;
     self.answerField.font = AdaptedFontSize(16);
     self.answerField.textColor = UIColorFromHex(0x999999);
-    [self.answerField jk_addPlaceHolder:@"请输入你的答案"];
+    [self.answerField jk_addPlaceHolder:@"   请输入你的答案"];
+    self.answerField.textContainer.lineFragmentPadding = AdaptedWidth(22);
+    [self.answerField addAllLine];
     [self addSubview:self.answerField];
     
     
@@ -73,7 +76,9 @@
         make.centerX.offset(0);
         make.centerY.equalTo(self.contentLabel.mas_top);
     }];
-    
+    [self.countDowmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.countDownImg);
+    }];
     
     [self.answerField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.contentLabel);
@@ -89,10 +94,12 @@
         make.bottom.offset(AdaptedWidth(-44));
 
     }];
-    
-   
-    
-    
+}
+-(void)configWithModel:(id)model{
+    if ([model isKindOfClass:[FGUserModel class]]) {
+        FGUserModel *userModel = model;
+        self.contentLabel.text = userModel.question;
+    }
 }
 
 

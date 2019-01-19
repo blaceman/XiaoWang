@@ -12,9 +12,15 @@
 #import "XWPairPassView.h"
 #import "XWMineVC.h"
 #import "XWMineVC.h"
+#import "XWPairPassView.h"
 
 
 @interface XWPairPassVC ()
+@property (nonatomic,strong)UIButton *tipBtn;
+
+@property (nonatomic,strong)RACDisposable *dispoable;
+@property (nonatomic, strong) XWPairBodyView *bodyView;  ///< <#Description#>
+@property (nonatomic, assign) NSInteger time;  ///< <#Description#>
 
 @end
 
@@ -26,30 +32,36 @@
     [self.navigationView setTitle:@"速配通关"];
     
     XWPairHeaderView *headerView = [XWPairHeaderView new];
+    [headerView configWithModel:self.userModel];
     [self.bgScrollView.contentView addSubview:headerView];
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.offset(0);
     }];
     
     XWPairBodyView *bodyView = [XWPairBodyView new];
+    [bodyView configWithModel:self.userModel];
+    self.bodyView = bodyView;
     [self.bgScrollView.contentView addSubview:bodyView];
     [bodyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headerView.mas_bottom).offset(AdaptedHeight(7));
         make.left.right.offset(0);
 
     }];
+    //提交按钮
     WeakSelf
     [[bodyView.commitBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
         StrongSelf
 //        XWPairPassView *tipView = [XWPairPassView new];
 //        [tipView showInView:self.navigationController.view];
-        
-        XWMineVC *vc = [XWMineVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self passAnswerData];
+//        XWMineVC *vc = [XWMineVC new];
+//        [self.navigationController pushViewController:vc animated:YES];
         
     }];
     
     UIButton *tipBtn = [UIButton fg_title:@"  对方已答对，用时23秒" fontSize:13 titleColorHex:0x666666];
+    self.tipBtn = tipBtn;
+    self.tipBtn.hidden = YES;
     [self.bgScrollView.contentView addSubview:tipBtn];
     [tipBtn setImage:UIImageWithName(@"icon_adopt") forState:(UIControlStateNormal)];
     [tipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,6 +69,8 @@
         make.top.equalTo(bodyView.mas_bottom).offset(AdaptedHeight(20));
         make.bottom.offset(AdaptedHeight(-20));
     }];
+    tipBtn.hidden = YES;
+    [self countDown];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +78,69 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)countDown{
+    //30秒定时器
+    self.time = 30;
+    WeakSelf
+   self.dispoable = [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSDate * _Nullable x) {
+       StrongSelf
+       self.bodyView.countDowmLabel.text = [NSString stringWithFormat:@"倒计时 %ld",self.time];
+       self.time--;
+       if (self.time == 0) {
+           //通关失败
+           [self.dispoable dispose];
+           XWPairPassView *tipView = [XWPairPassView new];
+           [tipView configWithModel:self.userModel];
+           [tipView.loadBtn setImage:UIImageWithName(@"icon_fail") forState:(UIControlStateNormal)];
+           [tipView.sendBtn setTitle:@"返回首页" forState:(UIControlStateNormal)];
+           Weakify(tipView);
+           [[tipView.sendBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
+               StrongSelf
+               Strongify(tipView)
+               [tipView remove];
+               [self.navigationController popViewControllerAnimated:YES];
+           }];
+           tipView.subLabel.text = @"通关失败";
+           [tipView showInView:self.navigationController.view];
+       }
+        
+    }];
+}
+
+
+-(void)passAnswerData{
+    WeakSelf
+    [FGHttpManager postWithPath:@"api/match/answer" parameters:@{@"answer":self.bodyView.answerField.text,@"match_id":self.userModel} success:^(id responseObject) {
+        StrongSelf
+        //通关成功
+
+        self.tipBtn.hidden = NO;
+        [self.tipBtn setTitle:[NSString stringWithFormat:@"  对方已答对，用时%ld秒",30 - self.time] forState:(UIControlStateNormal)];
+        [self.dispoable dispose];
+        XWPairPassView *tipView = [XWPairPassView new];
+        
+        //发送消息
+        Weakify(tipView);
+        [[tipView.sendBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
+            StrongSelf
+            Strongify(tipView)
+            //发送消息
+            [tipView remove];
+//            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [tipView.backGroundView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            StrongSelf
+            Strongify(tipView)
+            [tipView remove];
+        }];
+        [tipView showInView:self.navigationController.view];
+        
+    } failure:^(NSString *error) {
+        
+    }];
+    
+}
 /*
 #pragma mark - Navigation
 

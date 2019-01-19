@@ -17,7 +17,7 @@
 #import "HYPersonSetVC.h"
 
 #import "FGUserModel.h"
-
+#import "XWPairVC.h"
 
 @interface FGRegisterVC ()
 
@@ -181,9 +181,15 @@
         [FGCacheManager sharedInstance].token = loginModel.token;
         [FGCacheManager sharedInstance].userModel = loginModel;
         
-        //跳转
-        HYPersonSetVC *vc = [HYPersonSetVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (loginModel.is_newer.boolValue) {
+            //跳转
+            HYPersonSetVC *vc = [HYPersonSetVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            XWPairVC *vc = [XWPairVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
     } failure:^(NSString *error) {
         StrongSelf
         [self showWarningHUDWithMessage:error completion:nil];

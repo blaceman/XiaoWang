@@ -10,17 +10,13 @@
 @interface XWPairPassView()
 @property (nonatomic,strong)UIButton *avaterMine;
 @property (nonatomic,strong)UIButton *avaterOther;
-@property (nonatomic,strong)UIButton *loadBtn;
 
 
 @property (nonatomic,strong)UILabel *contentLabel;
 
-@property (nonatomic,strong)UILabel *subLabel;
-
-@property (nonatomic,strong)UIButton *sendBtn;
 
 
-@property (nonatomic,strong)UIView *backGroundView;
+
 @end
 @implementation XWPairPassView
 
@@ -104,11 +100,11 @@
 -(void)showInView:(UIView *)view{
     self.backGroundView = [UIView new];
     WeakSelf
-    [self.backGroundView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        StrongSelf
-        [self remove];
-        
-    }];
+//    [self.backGroundView jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+//        StrongSelf
+//        [self remove];
+//
+//    }];
     self.backGroundView.backgroundColor = UIColorFromHexWithAlpha(0x000000, 0.5);
     [view addSubview:self.backGroundView];
     [self.backGroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,5 +125,10 @@
     [self removeFromSuperview];
 }
 
-
+-(void)configWithModel:(id)model{
+    FGUserModel *userModel = model;
+    [self.avaterMine setImageWithURL:[NSURL URLWithString:[FGCacheManager sharedInstance].userModel.avatar] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
+    
+    [self.avaterOther setImageWithURL:[NSURL URLWithString:userModel.avatar] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
+}
 @end

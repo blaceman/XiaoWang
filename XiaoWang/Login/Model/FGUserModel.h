@@ -25,4 +25,9 @@
 
 @property (nonatomic, strong) NSNumber *code;  ///< <#Description#>
 
+@property (nonatomic, strong) NSString *question;  ///< <#Description#>
+
+@property (nonatomic, strong) NSNumber *match_id;  ///< <#Description#>
+
+
 @end

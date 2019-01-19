@@ -9,6 +9,12 @@
 #import "FGBaseView.h"
 
 @interface XWPairPassView : FGBaseView
--(void)showInView:(UIView *)view;
+@property (nonatomic,strong)UIButton *loadBtn;
+@property (nonatomic,strong)UILabel *subLabel;
+@property (nonatomic,strong)UIView *backGroundView;
+@property (nonatomic,strong)UIButton *sendBtn;
 
+
+-(void)showInView:(UIView *)view;
+-(void)remove;
 @end

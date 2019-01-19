@@ -9,5 +9,8 @@
 #import "FGBaseView.h"
 
 @interface XWPairTipView : FGBaseView
+@property (nonatomic,strong)UIButton *setBtn;
+
 -(void)showInView:(UIView *)view;
+-(void)remove;
 @end

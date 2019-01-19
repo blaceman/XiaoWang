@@ -9,5 +9,5 @@
 #import "FGBaseViewController.h"
 
 @interface XWPairPassVC : FGBaseViewController
-
+@property (nonatomic,strong)FGUserModel *userModel;
 @end

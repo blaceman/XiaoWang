@@ -10,5 +10,8 @@
 
 @interface XWPairBodyView : FGBaseView
 @property (nonatomic,strong)UIButton *commitBtn;
+@property (nonatomic,strong)UILabel *countDowmLabel;
+
+@property (nonatomic,strong)UITextView *answerField;
 
 @end
