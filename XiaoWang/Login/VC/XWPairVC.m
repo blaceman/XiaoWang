@@ -10,6 +10,8 @@
 #import "XWPairTipView.h"
 #import "WXLoadingTipView.h"
 #import "XWPairPassVC.h"
+#import "XWMineVC.h"
+#import "XWNewsVC.h"
 
 @interface XWPairVC ()
 
@@ -73,13 +75,20 @@
 }
 
 -(void)pairBtnAction:(UIButton *)sender{
-    if (sender.tag == 0) {
-        XWPairTipView *tipView = [XWPairTipView new];
-        [tipView showInView:self.navigationController.view];
-    }else if (sender.tag == 1){
+    if (sender.tag == 0) { //我的主页
+        XWMineVC *vc = [XWMineVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+//        XWPairTipView *tipView = [XWPairTipView new];
+//        [tipView showInView:self.navigationController.view];
+    }else if (sender.tag == 1){ //筛选条件
         WXLoadingTipView *tipView = [WXLoadingTipView new];
         [tipView showInView:self.navigationController.view];
-    }else if (sender.tag == 3){
+    }else if (sender.tag == 2){ //消息页面
+        XWNewsVC *vc = [XWNewsVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (sender.tag == 3){//速配通关
         XWPairPassVC *vc = [XWPairPassVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }

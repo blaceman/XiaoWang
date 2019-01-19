@@ -35,8 +35,8 @@
     }];
     
     [self setupEstimatedRowHeight:100 cellClasses:@[[HYHomeTCell class]]];
-    [self beginRefresh];
     
+    //设置隐藏输入框
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(self.view);
@@ -59,22 +59,45 @@
 -(void)configCellSubViewsCallback:(FGBaseTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
     HYHomeTCell *homeCell = (HYHomeTCell *)cell;
     WeakSelf
+    //点赞按钮
+    homeCell.bottomView.zanBlock = ^(BOOL isZan) {
+        StrongSelf
+        self.selectModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+        if (isZan) {
+            [self priseData];
+        }else{
+            [self un_priseData];
+        }
+        
+    };
+    
+    //删除按钮
+    homeCell.bottomView.delBlock = ^{
+        StrongSelf
+       self.selectModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+        [self delData];
+    };
+    
     //评论按钮
-    homeCell.bottomView.zanBlock = ^(BOOL isZan, BOOL isCancel) {
+    homeCell.bottomView.commentBlock = ^{
         StrongSelf
         [self.textView becomeFirstResponder];
         self.selectModel = [self.dataSourceArr objectAtIndex:indexPath.row];
     };
-    //点赞按钮
-    homeCell.bottomView.flowBlock = ^(BOOL isCancel) {
-        StrongSelf
-    };
+    //回复评论
     homeCell.tagLabelBlock = ^(id model) {
         self.selectModel = model;
         [self.textView becomeFirstResponder];
-        self.textView.placeholder = @"回复傻瓜:";
+        if ([model isKindOfClass:[XWCommentListsModel class]]) {
+            XWCommentListsModel *listModel = model;
+            self.textView.placeholder = [NSString stringWithFormat:@"回复%@:",listModel.nickname];
+        }else if ([model isKindOfClass:[XWReplyModel class]]){
+            XWReplyModel *replyModel = model;
+            self.textView.placeholder = [NSString stringWithFormat:@"回复%@:",replyModel.comment_nick];
+        }
     };
     
+//    /api/photo/del/
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.textView resignFirstResponder];
@@ -159,6 +182,10 @@
     }];
 }
 
+
+#pragma mark ------------------网络相关接口------------------
+
+//评论回复接口
 -(void)sendClick{
     if ([self.selectModel isKindOfClass:[XWAlbumModel class]]) {
         XWAlbumModel *albumModel = self.selectModel;
@@ -180,7 +207,7 @@
         } failure:^(NSString *error) {
             
         }];
-    }else if ([self.selectModel isKindOfClass:[XWCommentListsModel class]]){
+    }else if ([self.selectModel isKindOfClass:[XWReplyModel class]]){
         XWReplyModel *model = self.selectModel;
 
         [FGHttpManager postWithPath:@"api/comment/comment" parameters:@{@"photo_id":model.photo_id,@"content":self.textView.text,@"comment_id":model.ID} success:^(id responseObject) {
@@ -193,6 +220,42 @@
         }];
     }
    
+}
+
+//取消点赞接口
+-(void)un_priseData{
+    XWAlbumModel *model = self.selectModel;
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/photo/un_praise/%@",model.photo_id] parameters:@{} success:^(id responseObject) {
+        [self showTextHUDWithMessage:@"取消点赞成功"];
+        [self beginRefresh];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
+//点赞
+-(void)priseData{
+    XWAlbumModel *model = self.selectModel;
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/photo/praise/%@",model.photo_id] parameters:@{} success:^(id responseObject) {
+        [self showTextHUDWithMessage:@"点赞成功"];
+        [self beginRefresh];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
+//删除
+-(void)delData{
+    XWAlbumModel *model = self.selectModel;
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/photo/del/%@",model.photo_id] parameters:@{} success:^(id responseObject) {
+        [self showTextHUDWithMessage:@"删除成功"];
+        [self beginRefresh];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self beginRefresh];
 }
 /*
 #pragma mark - Navigation

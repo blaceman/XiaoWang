@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "FGRegisterVC.h"
 #import "XWMineVC.h"
-
+#import "XWPairVC.h"
 
 @interface AppDelegate ()
 
@@ -42,7 +42,7 @@
     
     
     if ([FGCacheManager sharedInstance].token) {
-        XWMineVC *vc = [XWMineVC new];
+        XWPairVC *vc = [XWPairVC new];
         
         FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
         self.window.rootViewController = navi;

@@ -14,11 +14,13 @@
  */
 @interface HYCellBottomView : FGBaseView
 
-/**
- 点赞或者点踩 Block YES 👍 NO 踩  是否取消点赞或点踩
- */
-@property (nonatomic, copy) void (^zanBlock) (BOOL isZan ,BOOL isCancel);
 
-@property (nonatomic, copy) void (^flowBlock) (BOOL isCancel);
+@property (nonatomic, copy) void (^zanBlock) (BOOL isZan);
+
+@property (nonatomic, copy) void (^commentBlock) (void);
+
+@property (nonatomic, copy) void (^delBlock) (void);
+
+
 
 @end

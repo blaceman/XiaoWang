@@ -11,12 +11,11 @@
 
 @interface HYCellBottomView ()
 
-//@property (nonatomic, strong) UIButton *shareBtn;  ///< 分享
-@property (nonatomic, strong) UIButton *lookBtn;  ///< 查看
-@property (nonatomic, strong) UIButton *zanBtn;  ///< 点赞
-@property (nonatomic, strong) UIButton *ruoBtn;  ///< 踩
+@property (nonatomic, strong) UIButton *shareBtn;  ///< 分享
+@property (nonatomic, strong) UIButton *delBtn;  ///< 删除
+@property (nonatomic, strong) UIButton *enjoy;  ///< 点赞
+@property (nonatomic, strong) UIButton *comment;  ///< 评论
 
-@property (nonatomic, strong) UIButton *flowerBtn;  ///< 鲜花🌹
 
 
 @end
@@ -33,77 +32,70 @@
 
 - (void)setupViews
 {
-//    self.shareBtn = [UIButton fg_title:@" " fontSize:15 titleColorHex:0x838383];
-//    [self.shareBtn setImage:UIImageWithName(@"ic_share_gray") forState:UIControlStateNormal];
-//    [self addSubview:self.shareBtn];
+    self.shareBtn = [UIButton fg_title:@" " fontSize:15 titleColorHex:0x838383];
+    [self.shareBtn setImage:UIImageWithName(@"icon_share") forState:UIControlStateNormal];
+    [self addSubview:self.shareBtn];
     
-    self.lookBtn = [UIButton fg_title:@" " fontSize:15 titleColorHex:0x838383];
-//    [self.lookBtn setImage:UIImageWithName(@"ic_browse_gray") forState:UIControlStateNormal];
-    [self addSubview:self.lookBtn];
+    self.delBtn = [UIButton fg_title:@" " fontSize:15 titleColorHex:0x838383];
+    [self addSubview:self.delBtn];
     
-    self.zanBtn = [UIButton fg_imageString:@"icon_like" imageStringSelected:@"icon_like"];
-    self.zanBtn.titleLabel.font = AdaptedFontSize(15);
-    [self.zanBtn setTitleColor:UIColorFromHex(0x838383) forState:(UIControlStateNormal)];
-    [self addSubview:self.zanBtn];
+    self.enjoy = [UIButton fg_imageString:@"icon_like" imageStringSelected:@"icon_like_red"];
+    self.enjoy.titleLabel.font = AdaptedFontSize(15);
+    [self.enjoy setTitleColor:UIColorFromHex(0x838383) forState:(UIControlStateNormal)];
+    [self addSubview:self.enjoy];
     
-    self.ruoBtn = [UIButton fg_imageString:@"icon_comment" imageStringSelected:@"icon_comment"];
-    self.ruoBtn.titleLabel.font = AdaptedFontSize(15);
-    [self.ruoBtn setTitleColor:UIColorFromHex(0x838383) forState:(UIControlStateNormal)];
-    [self addSubview:self.ruoBtn];
+    self.comment = [UIButton fg_imageString:@"icon_comment" imageStringSelected:@"icon_comment"];
+    self.comment.titleLabel.font = AdaptedFontSize(15);
+    [self.comment setTitleColor:UIColorFromHex(0x838383) forState:(UIControlStateNormal)];
+    [self addSubview:self.comment];
     
     WeakSelf
-    [self.zanBtn jk_addActionHandler:^(NSInteger tag) {
+
+    [self.comment jk_addActionHandler:^(NSInteger tag) {
         StrongSelf
-        if (self.zanBlock) {
-            self.zanBlock(YES, self.zanBtn.selected);
-        }
-    }];
-    [self.ruoBtn jk_addActionHandler:^(NSInteger tag) {
-        StrongSelf
-        if (self.zanBlock) {
-            self.zanBlock(NO, self.ruoBtn.selected);
+        if (self.commentBlock) {
+            self.commentBlock();
         }
     }];
     
-    self.flowerBtn = [UIButton fg_imageString:@"icon_share" imageStringSelected:@"icon_share"];
-    self.flowerBtn.titleLabel.font = AdaptedFontSize(15);
-    [self.flowerBtn setTitleColor:UIColorFromHex(0x838383) forState:(UIControlStateNormal)];
-    [self.flowerBtn setTitleColor:UIColorFromHex(0xFA6779) forState:(UIControlStateSelected)];
-    [self addSubview:self.flowerBtn];
-    [self.flowerBtn jk_addActionHandler:^(NSInteger tag) {
-        StrongSelf
-        if (self.flowBlock) {
-            self.flowBlock(self.flowerBtn.selected);
+    [self.delBtn jk_addActionHandler:^(NSInteger tag) {
+       StrongSelf
+        if (self.delBlock) {
+            self.delBlock();
         }
+    }];
+    
+    
+    RAC(self.enjoy,selected) = [[self.enjoy rac_signalForControlEvents:(UIControlEventTouchUpInside)] map:^id _Nullable(__kindof UIButton * _Nullable value) {
+        StrongSelf
+        if (self.zanBlock) {
+            self.zanBlock(!value.selected);
+        }
+        return @(!value.selected);
     }];
 }
 
 - (void)setupLayout
 {
-//    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.bottom.offset(0);
-//    }];
     
-    [self.lookBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.offset(0);
-
-//        make.centerY.equalTo(self.shareBtn);
-//        make.left.equalTo(self.shareBtn.mas_right).offset(AdaptedWidth(30));
     }];
     
-    [self.zanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.lookBtn);
-        make.right.equalTo(self.ruoBtn.mas_left).offset(AdaptedWidth(-24));
+    [self.enjoy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.delBtn);
+        make.right.equalTo(self.comment.mas_left).offset(AdaptedWidth(-24));
     }];
     
-    [self.ruoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.lookBtn);
+    [self.comment mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.delBtn);
         make.right.offset(AdaptedWidth(0));
     }];
     
-    [self.flowerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.lookBtn);
-        make.right.equalTo(self.zanBtn.mas_left).offset(AdaptedWidth(-24));
+    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.delBtn);
+        make.right.equalTo(self.enjoy.mas_left).offset(AdaptedWidth(-24));
     }];
 }
 
@@ -111,20 +103,20 @@
 {
     if ([model isKindOfClass:[XWAlbumModel class]]) {
         XWAlbumModel *albumModel = model;
-        [self.lookBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
+        [self.delBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
+        [self.enjoy setTitle:[NSString stringWithFormat:@"  %@",albumModel.enjoy] forState:UIControlStateNormal];
+        [self.comment setTitle:[NSString stringWithFormat:@"  %@",albumModel.comment] forState:UIControlStateNormal];
         
-        [self.zanBtn setTitle:[NSString stringWithFormat:@"  %@",albumModel.comment] forState:UIControlStateNormal];
-        
-        [self.ruoBtn setTitle:[NSString stringWithFormat:@"  %@",albumModel.enjoy] forState:UIControlStateNormal];
+        self.enjoy.selected = albumModel.is_praise.boolValue;
         return;
     }
 //    [self.shareBtn setTitle:[NSString stringWithFormat:@"  %@",@"100"] forState:UIControlStateNormal];
-    [self.lookBtn setTitle:[NSString stringWithFormat:@"  %@",@"09:52     删除"] forState:UIControlStateNormal];
-//    self.ruoBtn.backgroundColor = UIColorFromRandom;
-//    self.zanBtn.backgroundColor = UIColorFromRandom;
+    [self.delBtn setTitle:[NSString stringWithFormat:@"  %@",@"09:52     删除"] forState:UIControlStateNormal];
+//    self.comment.backgroundColor = UIColorFromRandom;
+//    self.enjoy.backgroundColor = UIColorFromRandom;
 
-    [self.zanBtn setTitle:[NSString stringWithFormat:@"  %@",@"548"] forState:UIControlStateNormal];
-    [self.ruoBtn setTitle:[NSString stringWithFormat:@"  %@",@"64"] forState:UIControlStateNormal];
+    [self.enjoy setTitle:[NSString stringWithFormat:@"  %@",@"548"] forState:UIControlStateNormal];
+    [self.comment setTitle:[NSString stringWithFormat:@"  %@",@"64"] forState:UIControlStateNormal];
     
   
     

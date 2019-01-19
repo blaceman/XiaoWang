@@ -72,7 +72,7 @@
         }];
         tempView = label;
         
-       label.attributedText = [self firstUserLabAttribute:@"傻瓜" sencondName:nil andComment:model[i].content];
+        label.attributedText = [self firstUserLabAttribute:model[i].nickname ? model[i].nickname : @"未命名" sencondName:nil andComment:model[i].content];
         
         label.userInteractionEnabled = YES;
         [label jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {

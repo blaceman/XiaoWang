@@ -18,5 +18,8 @@
 @property (nonatomic, strong) NSNumber *enjoy;  ///< <#Description#>
 @property (nonatomic,strong)NSArray<NSString *> *images;
 @property (nonatomic,strong)NSNumber *photo_id;
+@property (nonatomic,strong)NSNumber *is_praise;
+
+
  ///< <#Description#>
 @end

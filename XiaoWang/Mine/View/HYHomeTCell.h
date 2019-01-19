@@ -16,9 +16,7 @@
 
 @property (nonatomic, strong) HYCellBottomView *bottomView;  ///< <#Description#>
 
-//@property (nonatomic, strong) HYCellTopView *topView;  ///< <#Description#>
-@property (nonatomic,copy) void (^tagLabelBlock)(id model);
+@property (nonatomic,copy) void (^tagLabelBlock)(id model); //点击回复评论
 
-@property (nonatomic, strong)UIButton *liveButton;//直播状态按钮
 
 @end
