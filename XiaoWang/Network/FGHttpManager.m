@@ -131,6 +131,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //请求成功返回数据 根据responseSerializer 返回不同的数据格式
 //        NSLog(@"responseObject-->%@",responseObject);
+        
         FGResponseModel *obj = [FGResponseModel modelWithJSON:responseObject];
         if (obj.status == 0) {
             success(obj.data);
@@ -168,6 +169,7 @@
             failure(obj.msg);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       
         //请求失败
         NSLog(@"error-->%@",error);
         if (failure) {
@@ -195,7 +197,6 @@
             failure(obj.msg);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //请求失败
         NSLog(@"error-->%@",error);
         if (failure) {
             failure(error.description);
@@ -213,13 +214,12 @@
         return;
     }
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    if([httpResponse statusCode] == 403)
+    if([httpResponse statusCode] == -2)
     {
         //重新登录
-        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"id"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"token"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSucceedNotification object:self userInfo:nil];
+//        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"token"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSucceedNotification object:self userInfo:nil];
     }
 }
 

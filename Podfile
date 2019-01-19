@@ -27,5 +27,8 @@ target 'XiaoWang' do
     pod 'UMengUShare/Social/Sina', '< 6.4.7'
     pod 'BRPickerView'
     
+    pod 'NIMSDK' #网易云信SDK
+    pod 'NIMKit/Full' #网易云信 UI完整版
+    
 end
 
