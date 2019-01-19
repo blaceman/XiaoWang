@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 inhibit_all_warnings!
 target 'XiaoWang' do
     pod 'AFNetworking'
@@ -27,8 +27,9 @@ target 'XiaoWang' do
     pod 'UMengUShare/Social/Sina', '< 6.4.7'
     pod 'BRPickerView'
     
-    pod 'NIMSDK' #网易云信SDK
-    pod 'NIMKit/Full' #网易云信 UI完整版
+    pod 'NIMKit/Lite' #网易云信单纯的 IM 模块
+#    pod 'NIMKit/Full' #网易云信 UI完整版，包含音视频
+
     
 end
 
