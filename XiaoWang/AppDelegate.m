@@ -110,9 +110,11 @@
 - (void)loginNotification
 {
     //云信 自动登录
-    NSString *userName = [FGCacheManager sharedInstance].userModel.code.stringValue;
+    NSString *userName = [FGCacheManager sharedInstance].userModel.uid;
+    NSString *password = [FGCacheManager sharedInstance].userModel.code;
+
     if (!IsEmpty(userName)) {
-        [[[NIMSDK sharedSDK] loginManager] login:userName token:userName completion:^(NSError * _Nullable error) {
+        [[[NIMSDK sharedSDK] loginManager] login:userName token:password completion:^(NSError * _Nullable error) {
             DLog(@"云信登录%@",error.description);
             if (!error) {
                 //差自定义通知

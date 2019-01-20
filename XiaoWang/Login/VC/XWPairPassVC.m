@@ -80,7 +80,11 @@
 
 - (void)countDown{
     //30秒定时器
-    self.time = 30;
+    self.tipBtn.hidden = NO;
+    [self.tipBtn setImage:nil forState:(UIControlStateNormal)];
+    [self.tipBtn setTitle:[NSString stringWithFormat:@"开始答题"] forState:(UIControlStateNormal)];
+    self.time = kAppDelegate.countDowmTime;
+    
     WeakSelf
    self.dispoable = [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSDate * _Nullable x) {
        StrongSelf
@@ -98,10 +102,12 @@
                StrongSelf
                Strongify(tipView)
                [tipView remove];
-//               [self.navigationController popViewControllerAnimated:YES];
-               NIMSession *session = [NIMSession session:self.userModel.code.stringValue type:NIMSessionTypeP2P];
-               NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
-               [self.navigationController pushViewController:vc animated:YES];
+               [self.navigationController popViewControllerAnimated:YES];
+               
+               self.tipBtn.hidden = NO;
+               [self.tipBtn setImage:UIImageWithName(@"icon_fail") forState:(UIControlStateNormal)];
+               [self.tipBtn setTitle:[NSString stringWithFormat:@"回答超时"] forState:(UIControlStateNormal)];
+              
            }];
            tipView.subLabel.text = @"通关失败";
            [tipView showInView:self.navigationController.view];
@@ -113,12 +119,13 @@
 
 -(void)passAnswerData{
     WeakSelf
-    [FGHttpManager postWithPath:@"api/match/answer" parameters:@{@"answer":self.bodyView.answerField.text,@"match_id":self.userModel} success:^(id responseObject) {
+    [FGHttpManager postWithPath:@"api/match/answer" parameters:@{@"answer":self.bodyView.answerField.text,@"match_id":self.userModel.match_id} success:^(id responseObject) {
         StrongSelf
         //通关成功
 
         self.tipBtn.hidden = NO;
-        [self.tipBtn setTitle:[NSString stringWithFormat:@"  对方已答对，用时%ld秒",30 - self.time] forState:(UIControlStateNormal)];
+        [self.tipBtn setImage:UIImageWithName(@"icon_adopt") forState:(UIControlStateNormal)];
+        [self.tipBtn setTitle:[NSString stringWithFormat:@"  对方已答对，用时%ld秒",kAppDelegate.countDowmTime - self.time] forState:(UIControlStateNormal)];
         [self.dispoable dispose];
         XWPairPassView *tipView = [XWPairPassView new];
         
@@ -130,7 +137,7 @@
             //发送消息
             [tipView remove];
             
-            NIMSession *session = [NIMSession session:self.userModel.code.stringValue type:NIMSessionTypeP2P];
+            NIMSession *session = [NIMSession session:self.userModel.uid type:NIMSessionTypeP2P];
             NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
             [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController popViewControllerAnimated:YES];
@@ -147,6 +154,14 @@
         
     }];
     
+}
+
+-(void)matchInfo{
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/info/%@",self.userModel.match_id] parameters:@{} success:^(id responseObject) {
+        
+    } failure:^(NSString *error) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

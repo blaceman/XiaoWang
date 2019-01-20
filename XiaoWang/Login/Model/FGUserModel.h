@@ -23,12 +23,12 @@
 @property (nonatomic, strong) NSNumber *state;  ///< <#Description#>
 @property (nonatomic, strong) NSString *token;  ///< <#Description#>
 
-@property (nonatomic, strong) NSNumber *code;  ///< <#Description#>
+@property (nonatomic, strong) NSString *code;  ///< <#Description#>
 
 @property (nonatomic, strong) NSString *question;  ///< <#Description#>
 
 @property (nonatomic, strong) NSNumber *match_id;  ///< <#Description#>
-@property (nonatomic, strong) NSString *accid;  ///< <#Description#>
+@property (nonatomic, copy) NSString *uid;  ///< Id
 
 @property (nonatomic, strong) NSNumber *f_uid;  ///< <#Description#>
 

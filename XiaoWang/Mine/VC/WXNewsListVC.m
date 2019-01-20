@@ -69,7 +69,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FGUserModel *userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
-    NIMSession *session = [NIMSession session:userModel.code.stringValue type:NIMSessionTypeP2P];
+    NIMSession *session = [NIMSession session:userModel.code type:NIMSessionTypeP2P];
     NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
     [self.navigationController pushViewController:vc animated:YES];
    

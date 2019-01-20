@@ -13,7 +13,6 @@
  */
 @interface FGBaseModel : NSObject<YYModel>
 
-@property (nonatomic, copy) NSString *uid;  ///< Id
 @property (nonatomic, copy) NSString *ID;  ///< Id
 
 @end

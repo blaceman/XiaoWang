@@ -73,6 +73,8 @@
     }];
     
     [pairBtn addTarget:self action:@selector(pairBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [self countDownTime];
 }
 
 -(void)pairBtnAction:(UIButton *)sender{
@@ -131,6 +133,14 @@
     }];
 }
 
+-(void)countDownTime{
+    [FGHttpManager getWithPath:@"api/config/get" parameters:@{} success:^(id responseObject) {
+        kAppDelegate.countDowmTime = ((NSString *)[responseObject valueForKey:@"count_down"]).integerValue;
+        
+    } failure:^(NSString *error) {
+        
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

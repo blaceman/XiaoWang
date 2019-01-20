@@ -171,6 +171,7 @@
             [self.questionView jk_addPlaceHolder:@"请输入正确答案"];
 
         }
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSString *error) {
         [self showTextHUDWithMessage:error];
     }];
