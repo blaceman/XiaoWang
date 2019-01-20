@@ -30,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"速配通关"];
+    self.view.backgroundColor = UIColorFromHex(0xffffff);
     
     XWPairHeaderView *headerView = [XWPairHeaderView new];
     [headerView configWithModel:self.userModel];

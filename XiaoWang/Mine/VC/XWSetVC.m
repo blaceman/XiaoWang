@@ -12,6 +12,7 @@
 #import "XWNotDisturbVC.h"
 #import "XWNewsVC.h"
 #import "SDImageCache.h"
+#import "FGRegisterVC.h"
 
 
 
@@ -132,6 +133,8 @@
         make.height.mas_equalTo(AdaptedHeight(40));
 
     }];
+    
+    [loginOutBtn addTarget:self action:@selector(loginOutBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
 - (double)getCacheSize {
@@ -145,6 +148,11 @@
 }
 
 
+-(void)loginOutBtnAction:(UIButton *)sender{
+    [FGCacheManager sharedInstance].userModel = nil;
+    [FGCacheManager sharedInstance].token = nil;
+    [self.navigationController pushViewController:[FGRegisterVC new] animated:YES];
+}
 /*
 #pragma mark - Navigation
 

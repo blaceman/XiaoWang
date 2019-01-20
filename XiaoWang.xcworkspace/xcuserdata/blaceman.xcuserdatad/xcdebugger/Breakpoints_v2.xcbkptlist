@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XiaoWang/Login/VC/XWPairPassVC.m"
-            timestampString = "569660658.145092"
+            timestampString = "569662503.411078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-passAnswerData"
             landmarkType = "7">
          </BreakpointContent>
