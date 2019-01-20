@@ -6,8 +6,7 @@
 //  Copyright © 2019年 new4545. All rights reserved.
 //
 
-#import "FGBaseRefreshTableViewController.h"
+#import "XWAlbumVC.h"
 
-@interface XWFriendsInformationVC : FGBaseRefreshTableViewController
-
+@interface XWFriendsInformationVC : XWAlbumVC
 @end

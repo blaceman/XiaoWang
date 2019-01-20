@@ -180,7 +180,7 @@
         FGUserModel *loginModel = [FGUserModel modelWithJSON:responseObject];
         [FGCacheManager sharedInstance].token = loginModel.token;
         [FGCacheManager sharedInstance].userModel = loginModel;
-        
+        [kAppDelegate loginNotification];
         if (loginModel.is_newer.boolValue) {
             //跳转
             HYPersonSetVC *vc = [HYPersonSetVC new];

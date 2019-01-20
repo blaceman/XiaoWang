@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2F019F5BBB7C5DE0C528D63736219D7"
-               BlueprintName = "UITableView+FDTemplateLayoutCell"
+               BlueprintIdentifier = "69356A89D6667FCB88A97D9E986BF8CC"
+               BlueprintName = "NIMKit"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libUITableView+FDTemplateLayoutCell.a">
+               BuildableName = "libNIMKit.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

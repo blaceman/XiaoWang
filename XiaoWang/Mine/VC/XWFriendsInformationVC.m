@@ -23,13 +23,30 @@
     [self setupEstimatedRowHeight:100 cellClasses:@[[HYHomeTCell class]]];
     [self headerViewSet];
     [self beginRefresh];
+    WeakSelf
+    [((UIView *)self.navigationView.rightViewArray.firstObject) removeFromSuperview];
+    [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_pot") clickCallBack:^(UIView *view) {
+        StrongSelf
+        
+    }];
     
 }
--(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
-    success(@[@"",@"",@"",@""]);
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.dataSourceArr.count) {
+        return AdaptedHeight(35);
+    }else{
+        return 0;
+    }
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel *label = [UILabel fg_text:@"  相册" fontSize:13 colorHex:0x3A75FD];
+    return label;
+}
+
 -(void)headerViewSet{
     XWPairHeaderView *headView = [XWPairHeaderView new];
+    [headView configWithModel:[FGCacheManager sharedInstance].userModel];
     [headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(kScreenWidth);
     }];

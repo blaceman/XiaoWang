@@ -9,7 +9,6 @@
 #import "XWNewsCell.h"
 
 @interface XWNewsCell()
-@property (nonatomic, strong) UIButton *avatetBtn;  ///< <#Description#>
 @property (nonatomic, strong) UILabel *nameLabel;  ///< <#Description#>
 @property (nonatomic, strong) UILabel *contentLabel;  ///< <#Description#>
 @property (nonatomic, strong) UIImageView *rightImg;  ///< <#Description#>
@@ -96,6 +95,20 @@
 }
 
 -(void)configWithModel:(id)model{
+    if ([model isKindOfClass:[FGUserModel class]]) {
+        FGUserModel *userModel = model;
+        [self uiSetWithStr:@"2"];
+        self.nameLabel.text = userModel.nickname;
+        self.sexImg.image = UIImageWithName(userModel.gender.integerValue == 20 ? @"icon_male":@"icon_female");
+        [self.avatetBtn setImageWithURL:[NSURL URLWithString:userModel.avatar] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
+//        self.
+        self.contentLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];
+        return;
+    }
+    
+   
+}
+-(void)uiSetWithStr:(NSString *)model{
     if ([model isEqualToString:@"1"]) {
         self.timeLabel.hidden = YES;
         self.statusLabel.hidden = YES;
@@ -110,7 +123,7 @@
         self.timeLabel.hidden = NO;
         self.statusLabel.hidden = NO;
         self.rightImg.hidden = YES;
-
+        
     }
 }
 

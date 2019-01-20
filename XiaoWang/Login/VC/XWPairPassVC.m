@@ -13,7 +13,7 @@
 #import "XWMineVC.h"
 #import "XWMineVC.h"
 #import "XWPairPassView.h"
-
+#import <NIMKit.h>
 
 @interface XWPairPassVC ()
 @property (nonatomic,strong)UIButton *tipBtn;
@@ -98,7 +98,10 @@
                StrongSelf
                Strongify(tipView)
                [tipView remove];
-               [self.navigationController popViewControllerAnimated:YES];
+//               [self.navigationController popViewControllerAnimated:YES];
+               NIMSession *session = [NIMSession session:self.userModel.code.stringValue type:NIMSessionTypeP2P];
+               NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
+               [self.navigationController pushViewController:vc animated:YES];
            }];
            tipView.subLabel.text = @"通关失败";
            [tipView showInView:self.navigationController.view];
@@ -126,6 +129,10 @@
             Strongify(tipView)
             //发送消息
             [tipView remove];
+            
+            NIMSession *session = [NIMSession session:self.userModel.code.stringValue type:NIMSessionTypeP2P];
+            NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
+            [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController popViewControllerAnimated:YES];
         }];
         

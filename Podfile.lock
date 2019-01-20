@@ -249,7 +249,7 @@ DEPENDENCIES:
   - YYKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - AliyunOSSiOS
     - BRPickerView
@@ -313,4 +313,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 66ab6451d8cade70cd1d32e9fcd280e27972710b
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

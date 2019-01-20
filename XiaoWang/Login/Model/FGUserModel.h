@@ -28,6 +28,8 @@
 @property (nonatomic, strong) NSString *question;  ///< <#Description#>
 
 @property (nonatomic, strong) NSNumber *match_id;  ///< <#Description#>
+@property (nonatomic, strong) NSString *accid;  ///< <#Description#>
 
+@property (nonatomic, strong) NSNumber *f_uid;  ///< <#Description#>
 
 @end

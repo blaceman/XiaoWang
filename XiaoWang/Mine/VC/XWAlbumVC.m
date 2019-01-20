@@ -11,6 +11,7 @@
 #import "HYDynamicViewController.h"
 #import "XWAlbumModel.h"
 #import "FGBaseLayoutView.h"
+#import "XWFriendsInformationVC.h"
 
 @interface XWAlbumVC ()<UITextFieldDelegate>
 @property (nonatomic, strong) FGBaseLayoutView *bottomView;  ///< 底部view
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"我的相册"];
+    [self.navigationView setTitle:self.isDynamic?@"动态":@"我的相册"];
     WeakSelf
     [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_release") clickCallBack:^(UIView *view) {
         StrongSelf
@@ -45,7 +46,7 @@
 }
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
 //    dynamic动态相册，mine我的相册
-    [FGHttpManager getWithPath:@"api/photo/lists" parameters:@{@"type":@"mine",@"page":@(offset),@"pageSize":@10} success:^(id responseObject) {
+    [FGHttpManager getWithPath:@"api/photo/lists" parameters:@{@"type":self.isDynamic ?@"dynamic":@"mine",@"uid":self.userModel.ID ? self.userModel.ID : @"",@"page":@(offset),@"pageSize":@10} success:^(id responseObject) {
         NSArray<XWAlbumModel *> *albumArr = [NSArray modelArrayWithClass:[XWAlbumModel class] json:[responseObject valueForKey:@"data"]];
         success(albumArr);
         
@@ -98,6 +99,13 @@
     };
     
 //    /api/photo/del/
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    XWFriendsInformationVC *vc = [XWFriendsInformationVC new];
+    vc.userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.textView resignFirstResponder];

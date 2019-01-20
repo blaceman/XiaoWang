@@ -14,7 +14,6 @@
  */
 @interface HYCellTopView : FGBaseView
 
-@property (nonatomic, strong) UIButton *followBtn;  ///< 关注Btn
 @property (nonatomic, strong) UIButton *avatarBtn;  ///< 头像Btn
 
 @property (nonatomic, strong) UILabel *nameLabel;  ///< 名字

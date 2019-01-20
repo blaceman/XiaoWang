@@ -10,8 +10,9 @@
 #import "FGRegisterVC.h"
 #import "XWMineVC.h"
 #import "XWPairVC.h"
+#import <NIMKit.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<NIMLoginManagerDelegate,NIMSystemNotificationManagerDelegate,NIMUserManagerDelegate>
 
 @end
 
@@ -24,7 +25,8 @@
     [self naviSet];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
+    [self setupNIMSDK];
+    [self loginNotification];
     return YES;
 }
 
@@ -84,6 +86,44 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+- (void)setupNIMSDK
+{
+    //推荐在程序启动的时候初始化 NIMSDK
+    NSString *appKey        = @"2d06fdae16050ca75416f060f0340909";
+    NIMSDKOption *option    = [NIMSDKOption optionWithAppKey:appKey];
+    option.apnsCername      = @"your APNs cer name";
+    option.pkCername        = @"your pushkit cer name";
+    [[NIMSDK sharedSDK] registerWithOption:option];
+    
+    //网易云信 系统通知
+    [[NIMSDK sharedSDK].systemNotificationManager addDelegate:self];
+    
+    [[NIMSDK sharedSDK].loginManager addDelegate:self];
+    [[NIMSDK sharedSDK].userManager addDelegate:self];
+    
+    [self loginNotification];
+    
+}
 
+#pragma mark - notification
+
+- (void)loginNotification
+{
+    //云信 自动登录
+    NSString *userName = [FGCacheManager sharedInstance].userModel.code.stringValue;
+    if (!IsEmpty(userName)) {
+        [[[NIMSDK sharedSDK] loginManager] login:userName token:userName completion:^(NSError * _Nullable error) {
+            DLog(@"云信登录%@",error.description);
+            if (!error) {
+                //差自定义通知
+                if ([NIMSDK sharedSDK].conversationManager.allUnreadCount ||  [NIMSDK sharedSDK].systemNotificationManager.allUnreadCount) {
+                    
+                }
+               
+            }
+        }];
+        //        [[[NIMSDK sharedSDK] loginManager] autoLogin:userName token:userName];
+    }
+}
 
 @end

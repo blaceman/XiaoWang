@@ -39,6 +39,8 @@
 #import <JKCategories/JKCategories.h>
 #import "FGHttpManager.h"
 #import "FGBaseModel.h"
+#import <NIMKit.h>
+#import "AppDelegate.h"
 #endif
 
 #endif /* PrefixHeader_pch */

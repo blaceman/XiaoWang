@@ -13,6 +13,7 @@
 #import <JKCategories/UIView+JKFind.h>
 #import "XWAlbumModel.h"
 #import "HYCellCommentView.h"
+#import "HYCellTopView.h"
 
 @interface HYHomeTCell ()
 
@@ -22,6 +23,7 @@
 
 @property (nonatomic, strong) UIView *emptyView;  ///< 间隙view
 
+@property (nonatomic ,strong) HYCellTopView *topView;
 @end
 
 
@@ -40,8 +42,8 @@
 
 - (void)setupViews
 {
-//    self.topView = [HYCellTopView new];
-//    [self.contentView addSubview:self.topView];
+    self.topView = [HYCellTopView new];
+    [self.contentView addSubview:self.topView];
     
     self.containerView = [UIView fg_backgroundColor:0];
     [self.contentView addSubview:self.containerView];
@@ -60,16 +62,16 @@
 
 - (void)setupLayout
 {
-//    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.offset(AdaptedWidth(16));
-//        make.top.offset(AdaptedWidth(20));
-//        make.right.offset(AdaptedWidth(-16));
-//    }];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(AdaptedWidth(16));
+        make.top.offset(AdaptedWidth(20));
+        make.right.offset(AdaptedWidth(-16));
+    }];
     
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(AdaptedWidth(20));
+//        make.top.offset(AdaptedWidth(20));
 
-//        make.top.equalTo(self.topView.mas_bottom);
+        make.top.equalTo(self.topView.mas_bottom);
         make.left.right.offset(0);
     }];
     
@@ -97,12 +99,17 @@
 {
     //假数据
 
-//    [self.topView configWithModel:@""];
+    [self.topView configWithModel:model];
     [self.bottomView configWithModel:model];
 //    self.bottomView.backgroundColor = UIColorFromRandom;
     
     [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.emptyView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    
+   
+    
+    
     
     //展示 图片
     HYHomeShowView *view = [HYHomeShowView new];

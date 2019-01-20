@@ -22,10 +22,10 @@
     // Do any additional setup after loading the view.
     if (self.type == 0) {
         [self.navigationView setTitle:@"我的消息"];
-        [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_pot") clickCallBack:^(UIView *view) {
-            
-        }];
-    }else if (self.type == 0){
+//        [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_pot") clickCallBack:^(UIView *view) {
+//            
+//        }];
+    }else if (self.type == 3){
         [self.navigationView setTitle:@"速配过的人"];
 
     }
@@ -36,18 +36,43 @@
 
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
     if (self.type == 1) {
-        success(@[@"1",@"1",@"1",@"1",@"1"]);
+        NSArray *friendList = [[NIMSDK sharedSDK] userManager].myFriends;
+        success(friendList);
+//        success(@[@"1",@"1",@"1",@"1",@"1"]);
         return;
 
     }else if (self.type == 2){
-        success(@[@"2",@"2",@"2",@"2",@"2"]);
+        NSArray *myblackList = [[NIMSDK sharedSDK] userManager].myBlackList;
+        success(myblackList);
+        return;
 
+    }else if(self.type == 3){
+        [FGHttpManager getWithPath:@"api/friend/lists" parameters:@{} success:^(id responseObject) {
+            NSArray<FGUserModel *> *userModelArr = [NSArray modelArrayWithClass:[FGUserModel class] json:[responseObject valueForKey:@"data"]];
+            success(userModelArr);
+        } failure:^(NSString *error) {
+            
+        }];
     }
-    success(@[@"",@"",@"",@"",@""]);
+    
+    success([NIMSDK sharedSDK].conversationManager.allRecentSessions);
+//    success(@[@"",@"",@"",@"",@""]);
+}
+
+-(void)configCellSubViewsCallback:(FGBaseTableViewCell *)cell indexPath:(NSIndexPath *)indexPath{
+    XWNewsCell *newsCell = (XWNewsCell *)cell;
+    [[[newsCell.avatetBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)] takeUntil:cell.rac_prepareForReuseSignal]subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [self.navigationController pushViewController:[XWFriendsInformationVC new] animated:YES];
+    }];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[XWFriendsInformationVC new] animated:YES];
+    FGUserModel *userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+    NIMSession *session = [NIMSession session:userModel.code.stringValue type:NIMSessionTypeP2P];
+    NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
+    [self.navigationController pushViewController:vc animated:YES];
+   
 }
 
 - (void)didReceiveMemoryWarning {

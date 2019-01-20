@@ -48,9 +48,11 @@
     
     
     WXNewsListVC *vc = [WXNewsListVC new];
+    vc.type = 1;
     [viewControllers addObject:vc];
     
     WXNewsListVC *vc2 = [WXNewsListVC new];
+    vc2.type = 2;
     [viewControllers addObject:vc2];
     
     [self setupViewcontrollers:viewControllers titles:titles];

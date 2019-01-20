@@ -103,7 +103,13 @@
 {
     if ([model isKindOfClass:[XWAlbumModel class]]) {
         XWAlbumModel *albumModel = model;
-        [self.delBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
+//        [self.delBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
+        if (albumModel.ID.integerValue == [FGCacheManager sharedInstance].userModel.ID.integerValue) {
+            self.delBtn.hidden = NO;
+        }else{
+            self.delBtn.hidden = YES;
+        }
+        [self.delBtn setTitle:@"删除" forState:UIControlStateNormal];
         [self.enjoy setTitle:[NSString stringWithFormat:@"  %@",albumModel.enjoy] forState:UIControlStateNormal];
         [self.comment setTitle:[NSString stringWithFormat:@"  %@",albumModel.comment] forState:UIControlStateNormal];
         

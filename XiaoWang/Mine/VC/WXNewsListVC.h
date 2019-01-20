@@ -9,6 +9,6 @@
 #import "FGBaseRefreshTableViewController.h"
 
 @interface WXNewsListVC : FGBaseRefreshTableViewController
-@property (nonatomic, assign) NSInteger type;  ///< 0.消息 1.好友列表
+@property (nonatomic, assign) NSInteger type;  ///< 0.消息 1.好友列表 2.黑名单 3.速配过的人
 
 @end

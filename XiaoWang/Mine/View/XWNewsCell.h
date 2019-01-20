@@ -9,5 +9,6 @@
 #import "FGBaseTableViewCell.h"
 
 @interface XWNewsCell : FGBaseTableViewCell
+@property (nonatomic, strong) UIButton *avatetBtn;  ///< <#Description#>
 
 @end

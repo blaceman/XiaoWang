@@ -11,7 +11,7 @@
 #import "WXNewsListVC.h"
 #import "XWFriendVC.h"
 #import "XWAlbumVC.h"
-
+#import <NIMKit.h>
 
 @interface XWNewsVC ()
 
@@ -83,6 +83,10 @@
 
 -(void)cellAction:(FGCellStyleView *)cell{
     if ([cell.model.leftTitle isEqualToString:@"我的消息"]) {
+//        NIMSessionListViewController *vc = [[NIMSessionListViewController alloc] init];
+//        [vc.navigationItem setTitle:@"我的消息"];
+//        [self.navigationController pushViewController:vc animated:YES];
+
         WXNewsListVC *vc = [WXNewsListVC new];
         [self.navigationController pushViewController:vc animated:YES];
         
@@ -90,10 +94,11 @@
         [self.navigationController pushViewController:[XWFriendVC new] animated:YES];
     }else if ([cell.model.leftTitle isEqualToString:@"速配过的人"]){
         WXNewsListVC *vc = [WXNewsListVC new];
-        vc.type = 2;
+        vc.type = 3;
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([cell.model.leftTitle isEqualToString:@"动态"]){
         XWAlbumVC *vc = [XWAlbumVC new];
+        vc.isDynamic = YES;
         [self.navigationController pushViewController:vc animated:YES];
 
     }

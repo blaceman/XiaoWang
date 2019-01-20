@@ -83,8 +83,8 @@
         
 
     }else if (sender.tag == 1){ //筛选条件
-        WXLoadingTipView *tipView = [WXLoadingTipView new];
-        [tipView showInView:self.navigationController.view];
+//        WXLoadingTipView *tipView = [WXLoadingTipView new];
+//        [tipView showInView:self.navigationController.view];
     }else if (sender.tag == 2){ //消息页面
         XWNewsVC *vc = [XWNewsVC new];
         [self.navigationController pushViewController:vc animated:YES];

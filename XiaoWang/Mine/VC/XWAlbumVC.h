@@ -7,7 +7,9 @@
 //
 
 #import "FGBaseRefreshTableViewController.h"
-
+#import "XWAlbumModel.h"
 @interface XWAlbumVC : FGBaseRefreshTableViewController
+@property (nonatomic, assign) BOOL isDynamic;  ///< <#Description#>
+@property (nonatomic,strong)XWAlbumModel *userModel;
 
 @end
