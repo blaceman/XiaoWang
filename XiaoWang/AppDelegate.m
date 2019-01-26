@@ -89,7 +89,7 @@
 - (void)setupNIMSDK
 {
     //推荐在程序启动的时候初始化 NIMSDK
-    NSString *appKey        = @"2d06fdae16050ca75416f060f0340909";
+    NSString *appKey        = @"9e174a0b261a3993562da3a53bc803b5";
     NIMSDKOption *option    = [NIMSDKOption optionWithAppKey:appKey];
     option.apnsCername      = @"your APNs cer name";
     option.pkCername        = @"your pushkit cer name";
