@@ -307,7 +307,7 @@
         dic[@"gender"] = [gender isEqualToString:@"男"] ? @20 : @30;
     }
     if (birthday){
-        dic[@"birthday"] = birthday;
+        dic[@"birthday"] = @20;
     }
     if (city_id){
         dic[@"city_id"] = @20;
