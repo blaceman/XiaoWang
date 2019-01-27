@@ -182,12 +182,18 @@
         [FGCacheManager sharedInstance].userModel = loginModel;
         [kAppDelegate loginNotification];
         if (loginModel.is_newer.boolValue) {
+           
             //跳转
             HYPersonSetVC *vc = [HYPersonSetVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             XWPairVC *vc = [XWPairVC new];
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+            kAppDelegate.window.rootViewController = navi;
+            
+//            XWPairVC *vc = [XWPairVC new];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
         
     } failure:^(NSString *error) {
@@ -200,6 +206,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 - (void)startCountdown
