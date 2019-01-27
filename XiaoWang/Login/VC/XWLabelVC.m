@@ -26,7 +26,9 @@
     [self.navigationView addRightButtonWithTitle:@"跳过" clickCallBack:^(UIView *view) {
         StrongSelf
         XWPairVC *vc = [XWPairVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+        kAppDelegate.window.rootViewController = navi;
+       
     }];
     
     [self getLabelData];

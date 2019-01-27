@@ -30,7 +30,9 @@
     WeakSelf
     [[pairView.avaterBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
         StrongSelf
-        [self.navigationController pushViewController:[HYPersonSetVC new] animated:YES];
+       HYPersonSetVC *vc = [HYPersonSetVC new];
+        vc.isNONewers = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     self.headerView = pairView;
     [pairView configWithModel:[FGCacheManager sharedInstance].userModel];

@@ -10,5 +10,4 @@
 
 @interface XWPairHeaderView : FGBaseView
 @property (nonatomic,strong)UIButton *avaterBtn;
-
 @end

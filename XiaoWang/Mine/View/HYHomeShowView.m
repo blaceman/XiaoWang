@@ -9,8 +9,9 @@
 #import "HYHomeShowView.h"
 #import <PYPhotosView.h>
 #import "XWAlbumModel.h"
+#import "PYPhoto.h"
 
-@interface HYHomeShowView ()
+@interface HYHomeShowView ()<PYPhotosViewDelegate>
 
 @property (nonatomic, strong) UILabel *contentLabel;  ///< <#Description#>
 
@@ -70,9 +71,16 @@
     if ([model isKindOfClass:[XWAlbumModel class]]) {
         XWAlbumModel *albumModel = model;
         self.contentLabel.text = albumModel.content;
-        self.photosView.thumbnailUrls = albumModel.images;
-        self.photosView.originalUrls = albumModel.images;
-        
+        self.photosView.photos = [albumModel.images.rac_sequence map:^id _Nullable(NSString * _Nullable value) {
+            PYPhoto *photo = [[PYPhoto alloc] init];
+//            photo.original_pic = value;
+            photo.thumbnail_pic = value;
+            return photo;
+        }].array;
+        self.photosView.delegate = self;
+//        self.photosView.thumbnailUrls = albumModel.images;
+//        self.photosView.originalUrls = albumModel.images;
+    
         CGSize size = [self.photosView sizeWithPhotoCount:albumModel.images.count photosState:PYPhotosViewStateDidCompose];
         [self.photosView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(size);

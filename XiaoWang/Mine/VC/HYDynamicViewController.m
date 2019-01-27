@@ -74,9 +74,9 @@
                 } success:^(NSString *absoluteUrlString) {
                     //取得图片在阿里云的路径
                     if ([self.photos isEqualToString:@""]) {
-                        self.photos = absoluteUrlString;
+                        self.photos = [NSString stringWithFormat:@"/%@",absoluteUrlString];
                     }else{
-                        self.photos = [NSString stringWithFormat:@"%@,%@",self.photos,absoluteUrlString];
+                        self.photos = [NSString stringWithFormat:@"%@,/%@",self.photos,absoluteUrlString];
                     }
                     
                     dispatch_semaphore_signal(semaphore);

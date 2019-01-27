@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL isChangeAvatar;  ///< <#Description#>
 
 @property (nonatomic,strong)NSString *avatar;
+
+
 @end
 
 @implementation HYPersonSetVC
@@ -150,7 +152,7 @@
     }
     
     
-    UIButton *bottomView = [UIButton fg_title:@"完成注册" fontSize:16 titleColorHex:0x000000];
+    UIButton *bottomView = [UIButton fg_title:self.isNONewers ?@"完成" : @"完成注册" fontSize:16 titleColorHex:0x000000];
     bottomView.backgroundColor = UIColorFromHex(0xFFE616);
     [bottomView fg_cornerRadius:AdaptedHeight(20) borderWidth:0 borderColor:0];
     [self.bgScrollView.contentView addSubview:bottomView];
@@ -307,20 +309,25 @@
         dic[@"gender"] = [gender isEqualToString:@"男"] ? @20 : @30;
     }
     if (birthday){
-        dic[@"birthday"] = @20;
+        dic[@"birthday"] = birthday;
     }
     if (city_id){
-        dic[@"city_id"] = @20;
+        dic[@"city_name"] = @"广州市";
     }
     if (avatar){
         dic[@"avatar"] = avatar;
     }
     
     [FGHttpManager putWithPath:@"api/profile/set_profile" parameters:dic success:^(id responseObject) {
-        FGUserModel *loginModel = [FGUserModel modelWithJSON:responseObject];
-        [FGCacheManager sharedInstance].userModel = loginModel;
-        XWLabelVC *vc = [XWLabelVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.isNONewers) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            FGUserModel *loginModel = [FGUserModel modelWithJSON:responseObject];
+            [FGCacheManager sharedInstance].userModel = loginModel;
+            XWLabelVC *vc = [XWLabelVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+       
         
     } failure:^(NSString *error) {
         [self showTextHUDWithMessage:error];

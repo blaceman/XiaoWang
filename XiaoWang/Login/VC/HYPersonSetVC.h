@@ -9,5 +9,6 @@
 #import "FGBaseViewController.h"
 
 @interface HYPersonSetVC : FGBaseViewController
+@property (nonatomic, assign) BOOL isNONewers;  ///< <#Description#>
 
 @end

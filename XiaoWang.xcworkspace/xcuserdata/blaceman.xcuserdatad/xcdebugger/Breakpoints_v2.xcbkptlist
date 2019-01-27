@@ -35,29 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XiaoWang/Login/VC/HYPersonSetVC.m"
-            timestampString = "570178200.755291"
+            filePath = "Pods/PYPhotoBrowser/PYPhotoBrowser/View/PYPhotosView.m"
+            timestampString = "570276847.49411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "-updateUserInfo"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XiaoWang/Login/VC/HYPersonSetVC.m"
-            timestampString = "570178200.755374"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
-            landmarkName = "-updateUserInfo"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "-addImageDidClicked"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

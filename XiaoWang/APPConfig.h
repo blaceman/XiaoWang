@@ -63,8 +63,8 @@ static int const kColorTheme = 0xFFB000;
 #define kJPushStatus NO
 
 //阿里云OSS
-#define OSS_DIMAO @"http://industry-social-cloud.oss-cn-shenzhen.aliyuncs.com"
-#define OSS_BUCKET @"industry-social-cloud"
+#define OSS_DIMAO @"http://small-net.oss-cn-shenzhen.aliyuncs.com"
+#define OSS_BUCKET @"small-net"
 
 //apple id
 #define kAppleId @"1049732608"      // (想见 测试用)
@@ -113,8 +113,8 @@ static int const kColorTheme = 0xFFB000;
 #define kJPushStatus YES
 
 //阿里云OSS
-#define OSS_DIMAO @"http://industry-social-cloud.oss-cn-shenzhen.aliyuncs.com"
-#define OSS_BUCKET @"industry-social-cloud"
+#define OSS_DIMAO @"http://small-net.oss-cn-shenzhen.aliyuncs.com"
+#define OSS_BUCKET @"small-net"
 
 //apple id
 #define kAppleId @"1318129281"      //美云
@@ -149,8 +149,8 @@ static int const kColorTheme = 0xFFB000;
 #define kUrlScheme      @"ShuoNaiWuDing" // 这个是你定义的 URL Scheme，支付宝、微信支付
 
 #pragma mark - 阿里云OSS
-#define OSS_ACCESS_KEY @"LTAIXiDtaohXlR69"
-#define OSS_SECRET_KEY @"wMye53C4GZdgxQzoipKnAngvc4MDTb"
+#define OSS_ACCESS_KEY @"LTAI7cVXJKNk3zxd"
+#define OSS_SECRET_KEY @"4OLnslOqRwvLctIS52fB2jhXYhLPUV"
 #define OSS_HOST @"oss-cn-shenzhen.aliyuncs.com"
 #define OSS_AVATAR_DIR @"avatar" //头像上传目录
 #define OSS_VIDEO_DIR @"video" //视频上传目录
