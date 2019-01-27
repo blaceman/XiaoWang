@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, assign) NSInteger countDowmTime;  ///< <#Description#>
+@property (nonatomic ,strong) NSMutableDictionary<NSString *,NSMutableArray *> *pidDic;
 - (void)loginNotification;
 
 @end

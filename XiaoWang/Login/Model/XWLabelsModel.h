@@ -9,7 +9,7 @@
 #import "FGBaseModel.h"
 @class XWLableListModel;
 @interface XWLabelsModel : FGBaseModel
-@property (nonatomic, strong) NSArray *labels;  ///< <#Description#>
-@property (nonatomic, strong) NSArray *selected;  ///< <#Description#>
+@property (nonatomic, strong) NSArray<XWLableListModel *> *labels;  ///< <#Description#>
+@property (nonatomic, strong) NSArray<XWLableListModel *> *selected;  ///< <#Description#>
 
 @end

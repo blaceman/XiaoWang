@@ -7,7 +7,12 @@
 //
 
 #import "FGBaseViewController.h"
+#import "XWLabelView.h"
 
 @interface YSFilterViewController : FGBaseViewController
+@property (nonatomic, strong) UISwitch *switchView;  ///< <#Description#>
+@property (nonatomic,strong) XWLabelView *labelViewSex;
 
+@property (nonatomic,strong)XWLabelView *labelViewAge;
+@property (nonatomic,strong)XWLabelView *labelViewloaction;
 @end

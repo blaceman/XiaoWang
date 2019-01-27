@@ -45,5 +45,68 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XiaoWang/Login/VC/XWPairVC.m"
+            timestampString = "570301878.828223"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-matchData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWPairVC matchData]"
+                  moduleName = "XiaoWang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
+                  timestampString = "570301879.176522"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__21-[XWPairVC matchData]_block_invoke"
+                  moduleName = "XiaoWang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
+                  timestampString = "570301879.1804121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.114"
+                  moduleName = "XiaoWang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
+                  timestampString = "570301879.1840039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

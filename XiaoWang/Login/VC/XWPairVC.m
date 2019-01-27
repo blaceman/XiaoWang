@@ -107,8 +107,13 @@
 #pragma --------------网络请求接口------------
 
 -(void)matchData{
-    
-    [FGHttpManager postWithPath:@"api/match/match" parameters:@{} success:^(id responseObject) {
+    NSDictionary *dic;
+    if (!self.filterVC.switchView.on) {
+        dic = @{};
+    }else{
+        dic = [self dicSet];
+    }
+    [FGHttpManager postWithPath:@"api/match/match" parameters:dic success:^(id responseObject) {
         FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
         
         XWPairPassVC *vc = [XWPairPassVC new];
@@ -146,6 +151,38 @@
     } failure:^(NSString *error) {
         
     }];
+}
+-(NSDictionary *)dicSet{
+    NSArray *pidArr = kAppDelegate.pidDic.allKeys;
+    NSMutableArray *labels = [NSMutableArray new];
+    
+    for (int i = 0; i<pidArr.count; i++) {
+        NSString *ids = @"";
+        NSMutableArray *arr = [kAppDelegate.pidDic valueForKey:pidArr[i]];
+        for (int j = 0; j < arr.count; j++) {
+            if (j == 0) {
+                ids = [NSString stringWithFormat:@"%@",arr[j]];
+            }else{
+                ids = [NSString stringWithFormat:@"%@,%@",ids,arr[j]];
+
+            }
+        }
+        [labels addObject:@{@"pid":pidArr[i],@"ids":ids}];
+    }
+    NSNumber *gender;
+    gender = @(30);
+    if ( ((UIButton *)[self.filterVC.labelViewSex viewWithTag:10000]).selected) {
+        gender = @20;
+    }
+    if (((UIButton *)[self.filterVC.labelViewSex viewWithTag:10001]).selected) {
+        gender = @30;
+
+    }
+    NSString *minAge = ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20000]).text ? ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20000]).text : @"";
+    NSString *maxAge = ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text ? ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text : @"";
+    
+    NSString *distance = ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text ? ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text : @"";
+    return @{@"labels":labels,@"gender":gender,@"age":@[@{@"min":minAge,@"max":maxAge}],@"distance":distance};
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

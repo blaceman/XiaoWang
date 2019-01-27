@@ -27,6 +27,7 @@
     [self.window makeKeyAndVisible];
     [self setupNIMSDK];
     [self loginNotification];
+    self.pidDic = [NSMutableDictionary new];
     return YES;
 }
 

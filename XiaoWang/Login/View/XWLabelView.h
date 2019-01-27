@@ -7,8 +7,11 @@
 //
 
 #import "FGBaseView.h"
+#import "XWLabelsModel.h"
 
 @interface XWLabelView : FGBaseView
+@property (nonatomic,strong)XWLabelsModel *labelModel;
+
 @property (nonatomic,strong)NSString *title;
 
 @property (nonatomic,strong)NSMutableArray *dataSource;

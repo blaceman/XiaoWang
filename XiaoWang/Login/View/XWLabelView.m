@@ -7,6 +7,7 @@
 //
 
 #import "XWLabelView.h"
+#import "XWLableListModel.h"
 @interface XWLabelView()
 
 
@@ -66,6 +67,24 @@
     NSMutableArray *bufferArr = [NSMutableArray new];
     for (int i = 0; i < self.showArr.count; i++) {
         UIButton *typeBtn = [UIButton fg_title:self.showArr[i] fontSize:16 titleColorHex:0x333333];
+        if (![typeBtn.titleLabel.text isEqualToString:@"更多 +"]) {
+            if ([typeBtn.titleLabel.text isEqualToString:@"男"]) {
+                typeBtn.tag = 10000;
+            }else if ([typeBtn.titleLabel.text isEqualToString:@"女"]){
+                 typeBtn.tag = 10001;
+            }
+            if (self.labelModel) {
+                typeBtn.tag = (self.labelModel.labels[i]).ID.integerValue;
+                if ([kAppDelegate.pidDic valueForKey:@(self.tag).stringValue]) {
+                    NSArray *arr = [kAppDelegate.pidDic valueForKey:@(self.tag).stringValue];
+                    if ([arr containsObject:@(typeBtn.tag)]) {
+                        typeBtn.selected = YES;
+                    }
+                }
+            }
+           
+            
+        }
         [typeBtn jk_setBackgroundColor:UIColorFromHex(0xEDEDED) forState:(UIControlStateSelected)];
         [typeBtn jk_setBackgroundColor:UIColorFromHex(0xffffff) forState:(UIControlStateNormal)];
         [typeBtn addTarget:self action:@selector(typeBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -135,6 +154,7 @@
     }];
     
     UITextField *minAgeField = [UITextField new];
+    minAgeField.tag = 20000;
     minAgeField.backgroundColor = UIColorFromHex(0xffffff);
 
     minAgeField.textAlignment = NSTextAlignmentCenter;
@@ -152,7 +172,8 @@
     [minAgeField fg_cornerRadius:AdaptedHeight(18) borderWidth:kOnePixel borderColor:kColorBG];
     
     UITextField *maxAgeField = [UITextField new];
-    
+    maxAgeField.tag = 20001;
+
     maxAgeField.backgroundColor = UIColorFromHex(0xffffff);
     maxAgeField.textAlignment = NSTextAlignmentCenter;
     maxAgeField.placeholder = @"最大年龄";
@@ -190,6 +211,7 @@
     }];
     
     UIButton *typeBtn = [UIButton fg_title:@"省市区" fontSize:16 titleColorHex:0x333333];
+    typeBtn.tag = 30000;
     typeBtn.backgroundColor = UIColorFromHex(0xffffff);
     [typeBtn addTarget:self action:@selector(typeBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
 
@@ -204,7 +226,8 @@
     [typeBtn fg_cornerRadius:AdaptedHeight(18) borderWidth:kOnePixel borderColor:kColorBG];
     
     UITextField *maxAgeField = [UITextField new];
-    
+    maxAgeField.tag = 30001;
+
     maxAgeField.backgroundColor = UIColorFromHex(0xffffff);
     maxAgeField.textAlignment = NSTextAlignmentCenter;
     maxAgeField.placeholder = @"距离≤   公里";

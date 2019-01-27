@@ -7,7 +7,6 @@
 //
 
 #import "YSFilterViewController.h"
-#import "XWLabelView.h"
 #import "XWPairVC.h"
 #import "XWLableListModel.h"
 #import "XWLabelsModel.h"
@@ -17,6 +16,7 @@
 @interface YSFilterViewController ()
 @property (nonatomic,strong)NSArray<XWLableListModel*> *labelArr;
 @property (nonatomic,strong)NSMutableArray<XWLabelView*> *labelViewArr;
+
 
 @end
 
@@ -60,6 +60,7 @@
     }];
     
     UISwitch *switchView = [UISwitch new];
+    self.switchView = switchView;
     switchView.onTintColor = [UIColor yellowColor];
 //    switchView.backgroundColor = UIColor
     switchView.tintColor = UIColorFromHex(0xffffff);
@@ -71,8 +72,8 @@
     
     //性别
     XWLabelView *labelViewSex = [[XWLabelView alloc]initWithDataSource:@[@"女",@"男"] title:@"性别"];
+    self.labelViewSex = labelViewSex;
     [self.bgScrollView.contentView addSubview:labelViewSex];
-    
     Weakify(labelViewSex)
     labelViewSex.btnBlock = ^(UIButton *btn) {
         StrongSelf
@@ -87,6 +88,7 @@
     
     //年龄
     XWLabelView *labelViewAge = [[XWLabelView alloc]initWithDataSource:@[@""] title:@"年龄区间"];
+    self.labelViewAge = labelViewAge;
     [self.bgScrollView.contentView addSubview:labelViewAge];
     [labelViewAge setupAge];
     
@@ -97,6 +99,7 @@
     
     //地区
     XWLabelView *labelViewloaction = [[XWLabelView alloc]initWithDataSource:@[@""] title:@"地区"];
+    self.labelViewloaction = labelViewloaction;
     [self.bgScrollView.contentView addSubview:labelViewloaction];
     [labelViewloaction setupLocation];
     
@@ -108,6 +111,8 @@
     for (int i = 0; i< self.labelArr.count; i++) {
         
         XWLabelView *labelView = [[XWLabelView alloc]initWithDataSource:@[@"",@"",@"",@"",@"",@""] title:((XWLableListModel *)self.labelArr[i]).name];
+        labelView.tag = self.labelArr[i].ID.integerValue;
+        [self.labelViewArr addObject:labelView];
         [self dataSetWithNum:i labelView:labelView];
         
         Weakify(labelView)
@@ -118,9 +123,33 @@
             if ([btn.titleLabel.text isEqualToString:@"更多 +"]) {
                 XWFliterMoreVC *vc = [XWFliterMoreVC new];
                 vc.moreTitle = labelView.title;
+                vc.labelTag = labelView.tag;
                 vc.dataSource = labelView.dataSource;
+                vc.labelModel = labelView.labelModel;
                 [self.navigationController pushViewController:vc animated:YES];
+                return ;
             }
+            
+            if (btn.selected) {
+                if ([kAppDelegate.pidDic valueForKey:@(labelView.tag).stringValue]) {
+                    NSMutableArray *dic = [kAppDelegate.pidDic valueForKey:@(labelView.tag).stringValue];
+                    if (![dic containsObject:@(btn.tag)]) {
+                        [dic addObject:@(btn.tag)];
+                    }
+                }else{
+                    [kAppDelegate.pidDic setValue:[NSMutableArray arrayWithObject:@(btn.tag)] forKey:@(labelView.tag).stringValue];
+                }
+            }else{
+                if ([kAppDelegate.pidDic valueForKey:@(labelView.tag).stringValue]) {
+                    NSMutableArray *dic = [kAppDelegate.pidDic valueForKey:@(labelView.tag).stringValue];
+                    if ([dic containsObject:@(btn.tag)]) {
+                        [dic removeObject:@(btn.tag)];
+                    }
+                }
+            }
+            
+            
+            
         };
         [self.bgScrollView.contentView addSubview:labelView];
         [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +170,8 @@
 -(void)dataSetWithNum:(NSInteger )num labelView:(XWLabelView *)labelView{
     [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/label/label/%@",self.labelArr[num].ID] parameters:@{} success:^(id responseObject) {
         XWLabelsModel *labels = [XWLabelsModel modelWithJSON:responseObject];
-        
+        labelView.labelModel = labels;
+//        labelView.tag = labels.ID.integerValue;
         labelView.dataSource = [NSMutableArray arrayWithArray:[labels.labels.rac_sequence map:^id _Nullable(XWLableListModel  *_Nullable value) {
             return value.name;
         }].array];
@@ -154,6 +184,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.labelViewArr jk_each:^(XWLabelView *object) {
+        [object setupView];
+    }];
 }
 /*
 #pragma mark - Navigation
