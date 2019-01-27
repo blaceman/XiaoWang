@@ -96,6 +96,7 @@
 -(void)cellAction:(FGCellStyleView *)cell{
     if ([cell.model.leftTitle isEqualToString:@"个性标签"]) {
         XWLabelVC *vc = [XWLabelVC new];
+        vc.isMyLabel = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (([cell.model.leftTitle isEqualToString:@"通关口令"])){
         XWPasswordVC *vc = [XWPasswordVC new];

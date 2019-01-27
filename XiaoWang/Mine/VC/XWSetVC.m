@@ -151,7 +151,10 @@
 -(void)loginOutBtnAction:(UIButton *)sender{
     [FGCacheManager sharedInstance].userModel = nil;
     [FGCacheManager sharedInstance].token = nil;
-    [self.navigationController pushViewController:[FGRegisterVC new] animated:YES];
+    FGRegisterVC *vc = [FGRegisterVC new];
+    
+    FGBaseNavigationController *navi = [[FGBaseNavigationController alloc]initWithRootViewController:vc];
+    kAppDelegate.window.rootViewController = navi;
 }
 /*
 #pragma mark - Navigation

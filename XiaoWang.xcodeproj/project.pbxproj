@@ -120,6 +120,8 @@
 		519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BC21DA249E00085EB5 /* Assets.xcassets */; };
 		519C87C021DA249E00085EB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519C87BE21DA249E00085EB5 /* LaunchScreen.storyboard */; };
 		519C87C321DA249E00085EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87C221DA249E00085EB5 /* main.m */; };
+		51C017A021FDC85500606C33 /* YSFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C0179F21FDC85500606C33 /* YSFilterViewController.m */; };
+		51C017A321FDE5B000606C33 /* XWFliterMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -349,6 +351,10 @@
 		519C87BF21DA249E00085EB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		519C87C121DA249E00085EB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		519C87C221DA249E00085EB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		51C0179E21FDC85500606C33 /* YSFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSFilterViewController.h; sourceTree = "<group>"; };
+		51C0179F21FDC85500606C33 /* YSFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSFilterViewController.m; sourceTree = "<group>"; };
+		51C017A121FDE5B000606C33 /* XWFliterMoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFliterMoreVC.h; sourceTree = "<group>"; };
+		51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFliterMoreVC.m; sourceTree = "<group>"; };
 		68BB265ABED52041FD4634F9 /* libPods-XiaoWang.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XiaoWang.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6954A29C0B4B858F288D35AC /* Pods-XiaoWang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoWang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoWang/Pods-XiaoWang.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -802,6 +808,10 @@
 				5174BA7821E39C2400ADA586 /* XWFriendVC.m */,
 				5174BA7A21E3A33200ADA586 /* HYDynamicViewController.h */,
 				5174BA7B21E3A33300ADA586 /* HYDynamicViewController.m */,
+				51C0179E21FDC85500606C33 /* YSFilterViewController.h */,
+				51C0179F21FDC85500606C33 /* YSFilterViewController.m */,
+				51C017A121FDE5B000606C33 /* XWFliterMoreVC.h */,
+				51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1102,6 +1112,7 @@
 				5174BA6721E32BD100ADA586 /* XWVersionInformationVC.m in Sources */,
 				5135CA6421DA57CA0025213D /* FGAreaPicker.m in Sources */,
 				5135CA6521DA57CA0025213D /* FGBillStyleView.m in Sources */,
+				51C017A021FDC85500606C33 /* YSFilterViewController.m in Sources */,
 				514A318221DFBC8300987D4B /* XWPairBodyView.m in Sources */,
 				5135CA4821DA57CA0025213D /* FGPageViewController.m in Sources */,
 				5135CA5B21DA57CA0025213D /* MBProgressHUD+LMJ.m in Sources */,
@@ -1134,6 +1145,7 @@
 				5135CA4D21DA57CA0025213D /* FGAppStoreVersionManager.m in Sources */,
 				5156084721F1AF8D00C3CD9A /* XWLabelsModel.m in Sources */,
 				5135CA5621DA57CA0025213D /* FGUmengAnalyticsHelper.m in Sources */,
+				51C017A321FDE5B000606C33 /* XWFliterMoreVC.m in Sources */,
 				5135CA5C21DA57CA0025213D /* NSString+FGDate.m in Sources */,
 				5174BA5821E1F0CC00ADA586 /* XWHelpVC.m in Sources */,
 				5174BA4F21E1D6EB00ADA586 /* HYCellCommentView.m in Sources */,

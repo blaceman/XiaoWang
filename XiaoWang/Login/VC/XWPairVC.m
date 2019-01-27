@@ -13,9 +13,10 @@
 #import "XWMineVC.h"
 #import "XWNewsVC.h"
 #import "XWPasswordVC.h"
+#import "YSFilterViewController.h"
 
 @interface XWPairVC ()
-
+@property (nonatomic,strong)YSFilterViewController *filterVC;
 @end
 
 @implementation XWPairVC
@@ -31,7 +32,7 @@
 //        make.left.right.bottom.top.offset(0);
         make.center.offset(0);
     }];
-    
+    self.view.backgroundColor = UIColorFromHex(0xffffff);
     UIButton *contactBtn = [UIButton fg_imageString:@"icon_mine" imageStringSelected:@"icon_mine"];
     contactBtn.tag = 0;
     [self.view addSubview:contactBtn];
@@ -74,6 +75,9 @@
     
     [pairBtn addTarget:self action:@selector(pairBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
+    self.filterVC = [YSFilterViewController new];
+
+    
     [self countDownTime];
 }
 
@@ -85,6 +89,8 @@
         
 
     }else if (sender.tag == 1){ //筛选条件
+
+        [self.navigationController pushViewController:self.filterVC animated:YES];
 //        WXLoadingTipView *tipView = [WXLoadingTipView new];
 //        [tipView showInView:self.navigationController.view];
     }else if (sender.tag == 2){ //消息页面

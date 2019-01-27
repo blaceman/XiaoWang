@@ -9,5 +9,5 @@
 #import "FGBaseViewController.h"
 
 @interface XWLabelVC : FGBaseViewController
-
+@property (nonatomic, assign) BOOL isMyLabel;  ///< <#Description#>
 @end
