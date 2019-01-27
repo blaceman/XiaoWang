@@ -68,10 +68,18 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    id model = [self.dataSourceArr objectAtIndex:indexPath.row];
+    if ([model isKindOfClass:[FGUserModel class]]) {
     FGUserModel *userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
     NIMSession *session = [NIMSession session:userModel.code type:NIMSessionTypeP2P];
     NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
     [self.navigationController pushViewController:vc animated:YES];
+    }else if ([model isKindOfClass:[NIMRecentSession class]]){
+        NIMRecentSession *sessionModel = model;
+        NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:sessionModel.session];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
    
 }
 

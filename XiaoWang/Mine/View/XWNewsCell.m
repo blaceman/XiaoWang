@@ -104,6 +104,18 @@
 //        self.
         self.contentLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];
         return;
+    }else if ([model isKindOfClass:[NIMRecentSession class]]){
+        NIMRecentSession *sessionModel = model;
+        self.statusLabel.hidden = YES;
+        self.nameLabel.text = sessionModel.lastMessage.from;
+        self.contentLabel.text = sessionModel.lastMessage.text;
+        
+    }else if ([model isKindOfClass:[NIMUser class]]){
+        NIMUser *user = model;
+        self.nameLabel.text = user.userInfo.nickName;
+        self.contentLabel.text = user.userInfo.sign;
+        [self.avatetBtn setImageWithURL:[NSURL URLWithString:user.userInfo.avatarUrl] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
+        self.statusLabel.hidden = YES;
     }
     
    
