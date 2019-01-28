@@ -107,6 +107,7 @@
     }else if ([model isKindOfClass:[NIMRecentSession class]]){
         NIMRecentSession *sessionModel = model;
         self.statusLabel.hidden = YES;
+        self.sexImg.hidden = YES;
         self.nameLabel.text = sessionModel.lastMessage.from;
         self.contentLabel.text = sessionModel.lastMessage.text;
         

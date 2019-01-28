@@ -13,6 +13,7 @@
 @property (nonatomic,strong)UILabel *subLabel;
 @property (nonatomic,strong)UIView *backGroundView;
 @property (nonatomic,strong)UIButton *sendBtn;
+@property (nonatomic,strong)UILabel *contentLabel;
 
 
 -(void)showInView:(UIView *)view;

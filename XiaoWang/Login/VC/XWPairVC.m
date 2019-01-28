@@ -113,6 +113,7 @@
     }else{
         dic = [self dicSet];
     }
+    NSLog(@"%@",[FGCacheManager sharedInstance].token);
     [FGHttpManager postWithPath:@"api/match/match" parameters:dic success:^(id responseObject) {
         FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
         
@@ -182,7 +183,7 @@
     NSString *maxAge = ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text ? ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text : @"";
     
     NSString *distance = ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text ? ((UITextField *)[self.filterVC.labelViewSex viewWithTag:20001]).text : @"";
-    return @{@"labels":labels,@"gender":gender,@"age":@[@{@"min":minAge,@"max":maxAge}],@"distance":distance};
+    return @{@"labels":labels.jsonStringEncoded,@"gender":gender,@"age":@{@"min":minAge,@"max":maxAge}.jsonStringEncoded,@"distance":distance};
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -94,6 +94,9 @@
        if (self.time == 0) {
            //通关失败
            [self.dispoable dispose];
+           if (!self.navigationController.view) {
+               return ;
+           }
            XWPairPassView *tipView = [XWPairPassView new];
            [tipView configWithModel:self.userModel];
            [tipView.loadBtn setImage:UIImageWithName(@"icon_fail") forState:(UIControlStateNormal)];
@@ -129,7 +132,9 @@
         [self.tipBtn setTitle:[NSString stringWithFormat:@"  对方已答对，用时%ld秒",kAppDelegate.countDowmTime - self.time] forState:(UIControlStateNormal)];
         [self.dispoable dispose];
         XWPairPassView *tipView = [XWPairPassView new];
-        
+        [tipView configWithModel:self.userModel];
+        [tipView.loadBtn setImage:UIImageWithName(@"icon_adopt") forState:(UIControlStateNormal)];
+        tipView.contentLabel.text = @"速配通关成功！";
         //发送消息
         Weakify(tipView);
         [[tipView.sendBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)]subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -137,7 +142,7 @@
             Strongify(tipView)
             //发送消息
             [tipView remove];
-            
+            NSLog(@"uid:%@",[FGCacheManager sharedInstance].userModel.uid);
             NIMSession *session = [NIMSession session:self.userModel.uid type:NIMSessionTypeP2P];
             NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
             [self.navigationController pushViewController:vc animated:YES];
@@ -152,7 +157,8 @@
         [tipView showInView:self.navigationController.view];
         
     } failure:^(NSString *error) {
-        
+        [self showTextHUDWithMessage:error.description];
+        [self.tipBtn setTitle:[NSString stringWithFormat:@"答案错误,请继续答题...."] forState:(UIControlStateNormal)];
     }];
     
 }
@@ -163,6 +169,10 @@
     } failure:^(NSString *error) {
         
     }];
+}
+-(void)dealloc{
+    [self.dispoable dispose];
+    
 }
 /*
 #pragma mark - Navigation

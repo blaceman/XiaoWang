@@ -21,12 +21,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if (self.type == 0) {
+        self.myTableView.mj_footer = nil;
+
         [self.navigationView setTitle:@"我的消息"];
 //        [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_pot") clickCallBack:^(UIView *view) {
 //            
 //        }];
     }else if (self.type == 3){
         [self.navigationView setTitle:@"速配过的人"];
+
+    }else{
+        self.myTableView.mj_footer = nil;
 
     }
     [self setupEstimatedRowHeight:100 cellClasses:@[[XWNewsCell class]]];
@@ -42,17 +47,19 @@
         return;
 
     }else if (self.type == 2){
+
         NSArray *myblackList = [[NIMSDK sharedSDK] userManager].myBlackList;
         success(myblackList);
         return;
 
     }else if(self.type == 3){
-        [FGHttpManager getWithPath:@"api/friend/lists" parameters:@{} success:^(id responseObject) {
+        [FGHttpManager getWithPath:@"api/friend/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
             NSArray<FGUserModel *> *userModelArr = [NSArray modelArrayWithClass:[FGUserModel class] json:[responseObject valueForKey:@"data"]];
             success(userModelArr);
         } failure:^(NSString *error) {
             
         }];
+        return;
     }
     
     success([NIMSDK sharedSDK].conversationManager.allRecentSessions);

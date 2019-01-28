@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XiaoWang/Login/VC/XWPairPassVC.m"
-            timestampString = "570175665.290172"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-passAnswerData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Pods/PYPhotoBrowser/PYPhotoBrowser/View/PYPhotosView.m"
             timestampString = "570276847.49411"
             startingColumnNumber = "9223372036854775807"
@@ -43,69 +27,6 @@
             endingLineNumber = "395"
             landmarkName = "-addImageDidClicked"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XiaoWang/Login/VC/XWPairVC.m"
-            timestampString = "570304228.933105"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-matchData"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[XWPairVC matchData]"
-                  moduleName = "XiaoWang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
-                  timestampString = "570303413.0031511"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "116"
-                  endingLineNumber = "116"
-                  offsetFromSymbolStart = "284">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__21-[XWPairVC matchData]_block_invoke"
-                  moduleName = "XiaoWang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
-                  timestampString = "570303413.006223"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "116"
-                  endingLineNumber = "116"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.114"
-                  moduleName = "XiaoWang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/new4545/Desktop/XiaoWang/XiaoWang/Login/VC/XWPairVC.m"
-                  timestampString = "570303413.0092731"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "116"
-                  endingLineNumber = "116"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
