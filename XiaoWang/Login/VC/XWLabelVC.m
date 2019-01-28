@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"个性标签"];
     WeakSelf
-    if (self.isMyLabel) {
+    if (!self.isMyLabel) {
         [self.navigationView addRightButtonWithTitle:@"跳过" clickCallBack:^(UIView *view) {
             StrongSelf
             XWPairVC *vc = [XWPairVC new];
@@ -62,6 +62,7 @@
     for (int i = 0; i< self.labelArr.count; i++) {
        
         XWLabelView *labelView = [[XWLabelView alloc]initWithDataSource:@[@"",@"",@"",@"",@"",@""] title:((XWLableListModel *)self.labelArr[i]).name];
+        labelView.tag = self.labelArr[i].ID.integerValue;
         [self dataSetWithNum:i labelView:labelView];
         WeakSelf
         Weakify(labelView)
@@ -73,7 +74,9 @@
                 vc.moreTitle = labelView.title;
                 vc.dataSource = labelView.dataSource;
                 [self.navigationController pushViewController:vc animated:YES];
+                return ;
             }
+            [self pidSetWithPid:@(labelView.tag).stringValue labels:@(btn.tag).stringValue];
         };
         [self.bgScrollView.contentView addSubview:labelView];
         [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,6 +97,10 @@
 -(void)dataSetWithNum:(NSInteger )num labelView:(XWLabelView *)labelView{
     [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/label/label/%@",self.labelArr[num].ID] parameters:@{} success:^(id responseObject) {
         XWLabelsModel *labels = [XWLabelsModel modelWithJSON:responseObject];
+        
+        labelView.labelModel = labels;
+        labelView.isSelected = YES;
+        labelView.isSelected = YES;
         labelView.dataSource = [NSMutableArray arrayWithArray:[labels.labels.rac_sequence map:^id _Nullable(XWLableListModel  *_Nullable value) {
             return value.name;
         }].array];
@@ -106,7 +113,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels{
+    [FGHttpManager postWithPath:@"api/label/setting" parameters:@{@"pid":pid,@"labels":labels} success:^(id responseObject) {
+        
+        
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
 /*
 #pragma mark - Navigation
 

@@ -11,7 +11,7 @@
 
 @interface XWLabelView : FGBaseView
 @property (nonatomic,strong)XWLabelsModel *labelModel;
-
+@property (nonatomic, assign) BOOL isSelected;  ///< <#Description#>
 @property (nonatomic,strong)NSString *title;
 
 @property (nonatomic,strong)NSMutableArray *dataSource;

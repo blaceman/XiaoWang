@@ -73,17 +73,27 @@
             }else if ([typeBtn.titleLabel.text isEqualToString:@"女"]){
                  typeBtn.tag = 10001;
             }
-            if (self.labelModel) {
-                typeBtn.tag = (self.labelModel.labels[i]).ID.integerValue;
-                if ([kAppDelegate.pidDic valueForKey:@(self.tag).stringValue]) {
-                    NSArray *arr = [kAppDelegate.pidDic valueForKey:@(self.tag).stringValue];
-                    if ([arr containsObject:@(typeBtn.tag)]) {
-                        typeBtn.selected = YES;
+            if (!self.isSelected) {
+                if (self.labelModel) {
+                    typeBtn.tag = (self.labelModel.labels[i]).ID.integerValue;
+                    if ([kAppDelegate.pidDic valueForKey:@(self.tag).stringValue]) {
+                        NSArray *arr = [kAppDelegate.pidDic valueForKey:@(self.tag).stringValue];
+                        if ([arr containsObject:@(typeBtn.tag)]) {
+                            typeBtn.selected = YES;
+                        }
                     }
                 }
+            }else{
+                typeBtn.tag = (self.labelModel.labels[i]).ID.integerValue;
+                for (int j = 0;j < self.labelModel.selected.count; j++) {
+                    XWLableListModel *listModel = self.labelModel.selected[j];
+                    if (typeBtn.tag == listModel.ID.integerValue) {
+                        typeBtn.selected = YES;
+                        break;
+                    }
+                }
+
             }
-           
-            
         }
         [typeBtn jk_setBackgroundColor:UIColorFromHex(0xEDEDED) forState:(UIControlStateSelected)];
         [typeBtn jk_setBackgroundColor:UIColorFromHex(0xffffff) forState:(UIControlStateNormal)];
