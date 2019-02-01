@@ -9,7 +9,8 @@
 #import "WXNewsListVC.h"
 #import "XWNewsCell.h"
 #import "XWFriendsInformationVC.h"
-
+#import "XWPassModel.h"
+#import "XWMessageModel.h"
 
 @interface WXNewsListVC ()
 
@@ -41,28 +42,49 @@
 
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
     if (self.type == 1) {
-        NSArray *friendList = [[NIMSDK sharedSDK] userManager].myFriends;
-        success(friendList);
-//        success(@[@"1",@"1",@"1",@"1",@"1"]);
-        return;
-
-    }else if (self.type == 2){
-
-        NSArray *myblackList = [[NIMSDK sharedSDK] userManager].myBlackList;
-        success(myblackList);
-        return;
-
-    }else if(self.type == 3){
         [FGHttpManager getWithPath:@"api/friend/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
             NSArray<FGUserModel *> *userModelArr = [NSArray modelArrayWithClass:[FGUserModel class] json:[responseObject valueForKey:@"data"]];
             success(userModelArr);
         } failure:^(NSString *error) {
             
         }];
+        
+//        NSArray *friendList = [[NIMSDK sharedSDK] userManager].myFriends;
+//        success(friendList);
+//        success(@[@"1",@"1",@"1",@"1",@"1"]);
+        return;
+
+    }else if (self.type == 2){
+        [FGHttpManager getWithPath:@"api/black/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
+            NSArray<XWPassModel *> *userModelArr = [NSArray modelArrayWithClass:[XWPassModel class] json:[responseObject valueForKey:@"data"]];
+            success(userModelArr);
+        } failure:^(NSString *error) {
+            
+        }];
+        
+//        NSArray *myblackList = [[NIMSDK sharedSDK] userManager].myBlackList;
+//        success(myblackList);
+        return;
+
+    }else if(self.type == 3){//@"api/friend/lists"
+//        http://59.110.153.91:9999/api/match/lists?pageSize=20&page=1
+        
+        [FGHttpManager getWithPath:@"api/match/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
+            NSArray<XWPassModel *> *userModelArr = [NSArray modelArrayWithClass:[XWPassModel class] json:[responseObject valueForKey:@"data"]];
+            success(userModelArr);
+        } failure:^(NSString *error) {
+            
+        }];
         return;
     }
+    [FGHttpManager getWithPath:@"api/message/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
+        NSArray<XWMessageModel *> *userModelArr = [NSArray modelArrayWithClass:[XWMessageModel class] json:responseObject];
+        success(userModelArr);
+    } failure:^(NSString *error) {
+        
+    }];
     
-    success([NIMSDK sharedSDK].conversationManager.allRecentSessions);
+//    success([NIMSDK sharedSDK].conversationManager.allRecentSessions);
 //    success(@[@"",@"",@"",@"",@""]);
 }
 
@@ -86,6 +108,10 @@
         NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:sessionModel.session];
         [self.navigationController pushViewController:vc animated:YES];
 
+    }else if([model isKindOfClass:[XWPassModel class]]){
+        XWPassModel *sessionModel = model;
+        NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:[NIMSession session:sessionModel.uid.stringValue type:(NIMSessionTypeP2P)]];
+        [self.navigationController pushViewController:vc animated:YES];
     }
    
 }

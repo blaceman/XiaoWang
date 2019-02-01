@@ -87,7 +87,7 @@
                 typeBtn.tag = (self.labelModel.labels[i]).ID.integerValue;
                 for (int j = 0;j < self.labelModel.selected.count; j++) {
                     XWLableListModel *listModel = self.labelModel.selected[j];
-                    if (typeBtn.tag == listModel.ID.integerValue) {
+                    if (typeBtn.tag == listModel.label_id.integerValue) {
                         typeBtn.selected = YES;
                         break;
                     }

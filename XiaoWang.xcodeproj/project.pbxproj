@@ -122,6 +122,8 @@
 		519C87C321DA249E00085EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87C221DA249E00085EB5 /* main.m */; };
 		51C017A021FDC85500606C33 /* YSFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C0179F21FDC85500606C33 /* YSFilterViewController.m */; };
 		51C017A321FDE5B000606C33 /* XWFliterMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */; };
+		51D8B08E2203F2A600EB5175 /* XWPassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B08D2203F2A600EB5175 /* XWPassModel.m */; };
+		51D8B0912204123100EB5175 /* XWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B0902204123100EB5175 /* XWMessageModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -355,6 +357,10 @@
 		51C0179F21FDC85500606C33 /* YSFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSFilterViewController.m; sourceTree = "<group>"; };
 		51C017A121FDE5B000606C33 /* XWFliterMoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFliterMoreVC.h; sourceTree = "<group>"; };
 		51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFliterMoreVC.m; sourceTree = "<group>"; };
+		51D8B08C2203F2A600EB5175 /* XWPassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPassModel.h; sourceTree = "<group>"; };
+		51D8B08D2203F2A600EB5175 /* XWPassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPassModel.m; sourceTree = "<group>"; };
+		51D8B08F2204123100EB5175 /* XWMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMessageModel.h; sourceTree = "<group>"; };
+		51D8B0902204123100EB5175 /* XWMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWMessageModel.m; sourceTree = "<group>"; };
 		68BB265ABED52041FD4634F9 /* libPods-XiaoWang.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XiaoWang.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6954A29C0B4B858F288D35AC /* Pods-XiaoWang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XiaoWang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XiaoWang/Pods-XiaoWang.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -844,6 +850,10 @@
 				5156084F21F2176900C3CD9A /* XWCommentListsModel.m */,
 				5156085121F2186D00C3CD9A /* XWReplyModel.h */,
 				5156085221F2186D00C3CD9A /* XWReplyModel.m */,
+				51D8B08C2203F2A600EB5175 /* XWPassModel.h */,
+				51D8B08D2203F2A600EB5175 /* XWPassModel.m */,
+				51D8B08F2204123100EB5175 /* XWMessageModel.h */,
+				51D8B0902204123100EB5175 /* XWMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1055,6 +1065,7 @@
 				5135CA4C21DA57CA0025213D /* FGAliyunOSSManager.m in Sources */,
 				5135CA5D21DA57CA0025213D /* UIColor+shadow.m in Sources */,
 				5135CA6F21DA57CA0025213D /* FGTimePicker.m in Sources */,
+				51D8B08E2203F2A600EB5175 /* XWPassModel.m in Sources */,
 				5135C9C921DA57B60025213D /* UIView+DDExtension.m in Sources */,
 				5135CA4321DA57CA0025213D /* FGBaseRefreshTableViewController.m in Sources */,
 				5174BA6D21E38BD600ADA586 /* XWNewsVC.m in Sources */,
@@ -1100,6 +1111,7 @@
 				5135C9BF21DA57B60025213D /* CustomPopOverView.m in Sources */,
 				5135CA6B21DA57CA0025213D /* FGRefreshHeader.m in Sources */,
 				5135CA5121DA57CA0025213D /* FGPaymentManager.m in Sources */,
+				51D8B0912204123100EB5175 /* XWMessageModel.m in Sources */,
 				5174BA6421E32A9800ADA586 /* XWAboutVC.m in Sources */,
 				5135C9C021DA57B60025213D /* FGBaseLayoutView.m in Sources */,
 				5156085021F2176900C3CD9A /* XWCommentListsModel.m in Sources */,

@@ -129,4 +129,12 @@
     }
 }
 
+
+-(void)match_info{
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/match_info/%@",@"ID"] parameters:@{} success:^(id responseObject) {
+        
+    } failure:^(NSString *error) {
+        
+    }];
+}
 @end

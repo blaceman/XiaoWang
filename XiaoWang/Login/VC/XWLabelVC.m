@@ -14,6 +14,8 @@
 #import "XWFliterMoreVC.h"
 @interface XWLabelVC ()
 @property (nonatomic,strong)NSArray<XWLableListModel*> *labelArr;
+
+@property (nonatomic, strong) NSMutableArray *pidLabelSelectArr;  ///< <#Description#>
 @end
 
 @implementation XWLabelVC
@@ -22,6 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"个性标签"];
+    self.pidLabelSelectArr = [NSMutableArray new];
     WeakSelf
     if (!self.isMyLabel) {
         [self.navigationView addRightButtonWithTitle:@"跳过" clickCallBack:^(UIView *view) {
@@ -76,7 +79,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
                 return ;
             }
-            [self pidSetWithPid:@(labelView.tag).stringValue labels:@(btn.tag).stringValue];
+            [self pidSetWithPid:@(labelView.tag).stringValue labels:@(btn.tag).stringValue labelModel:labelView.labelModel];
         };
         [self.bgScrollView.contentView addSubview:labelView];
         [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,11 +98,12 @@
 }
 
 -(void)dataSetWithNum:(NSInteger )num labelView:(XWLabelView *)labelView{
+    WeakSelf
     [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/label/label/%@",self.labelArr[num].ID] parameters:@{} success:^(id responseObject) {
+        StrongSelf
         XWLabelsModel *labels = [XWLabelsModel modelWithJSON:responseObject];
-        
+        [self.pidLabelSelectArr addObject:labels.selected];
         labelView.labelModel = labels;
-        labelView.isSelected = YES;
         labelView.isSelected = YES;
         labelView.dataSource = [NSMutableArray arrayWithArray:[labels.labels.rac_sequence map:^id _Nullable(XWLableListModel  *_Nullable value) {
             return value.name;
@@ -113,8 +117,77 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels{
-    [FGHttpManager postWithPath:@"api/label/setting" parameters:@{@"pid":pid,@"labels":labels} success:^(id responseObject) {
+-(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels labelModel:(XWLabelsModel *)model{
+    NSMutableArray *selectArr = [NSMutableArray arrayWithArray:model.selected];
+    
+    if (!selectArr.count) {
+        XWLableListModel *listModel = [XWLableListModel new];
+        listModel.label_id = labels;
+        listModel.label_pid = pid;
+        [selectArr addObject:listModel];
+    }else{
+        for (int i = 0; i < model.selected.count; i++) {
+            XWLableListModel *listModl = model.selected[i];
+            XWLableListModel *selectModel = selectArr[i];
+            if (listModl.label_id.integerValue == labels.integerValue) {
+                [selectArr removeObject:selectModel];
+                break;
+            }
+            if(i == model.selected.count - 1){
+                XWLableListModel *listModel = [XWLableListModel new];
+                listModel.label_id = labels;
+                listModel.label_pid = pid;
+                [selectArr addObject:listModel];
+            }
+        }
+
+    }
+
+    
+    if (!self.pidLabelSelectArr.count) {
+        [self.pidLabelSelectArr addObject:model.selected];
+    }else{
+        if (!selectArr.count) {
+            [self.pidLabelSelectArr removeObject:model.selected];
+        }else{
+            if (!model.selected.count) {
+                [self.pidLabelSelectArr addObject:selectArr];
+            }else{
+                [self.pidLabelSelectArr replaceObjectAtIndex:[self.pidLabelSelectArr indexOfObject:model.selected] withObject:selectArr];
+            }
+            
+
+        }
+    }
+
+    
+    NSArray *pidArr = [self.pidLabelSelectArr.rac_sequence map:^id _Nullable(NSArray<XWLableListModel *>  *_Nullable value) {
+        return value.firstObject.label_pid;
+    }].array;
+    
+    
+   NSArray *label_idArr = [self.pidLabelSelectArr.rac_sequence map:^id _Nullable(NSArray<XWLableListModel *>  *_Nullable value) {
+       if (!value.count) {
+           return nil;
+       }
+        __block NSString *label_idStr = @"";
+        [value jk_each:^(XWLableListModel *object) {
+            if ([label_idStr isEqualToString:@""]) {
+                label_idStr = object.label_id;
+            }else{
+                label_idStr = [NSString stringWithFormat:@"%@,%@",label_idStr,object.label_id];
+            }
+            
+        }];
+        return label_idStr;
+    }].array;
+    
+    model.selected = selectArr;
+
+    
+
+    
+    [FGHttpManager postWithPath:@"api/label/setting_all" parameters:@{@"pid":pidArr.jsonStringEncoded,@"labels":label_idArr.jsonStringEncoded} success:^(id responseObject) {
         
         
     } failure:^(NSString *error) {
