@@ -11,7 +11,7 @@
 
 @implementation FGCityModel
 
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
++ (NSDictionary<NSString *,id> *)modelCustomPropertyMapper
 {
     return @{
              @"addressId":@"region_id",

@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationView setTitle:@"登录"];
+    [self.navigationView setTitle:@"登录/注册"];
     
 }
 

@@ -16,6 +16,8 @@
 #import <NSAttributedString+YYText.h>
 #import <BRPickerView.h>
 #import "XWLabelVC.h"
+#import "FGAreaPicker.h"
+#import "XWAreaModel.h"
 
 @interface HYPersonSetVC ()
 @property (nonatomic,strong)UIButton *avaterButton;
@@ -27,6 +29,7 @@
 
 @property (nonatomic,strong)NSString *avatar;
 
+@property (nonatomic,strong)NSString *selectCity;
 
 @end
 
@@ -118,13 +121,20 @@
         }
         if ([titleArr[i] isEqualToString:@"生日"]) {
             model.placeholder = @"请选择出生年月（选填）";
-            model.content = [FGCacheManager sharedInstance].userModel.birthday;
+            model.content = [FGCacheManager sharedInstance].userModel.birthday ?  [[FGCacheManager sharedInstance].userModel.birthday fg_stringWithFormat:@"yyyy-MM-dd"] : @"";
         }else if ([titleArr[i] isEqualToString:@"地区"]){
-            model.content = [FGCacheManager sharedInstance].userModel.city_id.stringValue;
+            model.content = [FGCacheManager sharedInstance].userModel.city_id? [XWAreaModel cityNameWithCityID:[FGCacheManager sharedInstance].userModel.city_id.stringValue]: @"";
         }else if ([titleArr[i] isEqualToString:@"昵称"]){
             model.content = [FGCacheManager sharedInstance].userModel.nickname;
         }else if ([titleArr[i] isEqualToString:@"性别"]){
-            model.content = [FGCacheManager sharedInstance].userModel.gender.integerValue == 20 ? @"男" : @"女";
+            if ( [FGCacheManager sharedInstance].userModel.gender.integerValue == 20) {
+                model.content = @"男";
+            }else if([FGCacheManager sharedInstance].userModel.gender.integerValue == 30){
+                model.content = @"女";
+            }else{
+                model.content = @"";
+            }
+//            model.content = [FGCacheManager sharedInstance].userModel.gender.integerValue == 20 ? @"男" : @"女";
         }
         
         
@@ -199,9 +209,28 @@
 -(void)itemAction:(FGCellStyleView *)view{
     [self.view endEditing:YES];
     if ([view.model.leftTitle isEqualToString:@"地区"]) {
-        [BRAddressPickerView showAddressPickerWithDefaultSelected:@[@"广东省", @"广州市", @"海珠区"] resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
-            view.model.content = [NSString stringWithFormat:@"%@%@%@",province.name,city.name,area.name];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"fg_areaXW.json" ofType:nil];
+//        NSData *jsonData = [[NSData alloc] initWithContentsOfFile:path];
+//        NSArray<XWAreaModel *> *addressArr = [NSArray modelArrayWithClass:[XWAreaModel class] json:jsonData];
+//
+//        [BRStringPickerView showStringPickerWithTitle:@"城市选择" dataSource:addressArr defaultSelValue:nil resultBlock:^(XWAreaModel *selectValue) {
+//            view.model.content = selectValue;
+//        }];
+        
+//       FGAreaPicker *pick = [[FGAreaPicker alloc] init];
+//        WeakSelf
+//        pick.didSeclectedDone = ^(FGCityModel *province, FGCityModel *city, FGCityModel *town) {
+//            StrongSelf
+//        };
+//        [pick show];
+//
+        [BRAddressPickerView showAddressPickerWithShowType:(BRAddressPickerModeCity) defaultSelected:nil isAutoSelect:YES themeColor:nil resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
+            self.selectCity = city.name;
+            view.model.content = [NSString stringWithFormat:@"%@%@",province.name,city.name];
+        } cancelBlock:^{
+            
         }];
+       
     }else if ([view.model.leftTitle isEqualToString:@"生日"]){
         
         [BRDatePickerView showDatePickerWithTitle:@"生日选择" dateType:BRDatePickerModeDate defaultSelValue:nil resultBlock:^(NSString *selectValue) {
@@ -312,13 +341,14 @@
         dic[@"birthday"] = birthday;
     }
     if (city_id){
-        dic[@"city_name"] = @"广州市";
+        dic[@"city_name"] = self.selectCity;
     }
     if (avatar){
         dic[@"avatar"] = avatar;
     }
     
     [FGHttpManager putWithPath:@"api/profile/set_profile" parameters:dic success:^(id responseObject) {
+        [FGCacheManager sharedInstance].userModel = [FGUserModel modelWithJSON:responseObject];
         if (self.isNONewers) {
             [self.navigationController popViewControllerAnimated:YES];
         }else{

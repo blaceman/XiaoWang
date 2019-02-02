@@ -122,6 +122,8 @@
 		519C87C321DA249E00085EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 519C87C221DA249E00085EB5 /* main.m */; };
 		51C017A021FDC85500606C33 /* YSFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C0179F21FDC85500606C33 /* YSFilterViewController.m */; };
 		51C017A321FDE5B000606C33 /* XWFliterMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */; };
+		51CAB93722057F76000A4293 /* fg_areaXW.json in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB93622057F76000A4293 /* fg_areaXW.json */; };
+		51CAB93A22058142000A4293 /* XWAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB93922058142000A4293 /* XWAreaModel.m */; };
 		51D8B08E2203F2A600EB5175 /* XWPassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B08D2203F2A600EB5175 /* XWPassModel.m */; };
 		51D8B0912204123100EB5175 /* XWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B0902204123100EB5175 /* XWMessageModel.m */; };
 /* End PBXBuildFile section */
@@ -357,6 +359,9 @@
 		51C0179F21FDC85500606C33 /* YSFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSFilterViewController.m; sourceTree = "<group>"; };
 		51C017A121FDE5B000606C33 /* XWFliterMoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWFliterMoreVC.h; sourceTree = "<group>"; };
 		51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWFliterMoreVC.m; sourceTree = "<group>"; };
+		51CAB93622057F76000A4293 /* fg_areaXW.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fg_areaXW.json; sourceTree = "<group>"; };
+		51CAB93822058142000A4293 /* XWAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWAreaModel.h; sourceTree = "<group>"; };
+		51CAB93922058142000A4293 /* XWAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWAreaModel.m; sourceTree = "<group>"; };
 		51D8B08C2203F2A600EB5175 /* XWPassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPassModel.h; sourceTree = "<group>"; };
 		51D8B08D2203F2A600EB5175 /* XWPassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPassModel.m; sourceTree = "<group>"; };
 		51D8B08F2204123100EB5175 /* XWMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMessageModel.h; sourceTree = "<group>"; };
@@ -844,6 +849,9 @@
 		5135CA8621DA63820025213D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				51CAB93822058142000A4293 /* XWAreaModel.h */,
+				51CAB93922058142000A4293 /* XWAreaModel.m */,
+				51CAB93622057F76000A4293 /* fg_areaXW.json */,
 				5156084B21F2169F00C3CD9A /* XWAlbumModel.h */,
 				5156084C21F2169F00C3CD9A /* XWAlbumModel.m */,
 				5156084E21F2176900C3CD9A /* XWCommentListsModel.h */,
@@ -987,6 +995,7 @@
 				519C87C021DA249E00085EB5 /* LaunchScreen.storyboard in Resources */,
 				519C87BD21DA249E00085EB5 /* Assets.xcassets in Resources */,
 				5135CA5221DA57CA0025213D /* AlipaySDK.bundle in Resources */,
+				51CAB93722057F76000A4293 /* fg_areaXW.json in Resources */,
 				5135CA6221DA57CA0025213D /* fg_area.json in Resources */,
 				519C87BB21DA249100085EB5 /* Main.storyboard in Resources */,
 				5135CA5521DA57CA0025213D /* README.txt in Resources */,
@@ -1164,6 +1173,7 @@
 				5174BA4321E1CBDA00ADA586 /* XWPasswordVC.m in Sources */,
 				5135CA6D21DA57CA0025213D /* FGSheetPopControl.m in Sources */,
 				5135CA4021DA57CA0025213D /* FGBaseCollectionViewCell.m in Sources */,
+				51CAB93A22058142000A4293 /* XWAreaModel.m in Sources */,
 				5135CA5921DA57CA0025213D /* FGSharePopView.m in Sources */,
 				5135CA4B21DA57CA0025213D /* FGAdvertiseView.m in Sources */,
 				5135CA5021DA57CA0025213D /* LxGridViewFlowLayout.m in Sources */,
