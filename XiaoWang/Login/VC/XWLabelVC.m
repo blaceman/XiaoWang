@@ -74,8 +74,17 @@
             Strongify(labelView)
             if ([btn.titleLabel.text isEqualToString:@"更多 +"]) {
                 XWFliterMoreVC *vc = [XWFliterMoreVC new];
+                vc.labelViewBlock = ^(XWLabelView *labelMyView, UIButton *myBtn) {
+                    StrongSelf
+                    UIButton *seletedBtn = [labelView viewWithTag:myBtn.tag];
+                    seletedBtn.selected = !seletedBtn.selected;
+                    [self pidSetWithPid:@(labelMyView.tag).stringValue labels:@(myBtn.tag).stringValue labelModel:labelView.labelModel];
+                };
                 vc.moreTitle = labelView.title;
                 vc.dataSource = labelView.dataSource;
+                vc.labelModel = labelView.labelModel;
+                vc.isSelect = YES;
+                vc.labelTag = labelView.tag;
                 [self.navigationController pushViewController:vc animated:YES];
                 return ;
             }
@@ -117,6 +126,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//选择,取消选择
 -(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels labelModel:(XWLabelsModel *)model{
     NSMutableArray *selectArr = [NSMutableArray arrayWithArray:model.selected];
     
@@ -187,7 +198,7 @@
     
 
     
-    [FGHttpManager postWithPath:@"api/label/setting_all" parameters:@{@"pid":pidArr.jsonStringEncoded,@"labels":label_idArr.jsonStringEncoded} success:^(id responseObject) {
+    [FGHttpManager postWithPath:@"api/label/setting_all" parameters:@{@"pids":pidArr.jsonStringEncoded,@"labels":label_idArr.jsonStringEncoded} success:^(id responseObject) {
         
         
     } failure:^(NSString *error) {

@@ -111,6 +111,7 @@
     for (int i = 0; i< self.labelArr.count; i++) {
         
         XWLabelView *labelView = [[XWLabelView alloc]initWithDataSource:@[@"",@"",@"",@"",@"",@""] title:((XWLableListModel *)self.labelArr[i]).name];
+        labelView.isSelected = NO;
         labelView.tag = self.labelArr[i].ID.integerValue;
         [self.labelViewArr addObject:labelView];
         [self dataSetWithNum:i labelView:labelView];
@@ -123,6 +124,7 @@
             if ([btn.titleLabel.text isEqualToString:@"更多 +"]) {
                 XWFliterMoreVC *vc = [XWFliterMoreVC new];
                 vc.moreTitle = labelView.title;
+                vc.isSelect = NO;
                 vc.labelTag = labelView.tag;
                 vc.dataSource = labelView.dataSource;
                 vc.labelModel = labelView.labelModel;

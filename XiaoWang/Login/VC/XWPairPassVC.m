@@ -33,14 +33,26 @@
     self.view.backgroundColor = UIColorFromHex(0xffffff);
     
     XWPairHeaderView *headerView = [XWPairHeaderView new];
-    [headerView configWithModel:self.userModel];
+    if (self.userModel) {
+        [headerView configWithModel:self.userModel];
+
+    }else if (self.messageModel){
+        [headerView configWithModel:self.messageModel];
+
+    }
     [self.bgScrollView.contentView addSubview:headerView];
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.offset(0);
     }];
     
     XWPairBodyView *bodyView = [XWPairBodyView new];
-    [bodyView configWithModel:self.userModel];
+    if (self.userModel) {
+        [bodyView configWithModel:self.userModel];
+
+    }else if (self.messageModel){
+        [bodyView configWithModel:self.messageModel];
+
+    }
     self.bodyView = bodyView;
     [self.bgScrollView.contentView addSubview:bodyView];
     [bodyView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,7 +110,12 @@
                return ;
            }
            XWPairPassView *tipView = [XWPairPassView new];
-           [tipView configWithModel:self.userModel];
+           if (self.userModel) {
+               [tipView configWithModel:self.userModel];
+           }else if (self.messageModel){
+               [tipView configWithModel:self.userModel];
+
+           }
            [tipView.loadBtn setImage:UIImageWithName(@"icon_fail") forState:(UIControlStateNormal)];
            [tipView.sendBtn setTitle:@"返回首页" forState:(UIControlStateNormal)];
            Weakify(tipView);
@@ -123,7 +140,7 @@
 
 -(void)passAnswerData{
     WeakSelf
-    [FGHttpManager postWithPath:@"api/match/answer" parameters:@{@"answer":self.bodyView.answerField.text,@"match_id":self.userModel.match_id} success:^(id responseObject) {
+    [FGHttpManager postWithPath:@"api/match/answer" parameters:@{@"answer":self.bodyView.answerField.text,@"match_id":self.userModel ?self.userModel.match_id : self.messageModel.match_id} success:^(id responseObject) {
         StrongSelf
         //通关成功
 
@@ -132,7 +149,13 @@
         [self.tipBtn setTitle:[NSString stringWithFormat:@"  对方已答对，用时%ld秒",kAppDelegate.countDowmTime - self.time] forState:(UIControlStateNormal)];
         [self.dispoable dispose];
         XWPairPassView *tipView = [XWPairPassView new];
-        [tipView configWithModel:self.userModel];
+        if (self.userModel) {
+            [tipView configWithModel:self.userModel];
+
+        }else if (self.messageModel){
+            [tipView configWithModel:self.messageModel];
+
+        }
         [tipView.loadBtn setImage:UIImageWithName(@"icon_adopt") forState:(UIControlStateNormal)];
         tipView.contentLabel.text = @"速配通关成功！";
         //发送消息
@@ -143,7 +166,7 @@
             //发送消息
             [tipView remove];
             NSLog(@"uid:%@",[FGCacheManager sharedInstance].userModel.uid);
-            NIMSession *session = [NIMSession session:self.userModel.uid type:NIMSessionTypeP2P];
+            NIMSession *session = [NIMSession session:self.userModel ? self.userModel.uid : self.messageModel.uid type:NIMSessionTypeP2P];
             NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
             [self.navigationController pushViewController:vc animated:YES];
 //            [self.navigationController popViewControllerAnimated:YES];

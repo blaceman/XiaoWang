@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XiaoWang/Mine/View/XWNewsCell.m"
-            timestampString = "570705375.4728431"
+            timestampString = "570771949.427193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XiaoWang/Mine/View/XWNewsCell.m"
-            timestampString = "570705375.472922"
+            timestampString = "570771949.4272749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-configWithModel:"
             landmarkType = "7">
          </BreakpointContent>

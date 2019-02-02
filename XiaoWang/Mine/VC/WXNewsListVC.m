@@ -11,6 +11,7 @@
 #import "XWFriendsInformationVC.h"
 #import "XWPassModel.h"
 #import "XWMessageModel.h"
+#import "XWPairPassVC.h"
 
 @interface WXNewsListVC ()
 
@@ -97,6 +98,21 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.type == 0) {
+        XWMessageModel *messageModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+//        FGUserModel *userModel = [FGUserModel modelWithJSON:messageModel.modelToJSONObject];
+        if ([messageModel.type isEqualToString:@"match"]) {
+            if (messageModel.state.integerValue == 1) {
+                [self matched_infoWithMach_id:messageModel.match_id.stringValue];
+            }else{
+                [self showTextHUDWithMessage:@"通关失败"];
+            }
+        }
+        
+        
+        return;
+        
+    }
     id model = [self.dataSourceArr objectAtIndex:indexPath.row];
     if ([model isKindOfClass:[FGUserModel class]]) {
     FGUserModel *userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
@@ -121,6 +137,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+//
+-(void)matched_infoWithMach_id:(NSString *)matchID{
+    WeakSelf
+    [self showLoadingHUDWithMessage:@""];
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/match_info/%@",matchID] parameters:@{} success:^(id responseObject) {
+        StrongSelf
+        [self hideLoadingHUD];
+        FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
+        XWPairPassVC *vc = [XWPairPassVC new];
+        vc.userModel = userModel;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+    } failure:^(NSString *error) {
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 

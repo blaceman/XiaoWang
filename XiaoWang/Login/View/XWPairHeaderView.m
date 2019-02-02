@@ -98,7 +98,7 @@
     if ([model isKindOfClass:[FGUserModel class]]) {
         FGUserModel *userModel = model;
         
-        [self.avaterBtn setImageWithURL:[NSURL URLWithString:[FGCacheManager sharedInstance].userModel.avatar] forState:UIControlStateNormal placeholder:UIImageWithName(@"icon_head2")];
+        [self.avaterBtn setImageWithURL:[NSURL URLWithString:userModel.avatar] forState:UIControlStateNormal placeholder:UIImageWithName(@"icon_head2")];
         NSLog(@"头像地址:%@",[FGCacheManager sharedInstance].userModel.avatar);
         self.nameLabel.text = userModel.nickname;
         self.numLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];

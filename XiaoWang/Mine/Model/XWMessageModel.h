@@ -9,8 +9,8 @@
 #import "FGBaseModel.h"
 
 @interface XWMessageModel : FGBaseModel
-@property (nonatomic, strong) NSNumber *type;  ///< <#Description#>
-@property (nonatomic, strong) NSNumber *uid;  ///< <#Description#>
+@property (nonatomic, strong) NSString *type;  ///< <#Description#>
+@property (nonatomic, strong) NSString *uid;  ///< <#Description#>
 @property (nonatomic, strong) NSString *title;  ///< <#Description#>
 @property (nonatomic, strong) NSNumber *state;  ///< <#Description#>
 @property (nonatomic, strong) NSNumber *msg_id;  ///< <#Description#>

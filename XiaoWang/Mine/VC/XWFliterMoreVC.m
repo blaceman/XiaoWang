@@ -30,15 +30,22 @@
 //    initWithDataSource:self.dataSource title:@"我的选择" isMore:YES
     labelViewSex.labelModel = self.labelModel;
     labelViewSex.tag = self.labelTag;
-    labelViewSex.dataSource = [NSMutableArray arrayWithArray:self.dataSource];
+    labelViewSex.dataSource = self.dataSource;
     labelViewSex.title = @"我的选择";
     labelViewSex.ismore = YES;
+    labelViewSex.isSelected = self.isSelect;
     [labelViewSex setupView];
     [self.bgScrollView.contentView addSubview:labelViewSex];
     Weakify(labelViewSex)
     labelViewSex.btnBlock = ^(UIButton *btn) {
         StrongSelf
         Strongify(labelViewSex)
+        if (labelViewSex.isSelected == YES) {
+            if (self.labelViewBlock) {
+                self.labelViewBlock(labelViewSex, btn);
+            }
+        }
+        
         if (btn.selected) {
             if ([kAppDelegate.pidDic valueForKey:@(labelViewSex.tag).stringValue]) {
                 NSMutableArray *dic = [kAppDelegate.pidDic valueForKey:@(labelViewSex.tag).stringValue];

@@ -108,7 +108,8 @@
         [self.avatetBtn setImageWithURL:[NSURL URLWithString:userModel.avatar] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
 //        self.
         self.contentLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];
-        
+        self.statusLabel.hidden = YES;
+        self.timeLabel.hidden = YES;
         return;
     }else if ([model isKindOfClass:[NIMRecentSession class]]){
         NIMRecentSession *sessionModel = model;
@@ -196,8 +197,8 @@
         self.timeLabel.hidden = NO;
         self.statusLabel.hidden = NO;
         self.rightImg.hidden = YES;
-        self.statusLabel.hidden = YES;
-        self.timeLabel.hidden = YES;
+//        self.statusLabel.hidden = YES;
+//        self.timeLabel.hidden = YES;
     }
 }
 
