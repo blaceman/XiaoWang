@@ -78,7 +78,7 @@
                     StrongSelf
                     UIButton *seletedBtn = [labelView viewWithTag:myBtn.tag];
                     seletedBtn.selected = !seletedBtn.selected;
-                    [self pidSetWithPid:@(labelMyView.tag).stringValue labels:@(myBtn.tag).stringValue labelModel:labelView.labelModel];
+                    [self pidSetWithPid:@(labelMyView.tag).stringValue labels:@(myBtn.tag).stringValue labelModel:labelView.labelModel myBtn:myBtn];
                 };
                 vc.moreTitle = labelView.title;
                 vc.dataSource = labelView.dataSource;
@@ -88,7 +88,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
                 return ;
             }
-            [self pidSetWithPid:@(labelView.tag).stringValue labels:@(btn.tag).stringValue labelModel:labelView.labelModel];
+            [self pidSetWithPid:@(labelView.tag).stringValue labels:@(btn.tag).stringValue labelModel:labelView.labelModel myBtn:btn];
         };
         [self.bgScrollView.contentView addSubview:labelView];
         [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -128,7 +128,7 @@
 }
 
 //选择,取消选择
--(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels labelModel:(XWLabelsModel *)model{
+-(void)pidSetWithPid:(NSString *)pid labels:(NSString *)labels labelModel:(XWLabelsModel *)model myBtn:(UIButton *)btn{
     NSMutableArray *selectArr = [NSMutableArray arrayWithArray:model.selected];
     
     if (!selectArr.count) {
@@ -177,17 +177,27 @@
     }].array;
     
     
+    WeakSelf
+    __block BOOL isReturn = NO;
    NSArray *label_idArr = [self.pidLabelSelectArr.rac_sequence map:^id _Nullable(NSArray<XWLableListModel *>  *_Nullable value) {
        if (!value.count) {
            return nil;
        }
         __block NSString *label_idStr = @"";
+       __block NSInteger timeNum = 0;
         [value jk_each:^(XWLableListModel *object) {
+            StrongSelf
+            timeNum++;
+            if (timeNum > 6) {
+                isReturn = YES;
+               
+            }
             if ([label_idStr isEqualToString:@""]) {
                 label_idStr = object.label_id;
             }else{
                 label_idStr = [NSString stringWithFormat:@"%@,%@",label_idStr,object.label_id];
             }
+           
             
         }];
         return label_idStr;
@@ -195,7 +205,12 @@
     
     model.selected = selectArr;
 
-    
+    if (isReturn) {
+        [MBProgressHUD showInfo:@"标签选择最多6个" ToView:kKeyWindow];
+        btn.selected = !btn.selected;
+        [self pidSetWithPid:pid labels:labels labelModel:model myBtn:btn];
+        return;
+    }
 
     
     [FGHttpManager postWithPath:@"api/label/setting_all" parameters:@{@"pids":pidArr.jsonStringEncoded,@"labels":label_idArr.jsonStringEncoded} success:^(id responseObject) {

@@ -123,7 +123,8 @@
             model.placeholder = @"请选择出生年月（选填）";
             model.content = [FGCacheManager sharedInstance].userModel.birthday ?  [[FGCacheManager sharedInstance].userModel.birthday fg_stringWithFormat:@"yyyy-MM-dd"] : @"";
         }else if ([titleArr[i] isEqualToString:@"地区"]){
-            model.content = [FGCacheManager sharedInstance].userModel.city_id? [XWAreaModel cityNameWithCityID:[FGCacheManager sharedInstance].userModel.city_id.stringValue]: @"";
+            model.content = [FGCacheManager sharedInstance].userModel.city_id? [NSString stringWithFormat:@"%@%@",[XWAreaModel province_NameWithProvince_id:[FGCacheManager sharedInstance].userModel.province_id.stringValue],[XWAreaModel cityNameWithCityID:[FGCacheManager sharedInstance].userModel.city_id.stringValue]]: @"";
+            self.selectCity = [XWAreaModel cityNameWithCityID:[FGCacheManager sharedInstance].userModel.city_id.stringValue];
         }else if ([titleArr[i] isEqualToString:@"昵称"]){
             model.content = [FGCacheManager sharedInstance].userModel.nickname;
         }else if ([titleArr[i] isEqualToString:@"性别"]){
