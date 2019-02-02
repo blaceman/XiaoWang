@@ -124,6 +124,7 @@
 		51C017A321FDE5B000606C33 /* XWFliterMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C017A221FDE5B000606C33 /* XWFliterMoreVC.m */; };
 		51CAB93722057F76000A4293 /* fg_areaXW.json in Resources */ = {isa = PBXBuildFile; fileRef = 51CAB93622057F76000A4293 /* fg_areaXW.json */; };
 		51CAB93A22058142000A4293 /* XWAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB93922058142000A4293 /* XWAreaModel.m */; };
+		51CAB93D2205C100000A4293 /* XWXustomizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CAB93C2205C100000A4293 /* XWXustomizeView.m */; };
 		51D8B08E2203F2A600EB5175 /* XWPassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B08D2203F2A600EB5175 /* XWPassModel.m */; };
 		51D8B0912204123100EB5175 /* XWMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D8B0902204123100EB5175 /* XWMessageModel.m */; };
 /* End PBXBuildFile section */
@@ -362,6 +363,8 @@
 		51CAB93622057F76000A4293 /* fg_areaXW.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fg_areaXW.json; sourceTree = "<group>"; };
 		51CAB93822058142000A4293 /* XWAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWAreaModel.h; sourceTree = "<group>"; };
 		51CAB93922058142000A4293 /* XWAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWAreaModel.m; sourceTree = "<group>"; };
+		51CAB93B2205C100000A4293 /* XWXustomizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWXustomizeView.h; sourceTree = "<group>"; };
+		51CAB93C2205C100000A4293 /* XWXustomizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWXustomizeView.m; sourceTree = "<group>"; };
 		51D8B08C2203F2A600EB5175 /* XWPassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWPassModel.h; sourceTree = "<group>"; };
 		51D8B08D2203F2A600EB5175 /* XWPassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWPassModel.m; sourceTree = "<group>"; };
 		51D8B08F2204123100EB5175 /* XWMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWMessageModel.h; sourceTree = "<group>"; };
@@ -842,6 +845,8 @@
 				5174BA5121E1D76E00ADA586 /* HYHomeShowView.m */,
 				5174BA6E21E3914800ADA586 /* XWNewsCell.h */,
 				5174BA6F21E3914800ADA586 /* XWNewsCell.m */,
+				51CAB93B2205C100000A4293 /* XWXustomizeView.h */,
+				51CAB93C2205C100000A4293 /* XWXustomizeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1114,6 +1119,7 @@
 				5174BA7921E39C2400ADA586 /* XWFriendVC.m in Sources */,
 				5174BA7621E39A1800ADA586 /* XWFriendsInformationVC.m in Sources */,
 				5135C9C821DA57B60025213D /* PopView.m in Sources */,
+				51CAB93D2205C100000A4293 /* XWXustomizeView.m in Sources */,
 				519C87B521DA249100085EB5 /* AppDelegate.m in Sources */,
 				5174BA6121E26AB900ADA586 /* XWFeedbackVC.m in Sources */,
 				5135CA4F21DA57CA0025213D /* FGImagePickerVC.m in Sources */,

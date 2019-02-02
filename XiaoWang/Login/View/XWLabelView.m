@@ -11,7 +11,6 @@
 @interface XWLabelView()
 
 
-@property (nonatomic,strong)NSMutableArray *showArr;
 @end
 @implementation XWLabelView
 

@@ -18,6 +18,7 @@
 @property (nonatomic, copy) void (^btnBlock) (UIButton *btn);  ///< <#Description#>
 @property (nonatomic,assign)BOOL ismore;
 
+@property (nonatomic,strong)NSMutableArray *showArr;
 
 
 -(instancetype)initWithDataSource:(NSArray *)dataSource title:(NSString *)title;

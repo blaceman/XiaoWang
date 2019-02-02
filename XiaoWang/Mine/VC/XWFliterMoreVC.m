@@ -8,9 +8,11 @@
 
 #import "XWFliterMoreVC.h"
 #import "XWLabelView.h"
+#import "XWXustomizeView.h"
+#import "XWLableListModel.h"
 
 @interface XWFliterMoreVC ()
-
+@property (nonatomic,strong)XWLabelView *labelViewSex;
 @end
 
 @implementation XWFliterMoreVC
@@ -19,6 +21,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:self.moreTitle];
+    
+    WeakSelf
+    [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_release") clickCallBack:^(UIView *view) {
+        StrongSelf
+        XWXustomizeView *tipView = [XWXustomizeView new];
+        [tipView showInView:self.navigationController.view];
+        Weakify(tipView)
+        [tipView.comfigBtn jk_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            StrongSelf
+            Strongify(tipView)
+            if (IsEmpty(tipView.customTextField.text)) {
+                [self showTextHUDWithMessage:@"标签为空"];
+                return ;
+            }
+            [self setLabelWithName:tipView.customTextField.text pid:@(self.labelTag).stringValue];
+            [tipView remove];
+            
+        }];
+        
+    }];
+    
+    
     [self setupMyView];
 }
 
@@ -29,6 +53,7 @@
     XWLabelView *labelViewSex = [[XWLabelView alloc]init];
 //    initWithDataSource:self.dataSource title:@"我的选择" isMore:YES
     labelViewSex.labelModel = self.labelModel;
+    self.labelViewSex = labelViewSex;
     labelViewSex.tag = self.labelTag;
     labelViewSex.dataSource = self.dataSource;
     labelViewSex.title = @"我的选择";
@@ -70,12 +95,43 @@
         make.left.right.offset(0);
         make.bottom.offset(AdaptedHeight(-20));
     }];
+    
+    [self lableSet];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)lableSet{
+    UILabel *label = [UILabel fg_text:@"温馨提示\n1.请认真填写，有助于同类目标用户速配到你\n2.若采用自定义录入，尽可能使用最精简通俗公认常用词\n3.除性别、年龄外每项最多可以设定6个。" fontSize:13 colorHex:0x666666];
+    label.numberOfLines = 0;
+    [self.bgScrollView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.labelViewSex.mas_bottom).offset(AdaptedHeight(52));
+//        make.bottom.offset(AdaptedHeight(-88));
+        make.left.offset(AdaptedWidth(24));
+        make.right.offset(AdaptedWidth(-52));
+
+    }];
+    
+}
+
+-(void)setLabelWithName:(NSString *)name pid:(NSString *)pid{
+    [FGHttpManager postWithPath:@"api/label/set_label" parameters:@{@"name":name,@"label_pid":pid} success:^(id responseObject) {
+        XWLableListModel *listModel = [XWLableListModel modelWithJSON:responseObject];
+        [self.labelViewSex.dataSource addObject:listModel.name];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.labelModel.labels];
+        [arr addObject:listModel];
+        self.labelModel.labels = arr;
+        [self.labelViewSex setupView];
+
+        
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
 /*
 #pragma mark - Navigation
 
