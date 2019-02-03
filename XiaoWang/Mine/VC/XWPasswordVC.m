@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:@"通关口令"];
     WeakSelf
-    [self.navigationView addRightButtonWithTitle:@"修改" clickCallBack:^(UIView *view) {
+    [self.navigationView addRightButtonWithTitle:@"确定" clickCallBack:^(UIView *view) {
         StrongSelf
         [self postData];
     }];
@@ -143,7 +143,7 @@
             self.answerView.text = wordModel.answer;
             [self.answerView jk_addPlaceHolder:nil];
         }else{
-            [self.questionView jk_addPlaceHolder:@"请输入正确答案"];
+            [self.questionView jk_addPlaceHolder:@"请输入问题"];
             
         }
 

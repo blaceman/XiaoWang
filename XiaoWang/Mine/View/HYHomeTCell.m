@@ -71,7 +71,7 @@
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.offset(AdaptedWidth(20));
 
-        make.top.equalTo(self.topView.mas_bottom);
+        make.top.equalTo(self.topView.mas_bottom).offset(AdaptedHeight(12));
         make.left.right.offset(0);
     }];
     
