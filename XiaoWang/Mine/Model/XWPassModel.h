@@ -10,7 +10,7 @@
 
 @interface XWPassModel : FGBaseModel
 @property (nonatomic, strong) NSNumber *match_id;  ///< 111
-@property (nonatomic, strong) NSNumber *uid;  ///< 111
+@property (nonatomic, strong) NSString *uid;  ///< 111
 
 @property (nonatomic, strong) NSString *code;  ///< <#Description#>
 @property (nonatomic, strong) NSNumber *match_uid;  ///< <#Description#>

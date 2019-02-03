@@ -104,7 +104,7 @@
     if ([model isKindOfClass:[XWAlbumModel class]]) {
         XWAlbumModel *albumModel = model;
 //        [self.delBtn setTitle:[NSString stringWithFormat:@"  %@     删除",[albumModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"]] forState:UIControlStateNormal];
-        if (albumModel.ID.integerValue == [FGCacheManager sharedInstance].userModel.ID.integerValue) {
+        if (albumModel.uid.integerValue == [FGCacheManager sharedInstance].userModel.uid.integerValue) {
             self.delBtn.hidden = NO;
         }else{
             self.delBtn.hidden = YES;

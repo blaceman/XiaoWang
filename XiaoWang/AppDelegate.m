@@ -89,6 +89,11 @@
 }
 - (void)setupNIMSDK
 {
+    //文字类型气泡
+    [NIMKit sharedKit];
+//    [NIMKit sharedKit].config.rightBubbleSettings.textSetting.normalBackgroundImage = UIImageWithName(@"chat_sender_bg");
+//    [NIMKit sharedKit].config.rightBubbleSettings.textSetting.highLightBackgroundImage = UIImageWithName(@"chat_sender_bg");
+    
     //推荐在程序启动的时候初始化 NIMSDK
     NSString *appKey        = @"9e174a0b261a3993562da3a53bc803b5";
     NIMSDKOption *option    = [NIMSDKOption optionWithAppKey:appKey];

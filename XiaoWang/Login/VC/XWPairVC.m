@@ -14,6 +14,7 @@
 #import "XWNewsVC.h"
 #import "XWPasswordVC.h"
 #import "YSFilterViewController.h"
+#import "WXLoadingTipView.h"
 
 @interface XWPairVC ()
 @property (nonatomic,strong)YSFilterViewController *filterVC;
@@ -114,15 +115,21 @@
         dic = [self dicSet];
     }
     NSLog(@"%@",[FGCacheManager sharedInstance].token);
+    WXLoadingTipView *tipView = [WXLoadingTipView new];
+    
+    [tipView showInView:self.navigationController.view];
+    Weakify(tipView)
     [FGHttpManager postWithPath:@"api/match/match" parameters:dic success:^(id responseObject) {
+        Strongify(tipView)
+        [tipView remove];
         FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
-        
         XWPairPassVC *vc = [XWPairPassVC new];
         vc.userModel = userModel;
         [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSString *error) {
         WeakSelf
+        [tipView remove];
         [self showCompletionHUDWithMessage:error.description completion:^{
             if ([error.description isEqualToString:@"匹配失败"]) {
                 

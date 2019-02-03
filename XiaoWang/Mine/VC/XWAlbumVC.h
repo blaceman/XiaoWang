@@ -10,6 +10,6 @@
 #import "XWAlbumModel.h"
 @interface XWAlbumVC : FGBaseRefreshTableViewController
 @property (nonatomic, assign) BOOL isDynamic;  ///< <#Description#>
-@property (nonatomic,strong)XWAlbumModel *userModel;
+@property (nonatomic,strong)FGUserModel *userModel;
 
 @end

@@ -107,23 +107,11 @@
         self.sexImg.image = UIImageWithName(userModel.gender.integerValue == 20 ? @"icon_male":@"icon_female");
         [self.avatetBtn setImageWithURL:[NSURL URLWithString:userModel.avatar] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
 //        self.
-        self.contentLabel.text = [NSString stringWithFormat:@"小网号：%@",userModel.code];
+        self.contentLabel.text = userModel.code ? [NSString stringWithFormat:@"小网号：%@",userModel.code] : @"";
         self.statusLabel.hidden = YES;
         self.timeLabel.hidden = YES;
+        self.sexImg.hidden =NO;
         return;
-    }else if ([model isKindOfClass:[NIMRecentSession class]]){
-        NIMRecentSession *sessionModel = model;
-        self.statusLabel.hidden = YES;
-        self.sexImg.hidden = YES;
-        self.nameLabel.text = sessionModel.lastMessage.from;
-        self.contentLabel.text = sessionModel.lastMessage.text;
-        
-    }else if ([model isKindOfClass:[NIMUser class]]){
-        NIMUser *user = model;
-        self.nameLabel.text = user.userInfo.nickName;
-        self.contentLabel.text = user.userInfo.sign;
-        [self.avatetBtn setImageWithURL:[NSURL URLWithString:user.userInfo.avatarUrl] forState:(UIControlStateNormal) placeholder:UIImageWithName(@"icon_head2")];
-        self.statusLabel.hidden = YES;
     }else if ([model isKindOfClass:[XWPassModel class]]){
         XWPassModel *passModel = model;
         [self uiSetWithStr:@"2"];
@@ -153,6 +141,8 @@
             self.statusLabel.textColor = UIColorFromHex(0xF13939);
 
         }
+        self.rightImg.hidden = YES;
+        self.sexImg.hidden = NO;
         self.timeLabel.text = [passModel.create_time fg_stringWithFormat:@"MM-dd HH:mm"];
         
     }else if ([model isKindOfClass:[XWMessageModel class]]){
@@ -164,6 +154,10 @@
         self.contentLabel.numberOfLines = 0;
         [self.contentLabel setJk_edgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         self.contentLabel.preferredMaxLayoutWidth = AdaptedWidth(250);
+        self.sexImg.hidden = YES;
+        if (![messageModel.type isEqualToString:@"system"]) {
+            self.sexImg.hidden = NO;
+        }
 //        self.timeLabel.hidden = NO;
 //        self.timeLabel.text = messageModel.t
 //        self.sex
@@ -196,7 +190,7 @@
     }else if (([model isEqualToString:@"2"])){
         self.timeLabel.hidden = NO;
         self.statusLabel.hidden = NO;
-        self.rightImg.hidden = YES;
+        self.rightImg.hidden = NO;
 //        self.statusLabel.hidden = YES;
 //        self.timeLabel.hidden = YES;
     }

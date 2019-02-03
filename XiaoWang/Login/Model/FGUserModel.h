@@ -7,7 +7,7 @@
 //
 
 #import "FGBaseModel.h"
-
+@class XWLableListModel;
 @interface FGUserModel : FGBaseModel
 
 @property (nonatomic, strong) NSString *avatar;  ///< <#Description#>
@@ -31,5 +31,10 @@
 @property (nonatomic, copy) NSString *uid;  ///< Id
 
 @property (nonatomic, strong) NSNumber *f_uid;  ///< <#Description#>
+@property (nonatomic, strong) NSNumber *b_uid;  ///< <#Description#>
+
+
+@property (nonatomic, strong) NSArray<NSString *> *labels;  ///< <#Description#>
+
 
 @end

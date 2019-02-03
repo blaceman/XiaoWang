@@ -27,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationView setTitle:self.isDynamic?@"动态":@"我的相册"];
+    
     WeakSelf
     [self.navigationView addRightButtonWithImage:UIImageWithName(@"icon_release") clickCallBack:^(UIView *view) {
         StrongSelf
@@ -46,7 +47,8 @@
 }
 -(void)requestDataWithOffset:(NSInteger)offset success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure{
 //    dynamic动态相册，mine我的相册
-    [FGHttpManager getWithPath:@"api/photo/lists" parameters:@{@"type":self.isDynamic ?@"dynamic":@"mine",@"uid":self.userModel.ID ? self.userModel.ID : @"",@"page":@(offset),@"pageSize":@10} success:^(id responseObject) {
+    NSLog(@"uid:%@",self.userModel.uid);
+    [FGHttpManager getWithPath:@"api/photo/lists" parameters:@{@"type":self.isDynamic ?@"dynamic":@"mine",@"uid":self.userModel.uid ? self.userModel.uid : @"",@"page":@(offset),@"pageSize":@10} success:^(id responseObject) {
         NSArray<XWAlbumModel *> *albumArr = [NSArray modelArrayWithClass:[XWAlbumModel class] json:[responseObject valueForKey:@"data"]];
         success(albumArr);
         
@@ -102,10 +104,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    XWFriendsInformationVC *vc = [XWFriendsInformationVC new];
-    vc.userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    XWAlbumModel *albumModel = [self.dataSourceArr objectAtIndex:indexPath.row];
+    [self getFriendsWithUid:albumModel.uid];
+
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.textView resignFirstResponder];
@@ -264,6 +265,19 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self beginRefresh];
+}
+
+
+-(void)getFriendsWithUid:(NSString *)uid{
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/friend/info/%@",uid] parameters:@{} success:^(id responseObject) {
+        XWFriendsInformationVC *vc = [XWFriendsInformationVC new];
+        vc.isDynamic = YES;
+        vc.userModel = [FGUserModel modelWithJSON:responseObject];
+        vc.userModel.uid = uid;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSString *error) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

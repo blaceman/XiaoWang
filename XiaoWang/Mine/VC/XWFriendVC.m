@@ -39,10 +39,10 @@
     //    }];
     
     
-    
+    self.scrollEnable = NO;
     [self.menuView addTopLine];
     //============= 设置标题
-    
+    [self.navigationView setTitle:@"好友列表"];
     NSArray *titles = @[@"我的好友",@"黑名单"];
     NSMutableArray *viewControllers = [NSMutableArray new];
     

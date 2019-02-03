@@ -10,4 +10,5 @@
 
 @interface WXLoadingTipView : FGBaseView
 -(void)showInView:(UIView *)view;
+-(void)remove;
 @end

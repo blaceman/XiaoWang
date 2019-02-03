@@ -12,4 +12,5 @@
 @interface XWPairPassVC : FGBaseViewController
 @property (nonatomic,strong)FGUserModel *userModel;
 @property (nonatomic,strong)XWMessageModel *messageModel;
+@property (nonatomic, assign) BOOL isMached;  ///< <#Description#>
 @end

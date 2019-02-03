@@ -74,7 +74,7 @@
     XWAlbumModel *albumModel = model;
    
     self.nameLabel.text = albumModel.nickname ? albumModel.nickname :@"未命名";
-    if (albumModel.ID.integerValue == [FGCacheManager sharedInstance].userModel.ID.integerValue) {
+    if (albumModel.uid.integerValue == [FGCacheManager sharedInstance].userModel.uid.integerValue) {
         self.nameLabel.text = @"我";
     }
     

@@ -7,7 +7,13 @@
 //
 
 #import "FGUserModel.h"
-
+#import "XWLableListModel.h"
 @implementation FGUserModel
+//+ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass
+//{
+//    return @{
+//             @"labels":@"NSString",
+//             };
+//}
 
 @end

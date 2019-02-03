@@ -12,7 +12,7 @@
 #import "XWPassModel.h"
 #import "XWMessageModel.h"
 #import "XWPairPassVC.h"
-
+#import "XWChatVC.h"
 @interface WXNewsListVC ()
 
 @end
@@ -46,6 +46,7 @@
         [FGHttpManager getWithPath:@"api/friend/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
             NSArray<FGUserModel *> *userModelArr = [NSArray modelArrayWithClass:[FGUserModel class] json:[responseObject valueForKey:@"data"]];
             success(userModelArr);
+            
         } failure:^(NSString *error) {
             
         }];
@@ -57,7 +58,7 @@
 
     }else if (self.type == 2){
         [FGHttpManager getWithPath:@"api/black/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
-            NSArray<XWPassModel *> *userModelArr = [NSArray modelArrayWithClass:[XWPassModel class] json:[responseObject valueForKey:@"data"]];
+            NSArray<FGUserModel *> *userModelArr = [NSArray modelArrayWithClass:[FGUserModel class] json:[responseObject valueForKey:@"data"]];
             success(userModelArr);
         } failure:^(NSString *error) {
             
@@ -81,10 +82,11 @@
     [FGHttpManager getWithPath:@"api/message/lists" parameters:@{@"page":@(offset)} success:^(id responseObject) {
         NSArray<XWMessageModel *> *userModelArr = [NSArray modelArrayWithClass:[XWMessageModel class] json:responseObject];
         success(userModelArr);
+        [self messageRead];
+
     } failure:^(NSString *error) {
         
     }];
-    
 //    success([NIMSDK sharedSDK].conversationManager.allRecentSessions);
 //    success(@[@"",@"",@"",@"",@""]);
 }
@@ -103,7 +105,7 @@
 //        FGUserModel *userModel = [FGUserModel modelWithJSON:messageModel.modelToJSONObject];
         if ([messageModel.type isEqualToString:@"match"]) {
             if (messageModel.state.integerValue == 1) {
-                [self matched_infoWithMach_id:messageModel.match_id.stringValue];
+                [self matched_infoWithMach_id:messageModel];
             }else{
                 [self showTextHUDWithMessage:@"通关失败"];
             }
@@ -116,18 +118,22 @@
     id model = [self.dataSourceArr objectAtIndex:indexPath.row];
     if ([model isKindOfClass:[FGUserModel class]]) {
     FGUserModel *userModel = [self.dataSourceArr objectAtIndex:indexPath.row];
-    NIMSession *session = [NIMSession session:userModel.code type:NIMSessionTypeP2P];
-    NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
+    NIMSession *session = [NIMSession session:userModel.f_uid.stringValue type:NIMSessionTypeP2P];
+    XWChatVC *vc = [[XWChatVC alloc] initWithSession:session];
+        vc.userModel = userModel;
+//        [vc.navigationController setTitle:userModel.nickname];
     [self.navigationController pushViewController:vc animated:YES];
-    }else if ([model isKindOfClass:[NIMRecentSession class]]){
-        NIMRecentSession *sessionModel = model;
-        NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:sessionModel.session];
-        [self.navigationController pushViewController:vc animated:YES];
+       
 
+        
     }else if([model isKindOfClass:[XWPassModel class]]){
         XWPassModel *sessionModel = model;
-        NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:[NIMSession session:sessionModel.uid.stringValue type:(NIMSessionTypeP2P)]];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (sessionModel.state.integerValue == 20) {
+            [self getFriendsWithUid:sessionModel.match_id.stringValue];
+        }else{
+            [self showTextHUDWithMessage:@"通关失败"];
+        }
+
     }
    
 }
@@ -138,13 +144,15 @@
 }
 
 //
--(void)matched_infoWithMach_id:(NSString *)matchID{
+-(void)matched_infoWithMach_id:(XWMessageModel *)messageModel{
     WeakSelf
     [self showLoadingHUDWithMessage:@""];
-    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/match_info/%@",matchID] parameters:@{} success:^(id responseObject) {
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/match_info/%@",messageModel.match_id] parameters:@{} success:^(id responseObject) {
         StrongSelf
         [self hideLoadingHUD];
         FGUserModel *userModel = [FGUserModel modelWithJSON:responseObject];
+        userModel.match_id = @(messageModel.match_id.integerValue);
+        userModel.uid = messageModel.uid;
         XWPairPassVC *vc = [XWPairPassVC new];
         vc.userModel = userModel;
         [self.navigationController pushViewController:vc animated:YES];
@@ -154,6 +162,105 @@
         
     }];
 }
+
+-(void)messageRead{
+    if (self.type == 0) {
+        NSString *str = @"";
+        for (XWMessageModel *model in self.dataSourceArr) {
+            if ([str isEqualToString:@""]) {
+                
+                str = model.msg_id.stringValue;
+            }else{
+                str = [NSString stringWithFormat:@"%@,%@",str,model.msg_id];
+            }
+        }
+        
+        [FGHttpManager postWithPath:@"api/message/read" parameters:@{@"ids":str} success:^(id responseObject) {
+       
+            
+        } failure:^(NSString *error) {
+            
+        }];
+    }
+}
+
+-(void)relieveWithUid:(NSString *)uid{
+    WeakSelf
+    NSLog(@"token:%@",[FGCacheManager sharedInstance].token);
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/match/relieve/%@",uid] parameters:@{} success:^(id responseObject) {
+        StrongSelf
+        [self showCompletionHUDWithMessage:@"解除成功" completion:^{
+            
+            [self beginRefresh];
+        }];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+}
+-(void)black_cancelWithUid:(NSString *)uid{
+    WeakSelf
+    NSLog(@"token:%@",[FGCacheManager sharedInstance].token);
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/black/cancel/%@",uid] parameters:@{} success:^(id responseObject) {
+        StrongSelf
+        [self showCompletionHUDWithMessage:@"移除成功" completion:^{
+            
+            [self beginRefresh];
+        }];
+    } failure:^(NSString *error) {
+        [self showTextHUDWithMessage:error.description];
+    }];
+    
+}
+
+-(void)getFriendsWithUid:(NSString *)uid{
+    [FGHttpManager getWithPath:[NSString stringWithFormat:@"api/friend/info/%@",uid] parameters:@{} success:^(id responseObject) {
+        XWFriendsInformationVC *vc = [XWFriendsInformationVC new];
+        vc.isDynamic = YES;
+        vc.userModel = [FGUserModel modelWithJSON:responseObject];
+        vc.userModel.uid = uid;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSString *error) {
+        
+    }];
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.type == 2 || self.type == 3) {
+        return YES;
+    }
+    return NO;
+    
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+    
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle ==UITableViewCellEditingStyleDelete) {
+        
+        //如果编辑样式为删除样式if (indexPath.row<[self.arrayOfRows count]) {[self.arrayOfRows removeObjectAtIndex:indexPath.row];//移除数据源的数据[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];//移除tableView中的数据}
+        if (self.type == 3) {
+            XWPassModel *model = [self.dataSourceArr objectAtIndex:indexPath.row];
+            [self relieveWithUid:model.match_id.stringValue];
+        }else if (self.type == 2){
+            FGUserModel *model = [self.dataSourceArr objectAtIndex:indexPath.row];
+            [self black_cancelWithUid:model.b_uid];
+        }
+    
+    
+}}
+    
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.type == 3) {
+        return @"解除\n速配关系";
+    }
+    return @"移除\n黑名单";
+}
+
+
+
+
 /*
 #pragma mark - Navigation
 

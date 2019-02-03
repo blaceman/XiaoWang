@@ -20,6 +20,7 @@
 @property (nonatomic,strong)NSNumber *photo_id;
 @property (nonatomic,strong)NSNumber *is_praise;
 @property (nonatomic,strong)NSString *nickname;
+@property (nonatomic,strong)NSString *uid;
 
 
  ///< <#Description#>
