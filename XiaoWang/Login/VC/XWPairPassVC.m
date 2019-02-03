@@ -15,6 +15,7 @@
 #import "XWPairPassView.h"
 #import <NIMKit.h>
 #import "XWStepModel.h"
+#import "XWChatVC.h"
 @interface XWPairPassVC ()
 @property (nonatomic,strong)UIButton *tipBtn;
 
@@ -258,7 +259,8 @@
         if (status == 1) {
             NSLog(@"uid:%@",[FGCacheManager sharedInstance].userModel.uid);
             NIMSession *session = [NIMSession session:self.userModel ? self.userModel.uid : self.messageModel.uid type:NIMSessionTypeP2P];
-            NIMSessionViewController *vc = [[NIMSessionViewController alloc] initWithSession:session];
+            XWChatVC *vc = [[XWChatVC alloc] initWithSession:session];
+            vc.userModel = self.userModel;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             [self.navigationController popViewControllerAnimated:YES];
