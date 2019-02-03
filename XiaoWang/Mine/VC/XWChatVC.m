@@ -59,13 +59,20 @@
             [self reportWithuid:self.userModel.f_uid];
         }
     }];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    self.maskView.hidden = YES;
+//    [self.showView dismissView];
+    
+}
 
 - (UIControl *)maskView
 {
